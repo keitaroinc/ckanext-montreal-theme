@@ -8,6 +8,10 @@
     color: #097d6c;
 }
 
+.b_package_read:hover > a  {
+    color: #097d6c;
+}
+
 .breadcrumb_item {
   @apply inline-block;
 
@@ -20,4 +24,9 @@
 
 .breadcrumb_link {
   @apply text-gray-ink;
+}
+
+.breadcrumb-read {
+  font-size: 1.125rem;
+  font-weight: 700;
 }

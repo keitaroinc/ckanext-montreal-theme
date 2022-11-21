@@ -13110,7 +13110,9 @@ div.card-body:hover{
 .pagination li>a{
   color:#637381;
   font-size:1rem !important;
-  border:0 solid #dee2e6
+  border:0 solid #dee2e6;
+  background-color:transparent;
+  background-color:initial
 }
 
 .pagination li:hover>a{
@@ -13497,6 +13499,10 @@ body{
   color:#097d6c
 }
 
+.b_package_read:hover>a{
+  color:#097d6c
+}
+
 .breadcrumb_item{
   display: inline-block
 }
@@ -13509,6 +13515,11 @@ body{
   --text-opacity: 1;
   color: #637381;
   color: rgba(99, 115, 129, var(--text-opacity))
+}
+
+.breadcrumb-read{
+  font-size:1.125rem;
+  font-weight:700
 }
 
 .filter-button{
@@ -14116,7 +14127,6 @@ body{
   cursor:pointer;
   padding:18px;
   width:100%;
-  border:none;
   text-align:left;
   outline:none;
   font-size:15px;
@@ -14126,21 +14136,21 @@ body{
 
 .custom_accordion:hover::after{
   content:"";
-  background-image:url(/static/img/icon-plus-circle-full.svg);
+  background-image:url(/img/icon-plus-circle-full.svg);
   width:24px;
   height:24px
 }
 
 .custom_active:hover::after{
   content:"";
-  background-image:url(/static/img/icon-minus-circle-full.svg);
+  background-image:url(/img/icon-minus-circle-full.svg);
   width:24px;
   height:24px
 }
 
 .custom_accordion:after{
   content:"";
-  background-image:url(/static/img/icon-plus-circle.svg);
+  background-image:url(/img/icon-plus-circle.svg);
   color:#097d6c;
   font-weight:bold;
   float:right;
@@ -14151,7 +14161,7 @@ body{
 
 .custom_active:after{
   content:"";
-  background-image:url(/static/img/icon-minus-circle.svg);
+  background-image:url(/img/icon-minus-circle.svg);
   width:24px;
   height:24px
 }
