@@ -1,0 +1,210 @@
+{% extends "page.html" %}
+
+
+{% set pkg = pkg_dict %}
+{% block breadcrumb %}
+
+<div class="w-full font-sans font-semibold text-gray-ink py-3" aria-label="breadcrumb">
+    <nav class="breadcrumb-read" aria-label="breadcrumb">
+        <ol>
+
+        {% block breadcrumb_content %}
+
+            {% if pkg.groups %}
+                {% set title = pkg.groups[0].get('title') %}
+                {% set group_name = pkg.groups[0].get('name') %}
+            {% endif %}
+
+            {{ super() }}
+            <li class="breadcrumb_item b_package_read hover:text-primary">{% link_for _('Collections'), named_route=pkg.organization.type ~ '.index' %}</li>
+            <li class="breadcrumb_item b_package_read hover:text-primary">{% link_for title|truncate(30), named_route='group' ~ '.read', id=group_name %}</li>
+
+        {% endblock %}
+        </ol>
+    </nav>
+
+{% endblock %}
+
+
+{% block primary %}
+    <div class="md:w-2/3 pt-3 pb-5 text-gray-ink">
+        {% block primary_content %}
+            {% set pkg_org = pkg.get('organization') %}
+            {% set pkg_title = pkg.get('title') %}
+            {% set notes = pkg.get('notes') %}
+            <div>
+                {# -------- readme ------------- #}
+                <h1 class="py-2 text-4xl font-semibold text-gray-900">{{ pkg_title }}</h1>
+                <div class="text-sm-up py-1">
+                    <div class="flex flex-row">
+                        <p class="pr-2">Published by</p>
+                        <a class="font-semibold text-sarcelle-dark hover:underline">{{ pkg_org.get('title') }}</a>
+                    </div>
+                    <div class="container mt-12 mb-8 pt-16 border-t border-gray-400" style="border-top-width: 1px;">
+                        <div class="markdown-content leading-relaxed">
+                            <p>{{ notes }}</p>
+                        </div>
+                    </div>
+                </div>
+                {# -------- end readme ---------- #}
+                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">Data</h2>
+                {# -------- resource table ---------- #}
+                <table class="info block pb-12">
+                    <thead class="font-semibold text-left text-gray-900">
+                        <tr>
+                            <th class="px-4 py-3">{{ _('Name') }}</th>
+                            <th class="px-4 py-3">{{ _('Format') }}</th>
+                            <th class="px-4 py-3">{{ _('Size') }}</th>
+                            <th class="px-4 py-3">{{ _('Last Changed') }}</th>
+                            <th class="px-4 py-3 overflow-hidden">{{ _('Download') }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% set res = pkg.get('resources')[0] %}
+                        <tr class="border-t border-gray-400">
+                            <td class="px-4 py-3" style="border-top-width: 1px;">{{ _(res.get('name')) }}</td>
+                            <td class="px-4 py-3 font-semibold text-base text-gray-900 uppercase" style="border-top-width: 1px;">{{ res.get('format') }}</td>
+                            <td class="px-4 py-3" style="border-top-width: 1px;">--</td>
+                            <td class="px-4 py-3" style="border-top-width: 1px;">{{ res.get('last_modified') }}</td>
+                            <td class="px-4 py-3 text-base text-primary" style="border-top-width: 1px;">
+                                <a href="{{ res.get('url') }}" target="_blank">
+                                    <svg class="fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
+                                        <path fill-rule="evenodd" d="M12.376 15.927a1 1 0 01-1.083-.22l-5-5a1 1 0 011.414-1.414L11 12.586V3a1 1 0 012 0v12a1 1 0 01-.61.921zM20 15a1 1 0 012 0v4a3 3 0 01-3 3H5a3 3 0 01-3-3v-4a1 1 0 012 0v4a1 1 0 001 1h14a1 1 0 001-1v-4zm-3.707-5.707a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414-1.414l2-2z"></path>
+                                    </svg>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                {# -------- end resource table ---------- #}
+                {# -------- data ---------- #}
+                <div class="py-2" id="data">
+                    <ul>
+                        <div class="custom_accordion mb-4 rounded border-1 border-solid border-gray-300 hover:text-primary text-base font-bold" id="toponymes">
+                            Toponymes
+                        </div>
+                        <div class="custom_panel hidden">
+                            <li class="mb-6">
+                                <nav class="pt-4 pb-1">
+                                    <a></a>
+                                </nav>
+                            </li>
+                        </div>
+                    </ul>
+                </div>
+                {# -------- end data ---------- #}
+                {# -------- methodology ---------- #}
+                <div id="methodology" class="py-2">
+                    <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Methodology') }}</h2>
+                    <div class="markdown-content leading-relaxed">
+                        <h3>{{ _('Data Dictionary') }}</h3>
+                        {% set res_dict = h.datastore_dictionary(res.id) %}
+                        <ul>
+                            {% for dict in res_dict %}
+                            <li>
+                                <code> {{dict.get('id') }} </code>
+                                ({{dict.get('type') }}): Identifiant unique
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {# -------- end methodology ---------- #}
+                {# -------- territories ---------- #}
+                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Territories') }}</h2>
+                <div id="hidden-territories" class="hidden">
+                    <p id="hidden-p">{{ _('Montreal') }}</p>
+                </div>
+                <div id="map" class="py-2 leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim eaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="position: relative;">
+
+                </div>
+                {# -------- end territories ---------- #}
+                {# -------- keywords ---------- #}
+                <div id="keywords" class="py-2">
+                    <h2 class="text-3xl font-semibold pt-gutter pb-2 text-gray-900">{{ _('Keywords') }}</h2>
+                    <div class="flex flex-wrap">
+                        {% for tag in pkg.get('tags') %}
+                        {% set href = '/dataset?q=tags:' + tag.get('display_name') %}
+                        <a href="{{ h.url_for(href) }}" class="font-bold text-sm text-primary lowercase border-1 border-gray-400 rounded py-1 px-2 mr-3 my-2 hover:border-primary">
+                            {{ tag.get('display_name') }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {# -------- end keywords ---------- #}
+                {# -------- additional info ---------- #}
+                <div id="additional-info" class="py-2">
+                    <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Additional Information') }}</h2>
+                    <div class="py-2">
+                        <h3 class="font-semibold text-gray-900">{{ _('Publisher') }}</h3>
+                        <p>{{ pkg.get('author') or '--' }}</p>
+                    </div>
+                    <div class="py-2">
+                        <h3 class="font-semibold text-gray-900">{{ _('Temporal coverage') }}</h3>
+                        <p>{{pkg.get('temporal') or '--' }}</p>
+                    </div>
+                    <div class="py-2">
+                        <h3 class="font-semibold text-gray-900">{{ _('Source (URL)') }}</h3>
+                        <p>{{pkg.get('URL') or '--' }}</p>
+                    </div>
+                    <div class="py-2">
+                        <h3 class="font-semibold text-gray-900">{{ _('Update frequency') }}</h3>
+                        <p>{{pkg.get('update_frequency') or '--' }}</p>
+                    </div>
+                    <div class="py-2">
+                        <h3 class="font-semibold text-gray-900">{{ _('Descriptive Information Last Updated') }}</h3>
+                        <p>{{h.time_ago_from_timestamp(pkg.get('metadata_modified')) or '--' }}</p>
+                    </div>
+                    <div class="py-2">
+                        <h3 class="font-semibold text-gray-900">{{ _('Date the dataset was first added') }}</h3>
+                        <p>{{ h.render_datetime(pkg.get('created')) or '--' }}</p>
+                    </div>
+                    {# -------- end additional info ---------- #}
+                    {# -------- Organization block ---------- #}
+                    <div class="container flex mt-12 mb-8 pt-4 items-center border-t border-gray-400" style="border-top-width: 1px;">
+                        <div class="w-1/4 pr-4">
+                            {% set org = pkg.get('organization') %}
+                            {% set image_url = h.url_for_static('uploads/group/{}'.format(org.get('image_url'))) %}
+                            <img class="inline-block w-full" src="{{ image_url }}">
+                        </div>
+                        <div class="flex flex-col w-3/4">
+                            <h2 class="text-black text-xl font-semibold hover:underline">
+                                <a href="{{ h.url_for('organization.read', id=org.name) }}">{{ org.title }}</a>
+                            </h2>
+                            <p class="py-2 text-sm text-justify"></p>
+                            <p>{{ org.description }}</p>
+                            <p></p>
+                        </div>
+                    </div>
+                    {# -------- end Organization block ---------- #}
+                </div>
+                
+
+            </div>
+        
+        {% endblock %}
+    </div>
+
+{% endblock %}
+
+
+{% block secondary %}
+
+<aside class="md:block md:w-1/4 md:mr-6 text-gray-900">
+    {% block secondary_content %}
+
+        <nav class="md:sticky md:top-0 py-gutter">
+            <h3 class="text-2xl font-semibold pb-4">{{ _('Get Started') }}</h3>
+            <ul class="text-gray-900 font-semibold text-base">
+                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#data">Data</a></li>
+                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#methodology">Methodology</a></li>
+                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#territories">Territories</a></li>
+                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#keywords">Keywords</a></li>
+                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#additional-info">Additional Info</a></li>
+            </ul>
+        </nav>
+
+    {% endblock %}
+</aside>
+
+{% endblock %}
