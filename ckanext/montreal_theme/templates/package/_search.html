@@ -1,0 +1,50 @@
+{% extends "page.html" %}
+
+{% block breadcrumb%}
+<div class="w-full font-sans font-semibold text-gray-ink text-sm uppercase py-3" aria-label="{{ _('breadcrumb') }}">
+    <nav class="breadcrumb" style="background-color: initial !important;" aria-label="{{ _('breadcrumb') }}">
+        <ol>
+        {% block breadcrumb_content %}
+            {{super() }}
+            <li class="breadcrumb_item hover:text-primary">
+                <a href="{{ h.url_for('dataset.search') }}" class="breadcrumb_link">{{ dataset_type + 's' }}</a>
+            </li>
+        {% endblock %}
+        </ol>
+    </nav>
+{% endblock %}
+
+{% block primary_content %}
+
+    {% block form %}
+        {% set facets = {
+            'fields': fields_grouped,
+            'search': search_facets,
+            'titles': facet_titles,
+            'translated_fields': translated_fields,
+            'remove_field': remove_field }
+        %}
+        {% set sorting = [
+            (_('Relevance'), 'score desc, metadata_modified desc'),
+            (_('Name Ascending'), 'title_string asc'),
+            (_('Name Descending'), 'title_string desc'),
+            (_('Last Modified'), 'metadata_modified desc'),
+            (_('Popular'), 'views_recent desc') if g.tracking_enabled else (false, false) ]
+        %}
+
+        {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=q, sorting=sorting, sorting_selected=sort_by_selected, count=page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=query_error, fields=fields %}
+    {% endblock %}
+
+    {% block package_search_results_list %}
+        {{ h.snippet('snippets/package_list.html', packages=page.items) }}
+    {% endblock %}
+ 
+{% endblock %}
+
+{% block secondary_content %}
+    <div class="search-filters" data-expanded="false">
+        {% for facet in facet_titles %}
+            {{ h.snippet('snippets/facet_list.html', title=facet_titles[facet], name=facet, search_facets=search_facets) }}
+        {% endfor %}
+    </div>
+{% endblock %}

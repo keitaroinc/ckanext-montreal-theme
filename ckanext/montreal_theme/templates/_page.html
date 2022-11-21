@@ -43,11 +43,11 @@
             <div class="container mx-auto px-gutter pt-12">
               {% block breadcrumb %}
                 {% if self.breadcrumb_content() | trim %}
-                <div class="w-full font-sans font-semibold text-gray-ink text-sm uppercase py-3" aria-label="{{ _('breadcrumb') }}">
+                {#<div class="w-full font-sans font-semibold text-gray-ink text-sm uppercase py-3" aria-label="{{ _('breadcrumb') }}">
                     <nav class="breadcrumb" style="background-color: initial !important;" aria-label="{{ _('breadcrumb') }}">
-                        <ol>
-                            {% snippet 'snippets/home_breadcrumb_item.html' %}
-                            {% block breadcrumb_content %}{% endblock %}
+                        <ol> #}
+                            
+                            {% block breadcrumb_content %}{% snippet 'snippets/home_breadcrumb_item.html' %}{% endblock %}
                         </ol>
                     </nav>
                 </div>
