@@ -1,0 +1,207 @@
+.homepage .search-form .search-input.search-giant input {
+    border: 5px solid #091f2f;
+}
+
+.homepage .container {
+    margin-top: -20px;
+}
+
+.main-updates .heading {
+    font-size: 30px;
+}
+
+.main-updates li.dataset-item:hover {
+    background-color: #288be4;
+}
+
+.main-updates li.dataset-item:hover .dataset-heading a {
+    color: #ffffff;
+}
+
+.main-updates li.dataset-item:hover div {
+    color: #ffffff;
+}
+
+.main-browse {
+    background: #f3f3f3;
+}
+
+.main-carousel {
+    background: #eeeeee;
+}
+
+.main-featured {
+    background: #f3f3f3;
+}
+
+.main-featured .media-item.is-expander:hover {
+    padding-bottom: 15px;
+}
+
+.main-featured .module-content, .main-featured .media-grid {
+    background-color: transparent;
+    border: 0;
+}
+
+.main-featured .truncator-more {
+    display: none;
+}
+
+.main-search {
+    padding-top: 0;
+}
+
+.main-updates {
+    background: #f3f3f3;
+}
+.main-updates li.dataset-item {
+    background-color: #fff;
+    border: none;
+    display: block;
+    height: 150px;
+    padding: 0;
+}
+
+.main-updates li.dataset-item .dataset-heading {
+    padding-top: 25px;
+}
+
+.masonry-brick .count {
+    font-weight: normal;
+}
+
+.homepage .search-form {
+    background-image: none;
+}
+
+.seal-link {
+    position: absolute;
+    background-color: white;
+    padding: 10px;
+    left: 45%;
+    border-radius: 100%;
+    display: none;
+}
+
+.table-bordered {
+    border-top: 1px solid rgb(88,88,91);
+    border-right: 1px solid rgb(88,88,91);
+    border-bottom: 1px solid rgb(88,88,91);
+    border-collapse: collapse;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border-left: 1px solid rgb(88,88,91)
+}
+
+.table th,
+.table td {
+    border-top: 1px solid rgb(88,88,91)
+}
+
+.table-bordered thead:first-child tr:first-child>th:first-child,
+.table-bordered tbody:first-child tr:first-child>td:first-child,
+.table-bordered tbody:first-child tr:first-child>th:first-child {
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-left-radius: 0
+}
+
+.table th, .table-header thead th {
+    background-color: #091f2f;
+    color: #fff;
+}
+
+.table-striped tbody>tr:nth-child(odd)>th {
+    background-color: #091f2f;
+    color: #ffffff;
+    padding: 10px;
+}
+
+article.module .module-content .table-striped tbody tr:nth-child(even) th {
+    background-color: #091f2f;
+    color: #fff;
+    padding: 10px;
+}
+
+.table-striped tbody>tr:nth-child(odd)>td,
+article.module .module-content .table-striped tbody tr:nth-child(even) td {
+text-transform: none;
+padding: 10px;
+}
+
+.table-striped tbody tr:nth-child(even) td,
+.table-striped tbody tr:nth-child(even) th {
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.table-striped tbody tr:nth-child(even) th {
+    background-color: #091f2f;
+    color: #ffffff;
+    padding: 10px;
+}
+
+table tr:not(:last-child) th {
+    border-bottom: 1px solid #fff;  
+}
+
+.homepage [role=main] {
+    // padding: 0;
+    text-align: center;
+}
+
+.homepage .browse-group-display-nam, .homepage .browse-group-title {
+    line-height: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-transform: none;
+}
+
+.homepage .main-browse h2 a {
+    color: #091f2f;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+// .homepage .main-browse h2 a:hover {
+//     // color: #288be4;
+// }
+
+.homepage .module-search {
+    background-color: transparent;
+    color: #ffffff;
+    margin: 10px 0 0;
+    opacity: .9;
+}
+
+.homepage .module-search .module-content {
+    background-color: transparent;
+    border-bottom: none;
+    color: #31383c;
+}
+
+.homepage .module-search .module-content .heading {
+    font-size: 27px;
+    margin-bottom: 18px;
+}
+
+.homepage .module-search .search-giant input {
+    border: 5px solid #091f2f;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+}
+
+.homepage .module-search .tags {
+    background-color: #205493;
+    padding: 5px 10px 10px;
+    zoom: 1;
+}
+
+.logo {
+    display: inline-block;
+    position: relative;
+    top: 0;
+}

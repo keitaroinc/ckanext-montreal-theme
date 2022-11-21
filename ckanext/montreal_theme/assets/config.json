@@ -1,0 +1,18 @@
+{
+  "name": "montreal",
+  "description": "Montreal theme",
+  "css": {
+      "file" : "style.scss",
+      "src": [
+        "./scss/**/*.scss"
+      ],
+      "dest": "css"
+    },
+    "js": {
+      "file" : "scripts.js",
+      "src": [
+        "./js/**/*.js"
+      ],
+      "dest": "js"
+    }
+}

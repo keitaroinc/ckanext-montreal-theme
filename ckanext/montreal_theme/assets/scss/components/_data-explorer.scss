@@ -1,0 +1,225 @@
+.data-explorer{
+  /* @apply flex justify-center w-full; */
+  & .total-rows{
+    @apply text-center pt-5 pb-3;
+    &::before {
+      content: ''
+    }
+  }
+  & .react-date-picker__wrapper{
+    @apply mt-3 mr-3 px-2 border-1 border-gray-400 rounded;
+  }
+  & .data-explorer-content{
+    @apply pt-6 w-full;
+    &>button{
+      @apply font-bold p-2 mr-6 border-b-2 border-white;
+      &:hover{
+        @apply text-primary border-primary;
+      }
+    }
+    & .tab-link-active{
+      @apply text-primary border-primary;
+    }
+    & .pager{
+      @apply flex z-auto;
+        & li{
+          @apply px-2 mr-5 my-2 border-1 border-gray-600 rounded-full;
+          &.disabled a{
+            @apply text-gray-600;
+          }
+        }
+    }
+  }
+
+  & .tab-content#tabpanel-PDF{
+    @apply flex items-center;
+    &::before{
+      content: '';
+      @apply block bg-gray-400;
+    }
+    & .container{
+      @apply flex my-3 py-0 border-1 border-gray-min rounded;
+      &>div{
+        @apply w-full py-0;
+      }
+      & .py-3.mr-4{
+        @apply w-full max-h-a4 ml-4 overflow-auto;
+        &>div>div>div>div{
+          @apply flex flex-col ml-4 justify-center object-center;
+          &>canvas{
+            @apply block w-full object-none object-left-top;
+          }
+          &>nav{
+            @apply w-full bottom-0 h-16 flex items-center object-cover object-center justify-center;
+          }
+        }
+      }
+      & .w-1\/4{
+        @apply w-0;
+      }
+      & .p-4.mr-4{
+        @apply p-0 mr-0;
+      }
+    }
+    & .w-full .flex.flex-wrap>div:last-child{
+      @apply truncate overflow-auto;
+    }
+  }
+
+  & .tab-content#tabpanel-Map{
+    &::before{
+      content: '';
+      @apply block bg-gray-400 w-full h-px;
+    }
+    & .container{
+      @apply my-3 py-0 border-1 border-gray-min rounded;
+      &>div{
+        @apply py-0;
+      }
+      & .py-3.mr-4{
+        @apply overflow-auto;
+      }
+      & .p-4.mr-4{
+        @apply p-0 mr-0;
+      }
+    }
+    & .w-full .flex.flex-wrap>div:last-child{
+      @apply truncate overflow-auto;
+    }
+  }
+
+  & .tab-content#tabpanel-Chart{
+    &::before{
+      content: '';
+      @apply block bg-gray-400 w-full h-px;
+    }
+    & .container{
+      @apply my-3 py-0 border-1 border-gray-min rounded;
+      &>div{
+        @apply py-0;
+      }
+      & .py-3.mr-4{
+        @apply overflow-auto;
+      }
+      & .p-4.mr-4{
+        @apply p-0 mr-0;
+      }
+    }
+    & .w-full .flex.flex-wrap>div:last-child{
+      @apply truncate overflow-auto;
+    }
+  }
+  
+  & .ReactTable{
+    @apply h-table border-0;
+    & .rt-thead.-header{
+      @apply sticky top-0 border-b-1 border-gray-400 shadow-none font-semibold text-base text-gray-900 bg-white rounded-t;
+      & .rt-th{
+        & .rt-resizable-header-content{
+          @apply break-normal;
+          &:hover{
+            @apply text-primary;
+          }
+        }
+      }
+      & .rt-th.-sort-asc{
+        @apply shadow-asc;
+      }
+      & .rt-th.-sort-desc{
+        @apply shadow-desc;
+      }
+    }
+    & .rt-tbody{
+      @apply overflow-visible rounded-b;
+    }
+  }
+}
+
+.dq-rule-container{
+  & button{
+    @apply inline-block mr-3 mt-3 py-2 px-4 rounded leading-none text-sm font-bold border-1 text-primary bg-white border-gray-400;
+    &:hover{
+      @apply border-primary;
+    }
+  }
+  & .submit-button{
+    @apply text-white bg-primary border-primary;
+    &:hover{
+      @apply bg-sarcelle-dark border-sarcelle-dark;
+    }
+  }
+  & .dq-rule-item{
+    @apply mb-2;
+    & select{
+      @apply bg-gray-100 mr-2 text-sm h-6;
+    }
+    & input{
+      @apply bg-gray-100 mr-2 rounded-lg text-sm h-6 outline-none px-1; 
+    }
+  }
+}
+.pagination{
+  @apply table font-semibold py-3 mx-auto text-base;
+  & li{
+    @apply inline-block border-1 border-gray-400 -ml-px;
+    &:hover{
+      @apply text-primary bg-sarcelle-lightest;
+    }
+    &.active{
+      @apply text-primary bg-sarcelle-lightest;
+    }
+    &.disabled{
+      &:hover{
+        @apply cursor-default text-gray-ink bg-white;
+      }
+      & a:hover{
+        @apply cursor-default;
+      }
+    }
+    & a{
+      @apply block px-5 py-3;
+    }
+  }
+  & .previous{
+    @apply rounded-l;
+    & a{
+      @apply invisible w-8 px-6;
+      &::before{
+        content: '<';
+        @apply visible -ml-6 px-5 py-4;
+      }
+    }
+  }
+  & .next{
+    @apply rounded-r;
+    & a{
+      @apply invisible w-8 px-6;
+      &::before{
+        content: '>';
+        @apply visible -ml-6 px-5 py-4;
+      }
+    }
+  }
+}
+
+.dx-share-container{
+  @apply flex items-baseline justify-center pt-3 pb-5;
+  & p{
+    @apply mr-4 text-sm;
+  }
+  & .m-4{
+    @apply m-0 mr-2; 
+  }
+  & a{
+    @apply inline-block py-2 px-4 rounded leading-none text-sm font-bold border-1 text-primary bg-white border-gray-400;
+    &:hover{
+      @apply border-primary;
+    }
+    & i{
+      @apply font-semibold not-italic;
+    }
+  }
+  & input{
+    @apply hidden;
+  }
+}

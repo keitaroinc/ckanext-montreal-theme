@@ -1,0 +1,129 @@
+.markdown-content h1{
+  font-size:1.875rem;
+  font-weight:600;
+  --text-opacity:1;
+  color:#212529;
+  color:rgba(33, 37, 41, var(--text-opacity))
+}
+
+.markdown-content h2{
+  font-size:1.5rem;
+  margin-top:.25rem;
+  margin-bottom:.25rem;
+  font-weight:600;
+  --text-opacity:1;
+  color:#212529;
+  color:rgba(33, 37, 41, var(--text-opacity))
+}
+
+.markdown-content h3{
+  font-size:1.25rem;
+  margin-top:.25rem;
+  margin-bottom:.25rem;
+  font-weight:600;
+  --text-opacity:1;
+  color:#212529;
+  color:rgba(33, 37, 41, var(--text-opacity))
+}
+
+.markdown-content h4{
+  font-size:1.125rem;
+  margin-top:.25rem;
+  margin-bottom:.25rem;
+  font-weight:600;
+  --text-opacity:1;
+  color:#212529;
+  color:rgba(33, 37, 41, var(--text-opacity))
+}
+
+.markdown-content p{
+  font-size:1.125rem;
+  margin-bottom:.5rem
+}
+
+.markdown-content strong{
+  font-weight:600
+}
+
+.markdown-content ol{
+  margin-top:.25rem;
+  margin-left:1.25rem;
+  list-style-type:decimal
+}
+
+.markdown-content ul{
+  margin-top:.25rem;
+  margin-left:1.25rem;
+  list-style-type:disc
+}
+
+.markdown-content code{
+  font-family:"Nunito Sans",sans-serif;
+  font-weight:600;
+  --text-opacity:1;
+  color:#212529;
+  color:rgba(33, 37, 41, var(--text-opacity));
+  font-size:1rem
+}
+
+.markdown-content a{
+  text-decoration:underline;
+  --text-opacity:1;
+  color:#5a5a5a;
+  color:rgba(90, 90, 90, var(--text-opacity))
+}
+
+.markdown-content em{
+  font-style:italic
+}
+
+.activity .item{
+  margin-bottom:20px;
+  line-height:1.625
+}
+
+.activity .item span.actor img,.activity .item .fa{
+  display:none
+}
+
+.activity .item span.actor a{
+  pointer-events:none;
+  cursor:default
+}
+
+.activity .item span.actor a{
+  pointer-events:none;
+  cursor:default
+}
+
+.activity .item span.actor a{
+  pointer-events:none;
+  cursor:default
+}
+
+.activity .item span:nth-child(2) a,.activity .changed-resource span:nth-child(3) a,.activity .new-resource span:nth-child(3) a{
+  color:#097d6c;
+  text-decoration:none
+}
+
+.activity .load-more a{
+  display:none
+}
+
+#data_search_form_input_icon{
+  width:24px;
+  height:24px;
+  position:absolute;
+  right:10px;
+  top:11px;
+  fill:#adb5bd;
+  cursor:pointer
+}
+
+.application_dataset:hover{
+  background-color:#eefaf8
+}
+
+.showcase-item{
+  min-height:220px
+}

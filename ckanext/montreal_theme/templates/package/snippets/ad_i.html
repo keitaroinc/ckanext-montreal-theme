@@ -1,0 +1,225 @@
+{% block title %}
+{{dataset.title or dataset.name}} - {{('Dataset')}}
+{% endblock %}
+
+
+{% block primary_content %}
+    {% block content %}
+{{ dataset }}
+        <section class="font-open-sans leading-relaxed">
+        <!-- breadcrumbs -->
+        
+        <!-- end breadcrumbs -->
+
+        <div class="container mx-auto md:flex px-gutter">
+            <!-- page navigation nolumn -->
+            <div class="hidden md:block md:w-1/4 md:mr-6 text-gray-900">
+            <nav class="md:sticky md:top-0 py-gutter">
+                <h3 class="text-2xl font-semibold pb-4">{{('Get started')}}</h3>
+                <ul class="text-gray-900 font-semibold text-base">
+                <li class="py-3 hover:text-primary"><a href="#data">{{('Data')}}</a></li>
+                
+                {% if dataset.methodologie  %}
+                <li class="py-3 hover:text-primary"><a href="#methodology">{{('Methodology')}}</a></li>
+                {% endif %}
+                
+                {% if dataset.territoire  %}
+                <li class="py-3 hover:text-primary"><a href="#territories">{{('Territories')}}</a></li>
+                {% endif %}
+                
+                {% if dataset.keywords %}
+                <li class="py-3 hover:text-primary"><a href="#keywords">{{('Keywords')}}</a></li>
+                {% endif %}
+                
+                <li class="py-3 hover:text-primary"><a href="#additional-info">{{('Additional Info')}}</a></li>
+                </ul>
+            </nav>
+            </div>
+            <!-- end page navigation column -->
+
+            <!-- page content column -->
+            <div class="md:w-2/3 pt-3 pb-5 text-gray-ink">
+                <!-- info -->
+                <div class="">
+                <h1 class="py-2 text-4xl font-semibold text-gray-900">
+                    {{ dataset.title or dataset.name }} {{name}}
+                </h1>
+                <div class="text-sm-up py-1"> 
+                    <div class="flex flex-row">
+                    <p class="pr-2">{{('Published by')}}</p>
+                    <a class="font-semibold text-sarcelle-dark hover:underline" href="/organization/{{ owner.name }}">{{ owner.title }}</a>
+                    {# <a class="py-2 text-primary" href="/collections/{{ dataset.groups[0].name}}">Where does this link go?</a> #}
+                </div>
+
+                <!-- readme -->
+                <div class="container mt-12 mb-8 pt-16 border-t border-gray-400">
+                {% if dataset.readmeSnippet or dataset.readmeHtml %}
+                    <div class="leading-relaxed text-lg">{{dataset.readmeHtml|safe}}</div>
+                {% elif dataset.description %}
+                    <div class="markdown-content leading-relaxed">{{dataset.descriptionHtml|safe}}</div>
+                {% endif %}
+                </div>
+                </div>
+                <!-- end readme -->
+
+                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{('Data')}}</h2>
+
+                <!-- resources table -->
+                <table class="info block pb-12">
+                <thead class="font-semibold text-left text-gray-900">
+                    <tr>
+                    <th class="px-4 py-3">{{('Name')}}</th>
+                    <th class="px-4 py-3">{{('Format')}}</th>
+                    <th class="px-4 py-3">{{('Size')}}</th>
+                    <th class="px-4 py-3">{{('Last Changed')}}</th>
+                    {# <th class="">{{('Info & Preview')}}</th> #}
+                    <th class="px-4 py-3 overflow-hidden">{{('Download')}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in dataset.resources %}
+                    <tr class="border-t border-gray-400">
+                    <td class="px-4 py-3">
+                        {# <a href="#{{ item.slug }}"> #}
+                        {{ item.name }}
+                        {# </a> #}
+                    </td>
+                    <td class="px-4 py-3 font-semibold text-base text-gray-900 uppercase"> {{ item.format }}</td>
+                    <td class="px-4 py-3">{{ item.sizeFormatted or '--' }}</td>
+                    <td class="px-4 py-3">
+                        <div class="has-tooltip">
+                        <span class='local-date tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8'>
+                            {{ (item.last_modified or item.created) }}</span>
+                        <span class="border-dotted border-b border-gray-600">
+                            {{ (item.last_modified or item.created) }}
+                        </span>
+                        </div>
+                    </td>
+                    {# <td class=""><a href="#{{item.slug}}"><i class="icon icon-preview text-base hover:text-primary"></i></a></td> #}
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+                <!-- end resources table -->
+                
+                <!-- data -->
+                <div id="data" class="py-2">
+
+     
+                
+                </div>
+                <!-- end data -->
+            
+                <!-- methodologie -->
+                {% if dataset.methodologie  %}
+                <div id="methodology" class="py-2">
+                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{('Methodology')}}</h2>
+                <div class="markdown-content leading-relaxed">{{dataset.methodologie|safe}}</div>
+                </div>
+                {% endif %}
+                <!-- end methodologie -->
+
+                <!-- territoire -->
+                {% if dataset.territoire %}
+                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{('Territories')}}</h2>
+                <div id="hidden-territories" class="hidden">
+                    {% for t in dataset.territoire %}
+                    <p id="hidden-p">{{territoires[t] | safe or ''}}</p>
+                    {% endfor %}
+
+                </div>
+                <div id="map" class="py-2">
+                        
+                </div class="pb-4">
+                {% endif %}
+                <!-- end territories -->
+
+                <!-- keywords -->
+                {% if dataset.keywords %}
+                <div id="keywords" class="py-2">
+                <h2 class="text-3xl font-semibold pt-gutter pb-2 text-gray-900">{{('Keywords')}}</h2>
+                <div class="flex flex-wrap ">
+                {% for t in dataset.keywords %} 
+                    <a href="/search?q=tags:{{t | safe}}" class="font-bold text-sm text-primary lowercase border-1 border-gray-400 rounded py-1 px-2 mr-3 my-2 hover:border-primary">{{t | safe}}</a>
+                {% endfor %}
+                </div class="pb-4">
+                </div>
+                {% endif %}
+                <!-- end keywords -->
+
+                <!-- additional info -->
+                <div id="additional-info" class="py-2">
+                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{('Additional Information')}}</h2>
+                <div class="py-2">
+                    <h3 class="font-semibold text-gray-900">{{('Publisher')}}</h3>
+                    <p>{{ dataset.resources[0].name | safe | replace('\"', '') or '--'}}</p>
+                </div>
+                <div class="py-2">
+                    <h3 class="font-semibold text-gray-900">{{('Temporal coverage')}}</h3>
+                    <p>{{ dataset.temporal or '--'}}</p>
+                </div>
+                <div class="py-2">
+                    <h3 class="font-semibold text-gray-900">{{('Source (URL)')}}</h3>
+                    {% if dataset.resources[0].web %}
+                    <a href="{{ dataset.resources[0].web }}" class="hover:text-sarcelle-dark underline">{{ dataset.resources[0].web or '--'}}</a>
+                    {% else %}
+                    <p> -- </p>
+                    {% endif %}
+                </div>
+                <div class="py-2">
+                    <h3 class="font-semibold text-gray-900">{{('Update frequency')}}</h3>
+                    <p>{{ (dataset.update_frequency) or '--'}}</p>
+                </div>
+                <div class="py-2">
+                    <h3 class="font-semibold text-gray-900">{{('Descriptive Information Last Updated')}}</h3>
+                    <div class="has-tooltip">
+                        <span class='tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8'>{{ dataset.metadata_modified}}</span>
+                        <span class="border-dotted border-b border-gray-600">
+                        {{ dataset.metadata_modified }}
+                        </span>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <h3 class="font-semibold text-gray-900">{{('Date the dataset was first added')}}</h3>
+                    <p>{{ dataset.metadata_created }}</p>
+                </div>
+                <!-- <p>{{ dataset.license_url }}</p> -->
+                <!-- end Additional Info section -->
+
+                <!-- Organization block -->
+                <div class="container flex mt-12 mb-8 pt-4 items-center border-t border-gray-400">
+                    <div class="w-1/4 pr-4">
+                    <img class="inline-block w-full" src="{{ owner.avatar }}"/>
+                    </div>
+                    <div class="flex flex-col w-3/4">
+                    <h2 class="text-black text-xl font-semibold hover:underline">
+                        <a href="/organization/{{ owner.name }}">{{ owner.title }}</a>
+                    </h2>
+                    <p class="py-2 text-sm text-justify">
+                        {{ owner.description | safe }}
+                    </p>
+                    </div>
+                </div>
+                <!-- End of Organization block>
+
+                <!-- data files (downloads) -->
+                {# {% include "./partials/resource-display.njk" %} #}
+                <!-- info end -->
+                </div>
+                <!-- end additional info -->
+
+                <!-- disqus -->
+                <div class="container mx-auto p-gutter">
+                <div id="disqus_thread"></div>
+                </div>
+                <!-- end disqus -->
+            </div>
+            </div>
+            <!-- end page content column -->
+
+       
+        </div>
+        </section>
+    {% endblock %}
+{% endblock%}

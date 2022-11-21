@@ -1,0 +1,107 @@
+.hero .module-content.box {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.landing-hero-intro-text {
+    padding-top: 30px;
+}
+
+.hero-text-description secondary-heading {
+    padding-top: 30px;
+}
+
+.hero {
+    // background-color: #eeeeee;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    // background-size: cover !important;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+.hero .container {
+    padding: 25px 0;
+    position: relative;
+    z-index: 5;
+}
+
+.hero form {
+    div > input {
+        border-radius: 9999px !important;
+        height: 50px;
+        width: 85%;
+    }
+}
+
+.hero .module-search {
+    padding-top: 0;
+}
+
+.hero .row {
+    height: inherit;
+}
+
+.hero .tint {
+    background-color: rgba(10, 154, 255, 0.5);
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: -10;
+}
+
+.hero-text {
+    color: #ffffff;
+}
+
+.hero-text-heading {
+    font-size: 36px;
+}
+
+.hero-text-description {
+    font-size: 18px;
+}
+
+.hero-text-description a {
+    color: #ffffff;
+}
+
+.hero-text-heading.heading,
+.hero-text-description.secondary-heading {
+    color: #ffffff;
+}
+
+.hero-text-description.secondary-heading {
+    line-height: 1.35em;
+    -webkit-font-smoothing: antialiased;
+    color: #fff;
+    font-family: "Lora", serif;
+    font-style: italic;
+    font-size: 22px;
+}
+
+.hero-text-description.secondary-heading p:first-child strong {
+    line-height: 52px;
+}
+
+.landing-hero-intro-text .intro-text {
+    color: #fff;
+    padding-bottom: 1em;
+}
+
+.landing-hero-logo {
+    background: #091f2f;
+    margin: 0 auto;
+    padding-top: 6px;
+    bottom: 0;
+    left: 50%;
+    height: 90px;
+    width: 90px;
+}
+
+.landing-hero-logo img {
+    padding-top: 15px;
+    height: 63px;
+    width: auto;
+}

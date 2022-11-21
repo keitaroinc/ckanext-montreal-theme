@@ -1,0 +1,39 @@
+{% if showcases %}
+{% for showcase in showcases %}
+    {% snippet 'home/snippets/applications.html', showcase=showcase, item_class=item_class, truncate=truncate, truncate_title=60, show_remove=show_remove %}
+{% endfor %}
+ 
+
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/jquery.slick/1.3.11/slick.min.js"></script>
+
+<script>
+    $('.slick-showcase').slick({
+            dots: true,
+            arrows: true,
+            infinite: false,
+            speed: 600,
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            responsive: [
+            {
+                breakpoint: 800,
+                settings: {
+                    arrows: false,
+                    slidesToShow: 2,
+                    slidesToScroll: 2                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: false,
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            },
+            ]
+        });
+</script>
+
+{% endif %}

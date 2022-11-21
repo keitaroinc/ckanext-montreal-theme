@@ -1,0 +1,8 @@
+{% if g.user and g.userobj %}
+    {% ckan_extends %}
+{% else %}
+    
+    <li class="breadcrumb_item hover:text-primary">
+        <a class="breadcrumb_link" href="/">Home</a>
+    </li>
+{% endif %}

@@ -1,0 +1,99 @@
+{#
+Displays a single of dataset.
+
+package        - A package to display.
+item_class     - The class name to use on the list item.
+hide_resources - If true hides the resources (default: false).
+banner         - If true displays a popular banner (default: false).
+truncate       - The length to trucate the description to (default: 180)
+truncate_title - The length to truncate the title to (default: 80).
+
+Example:
+
+  {% snippet 'snippets/package_item.html', package=c.datasets[0] %}
+
+#}
+{% set truncate = truncate or 180 %}
+{% set truncate_title = truncate_title or 80 %}
+{% set title = package.title or package.name %}
+{% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
+
+{% block package_item %}
+  <li class="mt-2 border-t-1 border-gray-400 px-5 py-6">
+    {% block content %}
+      <div>
+        <div class="flex flex-row">
+          <div id="org_logo" class="flex items-center h-40 w-1/5 pr-4">
+            <img class="inline-block w-full" src="/uploads/group/{{ package['organization'].get('image_url') }}" alt="{{ package['organization'].get('title') }}">
+          </div>
+          <div class="flex flex-col w-4/5">
+          {% block heading %}
+            <h3 class="text-lg font-bold">
+              {% block heading_private %}
+                {% if package.private %}
+                  <span class="dataset-private label label-inverse">
+                      <i class="fa fa-lock"></i>
+                      {{ _('Private') }}
+                  </span>
+                {% endif %}
+              {% endblock %}
+              {% block heading_title %}
+                <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-gray-900 hover:text-primary">
+                    {{ h.truncate(title, truncate_title) }}
+                </a>
+              {% endblock %}
+              {% block heading_meta %}
+                {% if package.get('state', '').startswith('draft') %}
+                  <span class="label label-info">{{ _('Draft') }}</span>
+                {% elif package.get('state', '').startswith('deleted') %}
+                  <span class="label label-danger">{{ _('Deleted') }}</span>
+                {% endif %}
+                {{ h.popular('recent views', package.tracking_summary.recent, min=10) if package.tracking_summary }}
+              {% endblock %}
+            </h3>
+          {% endblock %}
+          {% block banner %}
+            {% if banner %}
+              <span class="banner">{{ _('Popular') }}</span>
+            {% endif %}
+          {% endblock %}
+          {% block notes %}
+            {% if notes %}
+              <div class="flex flex-col leading-loose text-lg text-gray-ink my-3">
+                <div class="w-full">
+                  <div class="markdown-content leading-relaxed">
+                        <p class="block"></p>
+                        <p>{{ notes|urlize }}</p>
+                        <p></p>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              <p class="empty">{{ _("This dataset has no description") }}</p>
+            {% endif %}
+            {% block resources %}
+              {% if package.resources and not hide_resources %}
+                {% block resources_outer %}
+                  <ul class="mt-2">
+                    {% block resources_inner %}
+                      {% for resource in h.dict_list_reduce(package.resources, 'format') %}
+                        <span hidden>1</span>
+                        <span hidden>2</span>
+                          <li class="inline">
+                            <span class="font-bold text-sm text-primary border-1 border-gray-400 rounded py-1 px-2 mr-1">
+                              {{ resource }}
+                            </span>
+                          </li>
+                      {% endfor %}
+                    {% endblock %}
+                  </ul>
+                {% endblock %}
+              {% endif %}
+            {% endblock %}
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  {% endblock%}  
+  </li>
+{% endblock %}

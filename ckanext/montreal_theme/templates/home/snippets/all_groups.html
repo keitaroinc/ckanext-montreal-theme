@@ -1,0 +1,12 @@
+
+<ul class="flex-grow sm:flex flex-wrap sm:-mx-2 mt-gutter">
+    {% set all_groups = h.all_groups() %}
+    {% for group in all_groups %}
+    <li class="sm:w-1/3 lg:w-1/3 p-2">
+        <a href="{{ h.url_for('group.read', id=group.id) }}" class="p-4 block bg-white rounded hover:border-1 hover:border-solid hover:border-transparent hover:bg-white hover:shadow-xl hover:text-primary" style="border:1px solid #CED4DA">
+            <img class="img-svg h-20" src="{{ group.image_display_url }}" style="height:40px; width:40px; "/>
+            <h2 class="text-xl h-16 font-bold flex items-center text-black">{{ group.title }}</h2>
+        </a>
+    </li>
+    {% endfor %}
+</ul>

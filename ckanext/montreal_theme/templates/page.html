@@ -1,0 +1,11 @@
+{% if g.user and g.userobj.sysadmin %}
+  {% ckan_extends %}
+
+  {% block styles %}
+    {{ super() }}
+
+  {% endblock %}
+
+{% else %}
+  {% extends "_page.html" %}
+{% endif %}

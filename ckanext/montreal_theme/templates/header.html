@@ -1,0 +1,35 @@
+
+
+{% block header_account %}
+
+    {% block header_logo %}
+        {% if g.site_logo %}
+        <header class="mx-auto w-full shadow-sm">
+            <div class="flex items-center py-4 px-5">
+                <div>
+                    <a class="logo" href="{{ h.url_for('home.index') }}">
+                    <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}"
+                        title="{{ g.site_title }}" width="190px" />
+                    </a>
+                </div>
+                <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
+                <div class="text-black font-bold">Données ouvertes</div>
+            </div>
+        {% else %}
+            <h1>
+                <a href="{{ h.url_for('home.index') }}">{{ g.site_title }}</a>
+            </h1>
+            {% if g.site_description %}
+                <h2>{{ g.site_description }}</h2>
+            {% endif %}
+        {% endif %}
+        </header>
+    {% endblock %}
+
+    {% block header_site_search%}  
+    {%endblock%}
+
+    {% block header_site_navigation %}
+    {%endblock%}
+
+{% endblock %}

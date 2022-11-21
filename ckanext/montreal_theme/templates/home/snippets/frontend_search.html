@@ -1,0 +1,12 @@
+<form {% if form_id %}id="{{ form_id }}" {% endif %}class="search-form{% if no_bottom_border %} no-bottom-border{% endif %} search-form-xcaret" method="get" data-module="select-switch" action="{% url_for 'dataset.search' %}">
+    {% block search_input %}
+      <div class="flex flex-row flex-row-reverse justify-center m-auto w-4/5 md:w-3/5 lg:w-6/12 ">
+        <input aria-label="{% block header_site_search_label %}{{ _('Search datasets') }}{% endblock %}" id="field-giant-search" type="text" class="rounded-full pl-4 pr-12  pl-16 -ml-16  py-3 text-lg w-full outline-none" name="q" value="{{ query }}" autocomplete="off" placeholder="{% block search_placeholder %}{{ _('Search') }} {% endblock %}">
+        {% block search_input_button %}
+        <button class="px4 mr-1	 rounded-l-lg z-10" type="submit" value="search" aria-label="{{_('Submit')}}">
+          <i class="fa fa-search"></i>
+        </button>
+        {% endblock %}
+      </div>
+    {% endblock %}
+  </form>

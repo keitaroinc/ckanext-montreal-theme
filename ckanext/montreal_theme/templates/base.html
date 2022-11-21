@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block styles %}
+  {{ super() }}
+  {% if g.homepage_style == '4' %}
+    {% asset 'frontend/frontend-style' %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% ckan_extends %}
+
+{% block primary_content_inner %}
+
+
+  {% block package_tags %}
+  {% endblock %}
+
+  {% block package_additional_info %}
+    {% snippet "scheming/package/snippets/additional_info.html", dataset=pkg, owner=g.user %}
+  {% endblock %}
+
+{% endblock %}
