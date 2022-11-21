@@ -25,6 +25,7 @@ Example:
     </ul>
   {% endif %}
 {% endblock %}
+
 {% block page_pagination %}
-  {{ g.page.pager(q=q) }}
+    {{ g.page.pager(q=q) }}
 {% endblock %}

@@ -9,7 +9,7 @@ import ckan.lib.navl.dictization_functions as dict_fns
 from ckan.views.home import CACHE_PARAMETERS
 
 
-frontend = Blueprint('frontend', __name__)
+montreal_theme = Blueprint('montreal_theme', __name__)
 
 
 def _get_config_options_frontend():
@@ -43,7 +43,7 @@ def _get_config_options_frontend():
         u'text': u'Search, introductory area and stats'
     }, {
         u'value': u'4',
-        u'text': u'New Frontend theme'
+        u'text': u'Montreal Theme'
     }]
 
     return dict(styles=styles, homepages=homepages)
@@ -82,6 +82,7 @@ class ConfigViewFrontend(MethodView):
             data = request.form
             errors = e.error_dict
             error_summary = e.error_summary
+            breakpoint()
             vars = dict(data=data,
                         errors=errors,
                         error_summary=error_summary,
@@ -92,4 +93,4 @@ class ConfigViewFrontend(MethodView):
         return h.redirect_to(u'admin.config')
 
 
-frontend.add_url_rule(u'/ckan-admin/config', view_func=ConfigViewFrontend.as_view(str(u'config')))
+montreal_theme.add_url_rule(u'/ckan-admin/config', view_func=ConfigViewFrontend.as_view(str(u'config')))

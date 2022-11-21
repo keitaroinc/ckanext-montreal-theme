@@ -1,7 +1,9 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
-from ckanext.montreal_theme.blueprint import frontend
+
+from ckanext.montreal_theme.blueprint import montreal_theme
 from ckanext.montreal_theme import helpers as h
+
 
 class MontrealThemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
@@ -19,7 +21,7 @@ class MontrealThemePlugin(plugins.SingletonPlugin):
 
     def get_blueprint(self):
         # Register the new blueprint
-        return [frontend]
+        return [montreal_theme]
 
     # ITemplateHelpers
     def get_helpers(self):

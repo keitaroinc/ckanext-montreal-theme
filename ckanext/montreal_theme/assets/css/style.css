@@ -13101,6 +13101,34 @@ div.card-body:hover{
   text-decoration:none
 }
 
+.pagination li{
+  border-width:1px;
+  border-color:#ced4da !important;
+  color:#637381
+}
+
+.pagination li>a{
+  color:#637381;
+  font-size:1rem !important;
+  border:0 solid #dee2e6
+}
+
+.pagination li:hover>a{
+  color:#097d6c !important;
+  background-color:#eefaf8 !important
+}
+
+.pagination li.active{
+  color:#097d6c !important;
+  background-color:#eefaf8 !important
+}
+
+.pagination>.active>a{
+  color:#097d6c !important;
+  background-color:#eefaf8 !important;
+  border-color:#ced4da !important
+}
+
 footer{
   background:url(/img/b-logo-light.svg) no-repeat 1.75em center #091f2f;
   padding:1.75em 0 1.75em 6em;

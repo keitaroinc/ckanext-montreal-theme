@@ -1,4 +1,4 @@
-frontend-style:
-  output: frontend/%(version)s_custom.css
+montreal_theme-style:
+  output: montreal_theme/%(version)s_custom.css
   contents:
     - css/style.css
