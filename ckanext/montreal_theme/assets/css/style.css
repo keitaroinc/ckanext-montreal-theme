@@ -13522,6 +13522,17 @@ body{
   font-weight:700
 }
 
+.breadcrumb{
+  background-color:transparent;
+  background-color:initial
+}
+
+.breadcrumb_collection{
+  color:#637381;
+  font-size:1.125rem;
+  font-weight:700
+}
+
 .filter-button{
   display: flex;
   padding-left: 1rem;

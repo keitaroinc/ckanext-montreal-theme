@@ -93,4 +93,10 @@ class ConfigViewFrontend(MethodView):
         return h.redirect_to(u'admin.config')
 
 
+def collections():
+    extra_vars = {}
+    return base.render('home/collections.html', extra_vars=extra_vars)
+
+
 montreal_theme.add_url_rule(u'/ckan-admin/config', view_func=ConfigViewFrontend.as_view(str(u'config')))
+montreal_theme.add_url_rule(u'/collections', view_func=collections)
