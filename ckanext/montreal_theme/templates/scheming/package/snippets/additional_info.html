@@ -123,7 +123,7 @@
                 <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{('Territories')}}</h2>
                 <div id="hidden-territories" class="hidden">
                     {% for t in dataset.territoire %}
-                    <p id="hidden-p">{{territoires[t] | safe or ''}}</p>
+                    <p id="hidden-p">{{dataset.territoire[t] | safe or ''}}</p>
                     {% endfor %}
 
                 </div>
