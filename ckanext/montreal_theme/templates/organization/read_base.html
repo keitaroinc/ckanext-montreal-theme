@@ -1,31 +1,45 @@
+{% ckan_extends %}
 
+{% block breadcrumb %}
 {% if not g.userobj.sysadmin %}
-    {% extends 'page.html' %}
 
-    {% block breadcrumb %}
     <div class="w-full font-sans font-bold text-gray-ink text-lg py-3" aria-label="{{ _('breadcrumb') }}">
         <nav class="breadcrumb" style="background-color: initial !important;" aria-label="{{ _('breadcrumb') }}">
             <ol>
             {% block breadcrumb_content %}
-                {{super() }}
+            {% if g.userobj.sysadmin %}
+            {{ super() }}
+
+            {% else %}
+            {% include 'snippets/home_breadcrumb_item.html' %}
                 <li class="breadcrumb_item hover:text-primary">
                     <a href="{{ h.url_for('organization.read', id=group_dict.name) }}" class="breadcrumb_link">{{ group_dict.title }}</a>
                 </li>
+            {% endif %}
             {% endblock %}
             </ol>
         </nav>
     </div>
-    {% endblock %}
-
-    {% block secondary_content %}
-
-    {% snippet "organization/snippets/info.html", group=group_dict, show_nums=true %}
-    {% block organization_facets %}{% endblock %}
-    {% endblock %}
-
-    {% block content_primary_nav %}
-    {% endblock %}
-
 {% else %}
-    {% ckan_extends %}
+    {{ super() }}
 {% endif %}
+{% endblock %}
+
+{% block secondary_content %}
+    {% if g.userobj.sysadmin %}
+        {{ super() }}
+
+    {% else %}
+        {% snippet "organization/snippets/info.html", group=group_dict, show_nums=true %}
+        {% block organization_facets %}{% endblock %}
+
+    {% endif %}
+{% endblock %}
+
+{% block content_primary_nav %}
+    {% if g.userobj.sysadmin %}
+        {{ super() }}
+
+    {% else %}
+    {% endif  %}
+{% endblock %}
