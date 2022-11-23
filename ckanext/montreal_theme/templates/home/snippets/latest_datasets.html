@@ -1,6 +1,6 @@
 {% set datasets = h.latest_datasets() %}
 {% if datasets %}
-    {% for dataset in datasets %}
+    {% for dataset in datasets[:3] %}
         <div class="md:w-1/3">
             <a class="block m-4 rounded hover:border-1 hover:border-solid hover:boder-transparent hover:bg-white hover:shadow-xl" href="{{ url_for('dataset.read', id=dataset.name) }}">
                 <div class="card-body border-1 border-gray-300 p-8 font-open-sans rounded">
