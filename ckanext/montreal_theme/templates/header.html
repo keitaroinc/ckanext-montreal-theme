@@ -1,5 +1,4 @@
 
-
 {% block header_account %}
 
     {% block header_logo %}
@@ -14,6 +13,39 @@
                 </div>
                 <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
                 <div class="text-black font-bold">Données ouvertes</div>
+                {% if g.userobj.sysadmin %}
+                <nav class="flex items-center" style="margin-left: 340px;">
+                    <div class="flex font-open-sans text-base items-center mx-auto">
+                        <div class="container">
+                            <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
+                                <span class="text-black font-bold hover:text-primary">{{ _('Admin') }}</span>
+                            </a>
+                        </div>
+                        <div class="container">
+                            <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+                                <span class="text-black font-bold hover:text-primary">{{ c.userobj.display_name }}</span>
+                            </a>
+                        </div>
+                        {% set new_activities = h.new_activities() %}
+                        <div class="container notifications {% if new_activities > 0 %}notifications-important{% endif %}">
+                            {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities)%}
+                            <a href="{{ h.url_for('dashboard.index') }}" title="{{ notifications_tooltip }}">
+                                <span class="text-black font-bold hover:text-primary">{{ _('Dashboard') }}</span>
+                              </a>
+                        </div>
+                        <div class="container">
+                            <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Profile settings') }}">
+                                <span class="text-black font-bold hover:text-primary">{{ _('Settings') }}</span>
+                              </a>
+                        </div>
+                        <div class="container">
+                            <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
+                                <span class="text-black font-bold hover:text-primary">{{ _('Logout') }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </nav>
+                {% endif %}
             </div>
         {% else %}
             <h1>
