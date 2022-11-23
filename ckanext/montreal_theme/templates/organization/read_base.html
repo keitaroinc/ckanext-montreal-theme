@@ -9,10 +9,7 @@
             {% block breadcrumb_content %}
                 {{super() }}
                 <li class="breadcrumb_item hover:text-primary">
-                    <a href="{{ h.url_for('montreal_theme.collections') }}" class="breadcrumb_link">{{ _('Dataset Collections') }}</a>
-                </li>
-                <li class="breadcrumb_item hover:text-primary">
-                    <a href="{{ h.url_for('group.read', id=group_dict.name) }}" class="breadcrumb_link">{{ group_dict.title }}</a>
+                    <a href="{{ h.url_for('organization.read', id=group_dict.name) }}" class="breadcrumb_link">{{ group_dict.title }}</a>
                 </li>
             {% endblock %}
             </ol>
@@ -21,7 +18,9 @@
     {% endblock %}
 
     {% block secondary_content %}
-    {% snippet "group/snippets/info.html", group=group_dict, show_nums=true %}
+
+    {% snippet "organization/snippets/info.html", group=group_dict, show_nums=true %}
+    {% block organization_facets %}{% endblock %}
     {% endblock %}
 
     {% block content_primary_nav %}

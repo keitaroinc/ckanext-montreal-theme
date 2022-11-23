@@ -1,28 +1,33 @@
 
+{% if not g.userobj.sysadmin %}
 
-{% block info %}
-<div class="mb-gutter md:mr-10 md:pb-2">
-  <div class="w-24 h-24 p-4 mb-4 flex justify-center">
-    {% block inner %}
-    {% block image %}
-      <a href="{{ group.url }}">
-        <img class="h-24"  src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" />
-      </a>
+    {% block info %}
+    <div class="mb-gutter md:mr-10 md:pb-2">
+    <div class="w-24 h-24 p-4 mb-4 flex justify-center">
+        {% block inner %}
+        {% block image %}
+        <a href="{{ group.url }}">
+            <img class="h-24"  src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" />
+        </a>
+        </div>
+        {% endblock %}
+        {% block heading %}
+        <h2 class="text-primary text-xl font-semibold">
+        {{ group.display_name }}
+        {% if group.state == 'deleted' %}
+            [{{ _('Deleted') }}]
+        {% endif %}
+        </h2>
+        {% endblock %}
+        {% block description %}
+        {% if group.description %}
+            <p class="py-2 text-sm">{{ group.description }}</p>
+        {% endif %}
+        {% endblock %}
+        {% endblock %}
     </div>
     {% endblock %}
-    {% block heading %}
-    <h2 class="text-primary text-xl font-semibold">
-      {{ group.display_name }}
-      {% if group.state == 'deleted' %}
-        [{{ _('Deleted') }}]
-      {% endif %}
-    </h2>
-    {% endblock %}
-    {% block description %}
-    {% if group.description %}
-        <p class="py-2 text-sm">{{ group.description }}</p>
-    {% endif %}
-    {% endblock %}
-    {% endblock %}
-</div>
-{% endblock %}
+
+{% else %}
+    {% ckan_extends %}
+{% endif %}

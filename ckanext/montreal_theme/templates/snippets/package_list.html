@@ -27,5 +27,7 @@ Example:
 {% endblock %}
 
 {% block page_pagination %}
-    {{ g.page.pager(q=q) }}
+    {% if 'page' in g %}
+      {{ g.page.pager(q=q) }}
+    {% endif %}
 {% endblock %}
