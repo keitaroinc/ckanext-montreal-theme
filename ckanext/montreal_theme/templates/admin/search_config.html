@@ -2,9 +2,7 @@
 
 {% import 'macros/form.html' as form %}
 
-{% set link_key = 'link[1]' %}
-{% set value_key = 'value[1]' %}
-{% set search_config = data.get('search-config') %}
+
 {% block primary_content_inner %}
     <h1 class="page-heading">
     {% block page_heading %}{{  _('Manage Search Confguration') }}{% endblock %}
@@ -13,21 +11,21 @@
     {% block form %}
     <form class="search-config" method="post">
         <div class="form-inline">
+        <input type="hidden" name="search-config" value="{{ data.get('ckan.search-config') }}" />
           <div class="form-group" id="search-data1">
             <label for="link" class="control-label">Link</label>
-            <input type="text" class="form-control" name="{{link_key}}" placeholder="Link" value="{{search_config}}">
+            <input type="text" class="form-control" name="link[1]" placeholder="Link">
             <label for="text" class="control-label">Text</label>
-            <input type="text" class="form-control" name="{{value_key}}" placeholder="Text" value="{{search_config}}" >
+            <input type="text" class="form-control" name="text[1]" placeholder="Text">
          
-            <input id="add1" name="add" type="button" class="btn" value="+" />
-            <input id="remove1" name="remove" type="button" class="btn" value="-" />
+            <input id="add[1]" name="add" type="button" class="btn" value="+" />
+            <input id="remove[1]" name="remove" type="button" class="btn" value="-" />
           </div>
         </div>
         <div class="form-actions">
-          <a href="{% url_for 'admin.reset_config' %}" class="btn btn-danger pull-left" data-module="confirm-action" data-module-content="{{ _('Are you sure you want to reset the config?') }}">{{ _('Reset') }}</a>
-          <button class="btn btn-primary" type="submit" name="save" >
-            {{ _('Update Search Config') }}
-          </button>
+        <button class="btn btn-primary" type="submit" name="save" >
+          {{ _('Update Search Config') }}
+        </button>
       </div>
       </form>
     {% endblock %}

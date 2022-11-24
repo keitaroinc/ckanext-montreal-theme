@@ -118,7 +118,7 @@ class SearchConfigView(MethodView):
                                            ignore_keys=CACHE_PARAMETERS))))
 
             del data_dict['save']
-            config_data = {'search-config': json.dumps(data_dict)}
+            config_data = {'search-config': data_dict}
             data = logic.get_action(u'config_option_update')({
                 u'user': g.user
             }, config_data)

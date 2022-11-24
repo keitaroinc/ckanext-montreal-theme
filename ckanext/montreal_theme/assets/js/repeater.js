@@ -14,9 +14,7 @@ $(document).ready(function () {
             if (this.type == 'button') {
                 let button_num =  this.id.match(/\d+/g);
                 button_num++;
-                console.log(button_num);
-                console.log(this.id);
-                this.id = this.id.replace(/\[[0-9]\]+/, '+button_num+')
+                this.id = this.id.replace(/\[[0-9]\]+/, '['+button_num+']')
             }
 
 
@@ -26,9 +24,10 @@ $(document).ready(function () {
 
     $(document).on('click', 'input[name="remove"]', function(e) {
         $curr = $(this).closest('div[id^="remove"]');
-        var $last = $curr.find('div[id^="search-data"]');
-        console.log($curr);
-        $last.remove();
-        $curr.remove();
+        var button_num = $curr.prevObject.prop("id").match(/\d+/g);
+        console.log(button_num);
+        var $curr_div = $curr.find('div[id^="search-data['+button_num+']]"');
+        $curr_div.prevObject.remove()
+        $curr.prevObject.remove()
     });
 });

@@ -26,7 +26,7 @@ class MontrealThemePlugin(plugins.SingletonPlugin):
         convert_to_json_if_string = toolkit.get_validator('convert_to_json_if_string')
 
         schema.update({
-            'search-config': [ignore_missing, convert_to_json_if_string],
+            'ckan.search-config': [ignore_missing, convert_to_json_if_string],
         })
         return schema
 
