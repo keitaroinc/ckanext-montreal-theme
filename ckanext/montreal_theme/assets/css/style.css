@@ -12741,6 +12741,10 @@ body{
   background:none
 }
 
+.modal-open{
+  font-size:14px
+}
+
 header .nav-trigger{
   background-color:#288be4;
   color:#fff;
