@@ -1,7 +1,7 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 
-from ckanext.montreal_theme.blueprint import montreal_theme
+from ckanext.montreal_theme.views.config import montreal_theme
 from ckanext.montreal_theme import helpers as h
 
 
@@ -18,6 +18,17 @@ class MontrealThemePlugin(plugins.SingletonPlugin):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('assets', 'montreal_theme')
+        toolkit.add_ckan_admin_tab(config_, 'montreal_theme.search_config',
+                                  toolkit._('Search Config'))
+
+    def update_config_schema(self, schema):
+        ignore_missing = toolkit.get_validator('ignore_missing')
+        convert_to_json_if_string = toolkit.get_validator('convert_to_json_if_string')
+
+        schema.update({
+            'search-config': [ignore_missing, convert_to_json_if_string],
+        })
+        return schema
 
     def get_blueprint(self):
         # Register the new blueprint
