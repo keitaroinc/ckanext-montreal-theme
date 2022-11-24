@@ -23,11 +23,11 @@ $(document).ready(function () {
     });
 
     $(document).on('click', 'input[name="remove"]', function(e) {
-        $curr = $(this).closest('div[id^="remove"]');
-        var button_num = $curr.prevObject.prop("id").match(/\d+/g);
-        console.log(button_num);
-        var $curr_div = $curr.find('div[id^="search-data['+button_num+']]"');
-        $curr_div.prevObject.remove()
+        $curr = $(this).closest('div[id^="remove"]').parents();
+        //var button_num = $curr.prevObject.prop("id").match(/\d+/g);
+        //console.log(button_num);
+        //var $curr_div = $curr.find('div[id^="search-data['+button_num+']]"');
+        //$curr_div.prevObject.remove()
         $curr.prevObject.remove()
     });
 });
