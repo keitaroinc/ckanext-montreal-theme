@@ -21,15 +21,6 @@ class MontrealThemePlugin(plugins.SingletonPlugin):
         toolkit.add_ckan_admin_tab(config_, 'montreal_theme.search_config',
                                   toolkit._('Search Config'))
 
-    def update_config_schema(self, schema):
-        ignore_missing = toolkit.get_validator('ignore_missing')
-        convert_to_json_if_string = toolkit.get_validator('convert_to_json_if_string')
-
-        schema.update({
-            'ckan.search-config': [ignore_missing, convert_to_json_if_string],
-        })
-        return schema
-
     def get_blueprint(self):
         # Register the new blueprint
         return [montreal_theme]

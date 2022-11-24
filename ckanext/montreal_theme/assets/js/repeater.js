@@ -14,20 +14,17 @@ $(document).ready(function () {
             if (this.type == 'button') {
                 let button_num =  this.id.match(/\d+/g);
                 button_num++;
-                this.id = this.id.replace(/\[[0-9]\]+/, '['+button_num+']')
+                this.id = this.id.replace(/\[[0-9]\]+/, '['+button_num+']');
+                this.name = "remove";
+                this.value = "-";
             }
-
 
         });
         $last.after( $cloned );
     });
 
     $(document).on('click', 'input[name="remove"]', function(e) {
-        $curr = $(this).closest('div[id^="remove"]').parents();
-        //var button_num = $curr.prevObject.prop("id").match(/\d+/g);
-        //console.log(button_num);
-        //var $curr_div = $curr.find('div[id^="search-data['+button_num+']]"');
-        //$curr_div.prevObject.remove()
-        $curr.prevObject.remove()
+        $curr = $(this).closest('div[id^="search-data"]');
+        $curr.remove()
     });
 });

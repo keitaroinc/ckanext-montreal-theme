@@ -12,6 +12,8 @@ from flask.views import MethodView
 import ckan.lib.navl.dictization_functions as dict_fns
 from ckan.views.home import CACHE_PARAMETERS
 
+from ckanext.montreal_theme.model import SearchConfig
+
 
 montreal_theme = Blueprint('montreal_theme', __name__)
 
@@ -99,11 +101,8 @@ class ConfigViewFrontend(MethodView):
 
 class SearchConfigView(MethodView):
     def get(self):
-        schema = logic.schema.update_configuration_schema()
-        data = {}
-        for key in schema:
-            data[key] = tk.config.get(key)
-
+        search_configs = model.Session.query(SearchConfig).all()
+        data = {'search_config': search_configs}
         extra_vars = dict(data=data, errors={})
         return tk.render('admin/search_config.html', extra_vars=extra_vars)
 
@@ -116,13 +115,15 @@ class SearchConfigView(MethodView):
                     logic.tuplize_dict(
                         logic.parse_params(req,
                                            ignore_keys=CACHE_PARAMETERS))))
-
+            breakpoint()
             del data_dict['save']
-            config_data = {'search-config': data_dict}
-            data = logic.get_action(u'config_option_update')({
-                u'user': g.user
-            }, config_data)
-            print (data)
+            for link, value in zip(data_dict.get('link'), data_dict.get('value')):
+                search_config = SearchConfig(
+                    link=link,
+                    value=value
+                )
+                model.Session.add(search_config)
+                model.Session.commit()
 
         except logic.ValidationError as e:
 

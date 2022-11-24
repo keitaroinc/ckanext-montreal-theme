@@ -1,0 +1,1 @@
+from ckanext.montreal_theme.model.search_config import SearchConfig
