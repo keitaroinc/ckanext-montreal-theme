@@ -50,3 +50,8 @@ class SearchConfig(DomainObject):
 
 
 mapper(SearchConfig, search_config, properties={})
+
+def setup():
+    if not search_config.exists():
+        search_config.create()
+        log.info(u'Search Config table created')

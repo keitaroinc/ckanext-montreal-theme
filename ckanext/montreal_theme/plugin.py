@@ -3,15 +3,20 @@ import ckan.plugins.toolkit as toolkit
 
 from ckanext.montreal_theme.views.config import montreal_theme
 from ckanext.montreal_theme import helpers as h
-
+import ckanext.montreal_theme.cli as cli
 
 class MontrealThemePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IFacets)
+    plugins.implements(plugins.IClick)
     plugins.implements(plugins.IGroupForm, inherit=True)
 
+
+    # IClick
+    def get_commands(self):
+        return cli.get_commands()
 
     # IConfigurer
     def update_config(self, config_):
