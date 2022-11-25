@@ -32,7 +32,8 @@ class MontrealThemePlugin(plugins.SingletonPlugin):
             'all_groups': h.get_all_groups,
             'latest_datasets': h.get_latest_datasets,
             'get_showcases': h.get_showcases,
-            'get_value_from_showcase_extras': h.get_value_from_showcase_extras
+            'get_value_from_showcase_extras': h.get_value_from_showcase_extras,
+            'homepage_search_configs': h.homepage_search_configs,
         }
 
     # IFacets

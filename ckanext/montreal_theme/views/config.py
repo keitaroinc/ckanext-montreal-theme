@@ -115,8 +115,11 @@ class SearchConfigView(MethodView):
                     logic.tuplize_dict(
                         logic.parse_params(req,
                                            ignore_keys=CACHE_PARAMETERS))))
-            breakpoint()
+
+
             del data_dict['save']
+            search_config = SearchConfig.delete_all();
+            model.Session.commit()
             for link, value in zip(data_dict.get('link'), data_dict.get('value')):
                 search_config = SearchConfig(
                     link=link,

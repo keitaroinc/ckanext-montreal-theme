@@ -7,26 +7,12 @@
         {% block search %}
           {% snippet 'home/snippets/frontend_search.html' %}
         {% endblock %}
-        <div class="container mx-auto flex flex-wrap justify-center pt-4 w-4/5 md:w-3/5 lg:w-6/12">
-
+        <div class="container mx-auto flex flex-wrap justify-center pt-4 w-4/5 md:w-3/5 lg:w-8/12">
+            {% set search_configs = h.homepage_search_configs() %}
             <!-- quick search links -->
-            <a class="rounded-full text-center text-white text-base bg-primary hover:bg-sarcelle-dark font-bold m-2 py-2 px-4" href="/ville-de-montreal/corridors-sanitaires">Corridors sanitaires</a>
-            <!-- end quick search links -->
-
-            <!-- quick search links -->
-            <a class="rounded-full text-center text-white text-base bg-primary hover:bg-sarcelle-dark font-semibold m-2 py-2 px-4" href="/search?q=tags:Vélo">#Vélo</a>
-            <!-- end quick search links -->
-
-            <!-- quick search links -->
-            <a class="rounded-full text-center text-white text-base bg-primary hover:bg-sarcelle-dark font-semibold m-2 py-2 px-4" href="/ville-de-montreal/requetes-entreprises-covid-19">Requêtes entreprises - COVID-19</a>
-            <!-- end quick search links -->
-
-            <!-- quick search links -->
-            <a class="rounded-full text-center text-white text-base bg-primary hover:bg-sarcelle-dark font-semibold m-2 py-2 px-4" href="https://donnees.montreal.ca/applications/single/76968af2-14a0-4c6a-a045-510afa586f6d">Parcs et installations sportives</a>
-            <!-- end quick search links -->
-
-            <!-- quick search links -->
-            <a class="rounded-full text-center text-white text-base bg-primary hover:bg-sarcelle-dark font-semibold m-2 py-2 px-4" href="/applications/single/9c735e0b-8e64-4bab-ad17-6588c09a74a8">Requêtes 311 en 2020</a>
+            {% for sc in search_configs %}
+               <a class="rounded-full text-center text-white text-base bg-primary hover:bg-sarcelle-dark font-bold m-2 py-2 px-4" href="{{sc.link}}">{{sc.value}}</a>
+            {% endfor %}
             <!-- end quick search links -->
               </div>
           </div>

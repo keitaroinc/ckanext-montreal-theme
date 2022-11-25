@@ -2,6 +2,9 @@ from ckan import model
 import ckan.plugins as p
 from ckan.plugins import toolkit as tk
 
+import ckan.model as model
+from ckanext.montreal_theme.model import SearchConfig
+
 
 g = tk.g
 
@@ -49,3 +52,9 @@ def get_value_from_showcase_extras(extras, key):
         if item.get('key') == key:
             value = item.get('value', '')
     return value
+
+
+def homepage_search_configs():
+    return model.Session.query(SearchConfig).all()
+    # search_configs = model.Session.query(SearchConfig).all()
+    # return ''.join(f'<li> <h2><a href={config.link}>{config.value}</a></h2> </li>' for config in search_configs)

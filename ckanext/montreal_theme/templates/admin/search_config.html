@@ -11,14 +11,13 @@
     <h1 class="page-heading">
     {% block page_heading %}{{  _('Manage Search Confguration') }}{% endblock %}
   </h1>
-   {{ data }}
     {% block form %}
     <form class="search-config" method="post">
         <div class="form-inline">
           {% for sc in search_config %}
             <div id="search-data{{ loop.index }}">
-              {% comment %} {{ form.input('link', sc.link, label='Link', placeholder='Link', value=sc.link) }}
-              {{ form.input('value', sc.value, label='Value', placeholder='Value', value=sc.value) }}  {% endcomment %}
+              {{ form.input('link', sc.link, label='Link', placeholder='Link', value=sc.link) }}
+              {{ form.input('value', sc.value, label='Value', placeholder='Value', value=sc.value) }} 
               {% set btn =  'add' if loop.index == 1 else 'remove' %}
               {% set sign =  '+' if loop.index == 1 else '-' %}
               <input id="add[{{loop.index}}]" name="{{btn}}" type="button" class="btn" value="{{sign}}" />
