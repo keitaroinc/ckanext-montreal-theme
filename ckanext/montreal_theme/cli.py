@@ -1,7 +1,7 @@
 import click
 import ckan.plugins.toolkit as tk
 
-from ckanext.montreal_theme.model import SearchConfig
+import ckanext.montreal_theme.model.search_config as search_config
 
 
 @click.group("montreal", short_help="Montreal Theme commands")
@@ -12,7 +12,7 @@ def montreal():
 def init_db():
     click.secho(u"Initializing Montreal Theme Config tables", fg=u"green")
     try:
-        SearchConfig.setup()
+        search_config.setup()
     except Exception as e:
        tk.error_shout(str(e))
 
