@@ -2,3 +2,12 @@ montreal_theme-style:
   output: montreal_theme/%(version)s_custom.css
   contents:
     - css/style.css
+
+montreal_theme-js:
+  output: montreal_theme/%(version)s_custom.js
+  contents:
+    - js/repeater.js
+    - js/jquery.repeater.js
+  extra:
+    preload:
+      - base/main

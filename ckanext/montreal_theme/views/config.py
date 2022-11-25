@@ -1,15 +1,22 @@
+import json
+
 from ckan.common import g, config
 import ckan.lib.helpers as h
 from flask import Blueprint
 import ckan.logic as logic
+import ckan.model as model
 from ckan.common import g, _, config, request
-import ckan.lib.base as base
+
+from ckan.plugins import toolkit as tk
 from flask.views import MethodView
 import ckan.lib.navl.dictization_functions as dict_fns
 from ckan.views.home import CACHE_PARAMETERS
 
+from ckanext.montreal_theme.model import SearchConfig
+
 
 montreal_theme = Blueprint('montreal_theme', __name__)
+
 
 
 def _get_config_options_frontend():
@@ -55,11 +62,11 @@ class ConfigViewFrontend(MethodView):
         schema = logic.schema.update_configuration_schema()
         data = {}
         for key in schema:
-            data[key] = config.get(key)
+            data[key] = tk.config.get(key)
 
         vars = dict(data=data, errors={}, **items)
 
-        return base.render(u'admin/config.html', extra_vars=vars)
+        return tk.render(u'admin/config.html', extra_vars=vars)
 
     def post(self):
         try:
@@ -82,21 +89,69 @@ class ConfigViewFrontend(MethodView):
             data = request.form
             errors = e.error_dict
             error_summary = e.error_summary
-            breakpoint()
             vars = dict(data=data,
                         errors=errors,
                         error_summary=error_summary,
                         form_items=items,
                         **items)
-            return base.render(u'admin/config.html', extra_vars=vars)
+            return tk.render(u'admin/config.html', extra_vars=vars)
 
         return h.redirect_to(u'admin.config')
 
 
+class SearchConfigView(MethodView):
+    def get(self):
+        search_configs = model.Session.query(SearchConfig).all()
+        data = {'search_config': search_configs}
+        extra_vars = dict(data=data, errors={})
+        return tk.render('admin/search_config.html', extra_vars=extra_vars)
+
+    def post(self):
+        try:
+            req = request.form.copy()
+            req.update(request.files.to_dict())
+            data_dict = logic.clean_dict(
+                dict_fns.unflatten(
+                    logic.tuplize_dict(
+                        logic.parse_params(req,
+                                           ignore_keys=CACHE_PARAMETERS))))
+
+
+            del data_dict['save']
+            search_config = SearchConfig.delete_all();
+            model.Session.commit()
+            for link, value in zip(data_dict.get('link'), data_dict.get('value')):
+                search_config = SearchConfig(
+                    link=link,
+                    value=value
+                )
+                model.Session.add(search_config)
+                model.Session.commit()
+
+        except logic.ValidationError as e:
+
+            return tk.render(u'admin/search_config.html', extra_vars=vars)
+
+        return h.redirect_to(u'montreal_theme.config')
+
+
+class ResetSearchConfigView(MethodView):
+    def get(self):
+        if u'cancel' in request.args:
+            return h.redirect_to(u'admin.config')
+        return tk.render(u'admin/confirm_reset.html', extra_vars={})
+
+    def post(self):
+        # remove sys info items    
+        model.delete_system_info('search-config')
+        # reset to values in config
+        return h.redirect_to(u'montreal_theme.config')
+
 def collections():
     extra_vars = {}
-    return base.render('home/collections.html', extra_vars=extra_vars)
+    return tk.render('home/collections.html', extra_vars=extra_vars)
 
 
 montreal_theme.add_url_rule(u'/ckan-admin/config', view_func=ConfigViewFrontend.as_view(str(u'config')))
 montreal_theme.add_url_rule(u'/collections', view_func=collections)
+montreal_theme.add_url_rule(u'/ckan-admin/search-config', view_func=SearchConfigView.as_view(str(u'search_config')))
