@@ -13,7 +13,6 @@ $(document).ready(function () {
             location = teritories.features.filter((el) => teritoire.includes(el.properties.NOM))
         };
 
-    console.log(location);
     let map = L.map('mapid', {
     }).setView([45.55, -73.7], 10);
 
