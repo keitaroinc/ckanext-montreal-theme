@@ -14032,6 +14032,19 @@ body{
   background-color: rgba(248, 249, 250, var(--bg-opacity))
 }
 
+.info {
+  padding: 20px 12px;
+  font: 14px/16px Arial, Helvetica, sans-serif;
+  background: white;
+  background: rgba(255,255,255,0.3);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+}
+.info h3 {
+  margin: 0 0 5px;
+  color: 'black';
+}
+
 .info-list{
   display:grid;
   grid-template-columns:1fr 1fr
