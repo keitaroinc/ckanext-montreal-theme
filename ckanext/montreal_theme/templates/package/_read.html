@@ -120,8 +120,9 @@
                 <div id="hidden-territories" class="hidden">
                     <p id="hidden-p">{{ _('Montreal') }}</p>
                 </div>
-                <div id="map" class="py-2 leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim eaflet-grab leaflet-touch-drag leaflet-touch-zoom" style="position: relative;">
-
+                <div id="mapid">
+               
+                     {% snippet 'package/snippets/teritorries.html', territoire=pkg.get('territoire', None) %}
                 </div>
                 {# -------- end territories ---------- #}
                 {# -------- keywords ---------- #}
