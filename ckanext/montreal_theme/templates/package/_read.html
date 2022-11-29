@@ -19,7 +19,7 @@
             <li class="breadcrumb_item b_package_read hover:text-primary">{% link_for _('Collections'), named_route='montreal_theme.collections' %}</li>
             {#<li class="breadcrumb_item b_package_read hover:text-primary">{% link_for title|truncate(30), named_route='group' ~ '.read', id=group_name %}</li> #}
             <li class="breadcrumb_item b_package_read hover:text-primary">
-                {% set href = '/dataset?q=groups:' + group_name %}
+                {% set href = h.url_for('group.read', id=group_name) %}
                 <a href="{{ href }}">{{ title }}</a>
             </li>
 
@@ -42,8 +42,8 @@
                 <div class="text-sm-up py-1">
                     <div class="flex flex-row">
                         <p class="pr-2">Published by</p>
-                        {% set href = '/dataset?q=organization:' + pkg_org.get('name') %}
-                        <a href="{{ href }}" class="font-semibold text-sarcelle-dark hover:underline">{{ pkg_org.get('title') }}</a>
+                        {% set href = h.url_for('organization.read', id=pkg_org.get('name')) if pkg_org else '' %}
+                        <a href="{{ href }}" class="font-semibold text-sarcelle-dark hover:underline">{{ pkg_org.get('title') if pkg_org else '' }}</a>
                     </div>
                     <div class="container mt-12 mb-8 pt-16 border-t border-gray-400" style="border-top-width: 1px;">
                         <div class="markdown-content leading-relaxed">
@@ -170,7 +170,7 @@
                     <div class="container flex mt-12 mb-8 pt-4 items-center border-t border-gray-400" style="border-top-width: 1px;">
                         <div class="w-1/4 pr-4">
                             {% set org = pkg.get('organization') %}
-                            {% set image_url = h.url_for_static('uploads/group/{}'.format(org.get('image_url'))) %}
+                            {% set image_url = h.url_for_static('uploads/group/{}'.format(org.get('image_url'))) if org else '' %}
                             <img class="inline-block w-full" src="{{ image_url }}">
                         </div>
                         <div class="flex flex-col w-3/4">
