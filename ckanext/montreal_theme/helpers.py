@@ -1,8 +1,8 @@
-from ckan import model
 import ckan.plugins as p
+import ckan.model as model
+
 from ckan.plugins import toolkit as tk
 
-import ckan.model as model
 from ckanext.montreal_theme.model import SearchConfig
 
 
