@@ -1,5 +1,6 @@
 import ckan.plugins as p
 import ckan.model as model
+import ckan.lib.formatters as formatters
 
 from ckan.plugins import toolkit as tk
 
@@ -57,3 +58,10 @@ def get_value_from_showcase_extras(extras, key):
 def homepage_search_configs():
     return model.Session.query(SearchConfig).all()
 
+
+def format_size(size):
+    try:
+        value = formatters.localised_filesize(int(size))
+    except Exception as e:
+        value = size
+    return value
