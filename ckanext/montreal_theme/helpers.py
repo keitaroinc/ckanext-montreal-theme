@@ -56,5 +56,4 @@ def get_value_from_showcase_extras(extras, key):
 
 def homepage_search_configs():
     return model.Session.query(SearchConfig).all()
-    # search_configs = model.Session.query(SearchConfig).all()
-    # return ''.join(f'<li> <h2><a href={config.link}>{config.value}</a></h2> </li>' for config in search_configs)
+

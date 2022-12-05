@@ -2,7 +2,14 @@ const teritories={type:"FeatureCollection",crs:{type:"name",properties:{name:"ur
 
 $(document).ready(function () {
     
+    let map = L.map('territorie-map', {
+    }).setView([45.55, -73.7], 10);
+
     let teritoire = $('#territoire').val();
+
+    if (!teritoire ){
+        return "";
+    };
     let location;
     
         if (teritoire.includes("agglomeration")) {
@@ -13,9 +20,7 @@ $(document).ready(function () {
             location = teritories.features.filter((el) => teritoire.includes(el.properties.NOM))
         };
 
-    let map = L.map('mapid', {
-    }).setView([45.55, -73.7], 10);
-
+    
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'})
     .addTo(map);

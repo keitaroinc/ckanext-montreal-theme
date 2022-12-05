@@ -1,13 +1,19 @@
+---
 montreal_theme-style:
   output: montreal_theme/%(version)s_custom.css
   contents:
     - css/style.css
     - css/leaflet.css
-
 montreal_theme-js:
   output: montreal_theme/%(version)s_custom.js
   contents:
     - js/repeater.js
+  extra:
+    preload:
+      - base/main
+montreal_territory-js:
+  output: montreal_theme/%(version)s_territory.js
+  contents:
     - js/leaflet.js
     - js/teritorries.js
   extra:
