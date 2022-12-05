@@ -72,7 +72,9 @@
                             <td class="px-4 py-3" style="border-top-width: 1px;">{{ _(res.get('name')) }}</td>
                             <td class="px-4 py-3 font-semibold text-base text-gray-900 uppercase" style="border-top-width: 1px;">{{ res.get('format') }}</td>
                             <td class="px-4 py-3" style="border-top-width: 1px;">{{res.get('Size')}}</td>
-                            <td class="px-4 py-3" style="border-top-width: 1px;">{{ res.get('last_modified') }}</td>
+                            <td class="has-tooltip px-4 py-3" style="border-top-width: 1px;">{{ h.time_ago_from_timestamp(res.get('last_modified')) }}
+                                <span class="tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8">{{ res.get('last_modified') }}</span>
+                            </td>
                             <td class="px-4 py-3 text-base text-primary" style="border-top-width: 1px;">
                                 <a href="{{ res.get('url') }}" target="_blank">
                                     <svg class="fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
