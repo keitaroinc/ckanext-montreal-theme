@@ -1,0 +1,22 @@
+{% block package_list %}
+  {% if packages %}
+    {% block package_list_inner %}
+    <div class="sm:flex flex-wrap sm:-mx-4 mt-gutter">
+        {% for package in packages %}
+
+        {% snippet 'showcase/snippets/showcase_item.html', package=package, item_class=item_class, truncate=truncate, truncate_title=truncate_title, show_remove=show_remove %}
+        {% endfor %}
+    </div>
+    {% endblock %}
+  {% endif %}
+{% endblock %}
+
+{% block page_pagination %}
+{% if not g.userobj.sysadmin %}
+
+    {% if 'page' in g %}
+      {{ g.page.pager(q=q) }}
+    {% endif %}
+
+{% endif %}
+{% endblock %}
