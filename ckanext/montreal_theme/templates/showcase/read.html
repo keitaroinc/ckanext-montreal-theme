@@ -1,0 +1,5 @@
+{% if g.userobj.sysadmin %}
+    {% ckan_extends%}
+{% else %}
+    {% extends 'showcase/_read.html' %}
+{% endif %}
