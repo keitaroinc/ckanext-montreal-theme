@@ -39,6 +39,7 @@ class MontrealThemePlugin(plugins.SingletonPlugin):
             'get_showcases': h.get_showcases,
             'get_value_from_showcase_extras': h.get_value_from_showcase_extras,
             'homepage_search_configs': h.homepage_search_configs,
+            'format_size': h.format_size,
         }
 
     # IFacets
