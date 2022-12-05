@@ -1,0 +1,90 @@
+{% extends 'page.html' %}
+
+{% set pkg = pkg_dict or c.pkg_dict %}
+{% set name = pkg.title or pkg.name %}
+{% set editor = h.get_wysiwyg_editor() %}
+
+{% block breadcrumb_content %}
+    <nav class="breadcrumb" aria-label="breadcrumb">
+    {% set showcase = pkg.title or pkg.name %}
+        <ol class="text-gray-700 font-semibold">
+            {% include 'snippets/home_breadcrumb_item.html' %}
+            <li class="breadcrumb_item">
+                <a class="breadcrumb_link" href="/showcase">{{ _("Applications") }}</a>
+            </li>
+            <li class="breadcrumb_item">
+                <a class="breadcrumb_link" href="{{ h.url_for('showcase.read', id=pkg.name) }}">{{ _(showcase) }}</a>
+            </li>
+        </ol>
+    </nav>
+{% endblock %}
+
+
+{% block secondary %}
+<div class="md:w-1/3 md:mr-gutter">
+    <div class="border-1 border-gray-200 p-4 mb-gutter md:mr-10 pb-8">
+        <div class="py-4">
+            <p class="text-black text-sm">{{ _("Submitted by") }}</p>
+            <h2 class="text-primary text-xl font-semibold">{{pkg.get('author')}}</h2>
+        </div>
+        <a class="flex inline-flex items-center px-4 py-2 bg-primary rounded text-white text-sm font-bold" href="{{ pkg.get('url') }}">
+            {{ _('Find out more') }}
+            <span class="ml-2" style="height:14px; width:14px;">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="external-link-alt" role="img" height="100%" viewBox="0 0 512 512" class=""><path fill="white" d="M432,320H400a16,16,0,0,0-16,16V448H64V128H208a16,16,0,0,0,16-16V80a16,16,0,0,0-16-16H48A48,48,0,0,0,0,112V464a48,48,0,0,0,48,48H400a48,48,0,0,0,48-48V336A16,16,0,0,0,432,320ZM488,0h-128c-21.37,0-32.05,25.91-17,41l35.73,35.73L135,320.37a24,24,0,0,0,0,34L157.67,377a24,24,0,0,0,34,0L435.28,133.32,471,169c15,15,41,4.5,41-17V24A24,24,0,0,0,488,0Z" class=""/></svg>
+            </span>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block primary_content %}
+    <h2 class="pb-8 text-3xl font-bold text-gray-700">{{ pkg.get('title') }}</h2>
+    <span class="markdown-contnt leading-relaxed border-t border-gray-200 p-4 text-lg">
+        <p>{{ pkg.get('notes') }}</p>
+    </span>
+
+    <div class="container w-full md:p-8">
+        <img class="object-fill w-full" src="{{ h.url_for_static('uploads/showcase/' + pkg.get('image_url')) }}">
+    </div>
+    <br>
+    <section class="mt-2 md:pr-10">
+        <h2 class="text-2xl py-3 border-gray-200 text-gray-700 font-bold">
+            {{ _("Dataset(s) used in this application") }}
+        </h2>
+        {% set showcase_pkgs = g.showcase_pkgs %}
+        {% if showcase_pkgs %}
+        {% for showcase_pkg in showcase_pkgs %}
+        {% for group in showcase_pkg.get('groups') %}
+        <ul>
+            <a href="{{ h.url_for('group.read', id=group.get('name')) }}" class="application_dataset flex border-t border-gray-200 p-4">
+                <img src="{{ group.get('image_display_url')  }}" class="block" width="50px" height="50px">
+                <span class="text-base filter-button font-bold">
+                    {{ group.get('title') }}
+                </span>
+            </a>
+        </ul>
+        {% endfor %}
+        {% endfor%}
+        {% endif %}
+
+    </section>
+    <section class="mt-2 mb-16 md:pr-10">
+        <h2 class="text-2xl py-3 text-gray-700 border-gray-200 font-bold">{{ _('Keywords') }}</h2>
+        {% if showcase_pkgs %}
+        {% for showcase_pkg in showcase_pkgs %}
+        {% set tags = showcase_pkg.get('tags') %}
+        <div class="flex flex-wrap">
+            <div id="keywords" class="py-2">
+                {% for tag in tags %}
+                <span class="border-1 text-xs inline-block rounded-sm px-2 py-1 font-bold text-primary mr-3">
+                    {% set href = "/showcase?q=tags:" + tag.get('name') %}
+                    <a class="hover:text-primary" href="{{ href }}">{{ tag.get('display_name') }}</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </section>
+
+{% endblock %}
