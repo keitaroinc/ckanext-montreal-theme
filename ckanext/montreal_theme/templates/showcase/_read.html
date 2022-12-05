@@ -51,19 +51,40 @@
         <h2 class="text-2xl py-3 border-gray-200 text-gray-700 font-bold">
             {{ _("Dataset(s) used in this application") }}
         </h2>
-        {% set showcase_pkgs = c.showcase_pkgs %}
+        {% set showcase_pkgs = g.showcase_pkgs %}
         {% if showcase_pkgs %}
         {% for showcase_pkg in showcase_pkgs %}
+        {% for group in showcase_pkg.get('groups') %}
         <ul>
-            <a class="application_dataset flex border-t border-gray-200 p-4">
-                <img src="{{ h.url_for_static('uploads/group/' ) }}" class="block" width="50px" height="50px">
+            <a href="{{ h.url_for('group.read', id=group.get('name')) }}" class="application_dataset flex border-t border-gray-200 p-4">
+                <img src="{{ group.get('image_display_url')  }}" class="block" width="50px" height="50px">
                 <span class="text-base filter-button font-bold">
-                    {{ showcase_pkg.get('title') }}
+                    {{ group.get('title') }}
                 </span>
             </a>
         </ul>
         {% endfor %}
+        {% endfor%}
+        {% endif %}
+
+    </section>
+    <section class="mt-2 mb-16 md:pr-10">
+        <h2 class="text-2xl py-3 text-gray-700 border-gray-200 font-bold">{{ _('Keywords') }}</h2>
+        {% if showcase_pkgs %}
+        {% for showcase_pkg in showcase_pkgs %}
+        {% set tags = showcase_pkg.get('tags') %}
+        <div class="flex flex-wrap">
+            <div id="keywords" class="py-2">
+                {% for tag in tags %}
+                <span class="border-1 text-xs inline-block rounded-sm px-2 py-1 font-bold text-primary mr-3">
+                    {% set href = "/showcase?q=tags:" + tag.get('name') %}
+                    <a class="hover:text-primary" href="{{ href }}">{{ tag.get('display_name') }}</a>
+                </span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
         {% endif %}
     </section>
-    <section></section>
+
 {% endblock %}
