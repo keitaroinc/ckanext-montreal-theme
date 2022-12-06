@@ -1,0 +1,5 @@
+{% if g.user and g.userobj.sysadmin %}
+{% ckan_extends %}
+{% else %}
+{% extends "ckanext_pages/_blog.html" %}
+{% endif %}
