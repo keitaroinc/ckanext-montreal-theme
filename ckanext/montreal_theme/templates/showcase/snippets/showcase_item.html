@@ -1,0 +1,19 @@
+{% set truncate = truncate or 180 %}
+{% set truncate_title = truncate_title or 80 %}
+{% set title = package.title or package.name %}
+{% set notes = h.markdown_extract(package.notes, extract_length=truncate) %}
+
+<div class="sm:w-1/2 lg:w-1/2">
+    <a href="{{ h.url_for('showcase.read', id=package.name) }}" class="showcase-item block m-4 hover:border-1 hover:border-solid hover:border-transparent hover:bg-white hover:shadow-xl">
+        <div class="card-img">
+            <img class="rounded-t" src="{{ package.image_display_url }}" style="width: calc(100% + 2px); height: 205px; object-fit: cover;">
+        </div>
+        <div class="card-body border-1 border-gray-300 p-8" style="height: 300px;">
+            <p class="text-xl font-bold text-black font-open-sans font-medium mb-4" style="display: block; display: -webkit-box; max-width:100%; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: ellipsis;">
+                {{ title }}
+            </p>
+            <p class="text-gray-600 font-open-sans font-normal"></p>
+            <p>{{ notes }}</p>
+        </div>
+    </a>
+</div>
