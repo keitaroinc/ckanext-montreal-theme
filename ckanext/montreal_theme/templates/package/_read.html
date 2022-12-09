@@ -118,17 +118,7 @@
                 <div id="methodology" class="py-2">
                     <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Methodology') }}</h2>
                     <div class="markdown-content leading-relaxed">
-                        <h3>{{ _('Data Dictionary') }}</h3>
-                        {% set res = pkg.get('resources')[0] %}
-                        {% set res_dict = h.datastore_dictionary(res.id) %}
-                        <ul>
-                            {% for dict in res_dict %}
-                            <li>
-                                <code> {{dict.get('id') }} </code>
-                                ({{dict.get('type') }}): Identifiant unique
-                            </li>
-                            {% endfor %}
-                        </ul>
+                        {{ h.render_content(pkg.methodologie) }}
                     </div>
                 </div>
                 {# -------- end methodology ---------- #}
