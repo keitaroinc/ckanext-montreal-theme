@@ -1,61 +1,72 @@
+{# {% if g.user and g.userobj.sysadmin %}
+{% ckan_extends %}
+{% else %}
+{% extends "package/_resource_read.html" %}
+{% endif %}
+#} 
+
 {% ckan_extends %}
 
-{% block data_preview %}
-{% block resource_view %}
-{% block resource_view_nav %}
-    {% set resource_preview = h.resource_preview(resource, package) %}
-    {% snippet "package/snippets/resource_views_list.html",
-        views=resource_views,
-        pkg=pkg,
-        is_edit=false,
-        view_id=current_resource_view['id'],
-        resource_preview=resource_preview,
-        resource=resource,
-        extra_class="nav-tabs nav-tabs-plain"
-    %}
+{% block head_extras -%}
 {% endblock %}
-    {% block resource_view_content %}
-    <div class="resource-view">
-        {% set resource_preview = h.resource_preview(resource, package) %}
-        {% set views_created = res.has_views or resource_preview %}
-        {% if views_created %}
-        {% if resource_preview and not current_resource_view %}
-            {{ h.resource_preview(resource, package) }}
-        {% else %}
-            {% for resource_view in resource_views %}
-            {% if resource_view == current_resource_view %}
-                {% snippet 'package/snippets/resource_view.html',
-                    resource_view=resource_view,
-                    resource=resource,
-                    package=package
-                %}
-            {% endif %}
-            {% endfor %}
-        {% endif %}
-        {% else %}
-        {# Views not created #}
-        <div class="data-viewer-info">
-            <p>{{ _("There are no views created for this resource yet.") }}</p>
-            {% if h.check_access('resource_view_create', {'resource_id': resource.id}) %}
-            <p class="text-muted">
-                <i class="fa fa-info-circle"></i>
-                {{ _("Not seeing the views you were expecting?")}}
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#data-view-info">
-                {{ _('Click here for more information.') }}</a>
-            </p>
-            <div id="data-view-info" class="collapse">
-                <p>{{ _('Here are some reasons you may not be seeing expected views:') }}</p>
-                <ul>
-                <li>{{ _("No view has been created that is suitable for this resource")}}</li>
-                <li>{{ _("The site administrators may not have enabled the relevant view plugins")}}</li>
-                <li>{{ _("If a view requires the DataStore, the DataStore plugin may not be enabled, or the data may not have been pushed to the DataStore, or the DataStore hasn't finished processing the data yet")}}</li>
-                </ul>
-            </div>
-            {% endif %}
-        </div>
-        {% endif %}
-    </div>
+
+{% block pre_primary %}
+{% endblock %}
+
+{% block toolbar %}
+<div class="container mx-auto" style="padding-top: 35px">
+    {% block breadcrumb_content %}
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <ol class="text-gray-700 font-semibold">
+                {% include 'snippets/home_breadcrumb_item.html' %}
+                <li class="breadcrumb_item">
+                    <a class="breadcrumb_link" href="{{ h.url_for('dataset.read', id=package.name) }}">{{ _("Dataset") }}</a>
+                </li>
+                <li class="breadcrumb_item">
+                    <a class="breadcrumb_link" href="{{ h.url_for('resource.read', id=package.name, resource_id=resource.id) }}">{{ resource.name }}</a>
+                </li>
+            </ol>
+        </nav>
     {% endblock %}
 </div>
 {% endblock %}
-{% endblock %}s
+
+
+{% block extra_content %}
+<div class="container mx-auto lg:flex p-gutter">
+    <div class="mb-gutter lg:mb-0 lg:w-2/3 lg:mr-gutter">
+        <h2 class="text-3xl font-semibold text-gray-900">{{ _("Data") }}</h2>
+        <div id="data" class="py-2">
+            <ul>
+                <div class="custom_panel">
+                    <li class="mb-6">
+                        <nav class="pt-4 pb-1">
+                            <a href="{{ h.url_for('resource.download', id=package.name, resource_id=resource.id) }}" class="inline-block mr-3 mb-6 py-2 px-4 rounded text-white bg-primary hover:bg-sarcelle-dark cursor-pointer" target="_blank">
+                                <dl class="data-file-type_inner">
+                                    <dt class="data-file-type_term">{{ _("Download " + "(" + resource.format + ")") }}</dt>
+                                </dl>
+                            </a>
+                            <a data-module="api-info" data-module-template="{{ '/api/1/util/snippet/api_info.html?resource_id=' + resource.id }}" class="inline-block mr-3 mb-6 py-2 px-4 rounded text-white bg-primary hover:bg-sarcelle-dark cursor-pointer">
+                                <dl class="data-file-type_inner">
+                                    <dt class="data-file-type_term">{{ _("API") }}</dt>
+                                </dl>
+                            </a>
+                        </nav>
+                        <div class="data-explorer">
+                            <div class="data-explorer">  
+                        </div>
+                        {% block resource_view %}
+                        <div class="data-explorer-content">
+                           {{super() }}
+                        </div>
+                        {% endblock %}
+                    </li>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block secondary_content %}
+{% endblock %}
