@@ -1,12 +1,15 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckan.lib.plugins import DefaultTranslation
+
 
 from ckanext.montreal_theme.views.config import montreal_theme
 from ckanext.montreal_theme import helpers as h
 import ckanext.montreal_theme.cli as cli
 
-class MontrealThemePlugin(plugins.SingletonPlugin):
+class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(plugins.IFacets)
