@@ -54,35 +54,38 @@
                 {# -------- end readme ---------- #}
                 <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">Data</h2>
                 {# -------- resource table ---------- #}
-                <table class="info block pb-12">
+                <table class="info block pb-24">
                     <thead class="font-semibold text-left text-gray-900">
                         <tr>
-                            <th class="px-4 py-3">{{ _('Name') }}</th>
-                            <th class="px-4 py-3">{{ _('Format') }}</th>
-                            <th class="px-4 py-3">{{ _('Size') }}</th>
-                            <th class="px-4 py-3">{{ _('Last Changed') }}</th>
-                            <th class="px-4 py-3 overflow-hidden">{{ _('Download') }}</th>
-                            <th class="px-4 py-3 overflow-hidden">{{ _('Preview') }}</th>
+                            <th scope="col" class="px-4 py-3">{{ _('Name') }}</th>
+                            <th scope="col" class="px-4 py-3">{{ _('Format') }}</th>
+                            <th scope="col" class="px-4 py-3">{{ _('Size') }}</th>
+                            <th scope="col" class="px-4 py-3">{{ _('Last Changed') }}</th>
+                            <th scope="col" class="px-4 py-3 overflow-hidden">{{ _('Download') }}</th>
+                            <th scope="col" class="px-4 py-3 overflow-hidden">{{ _('Preview') }}</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for res in pkg.get('resources') %}
                         {% set url = h.url_for('resource.read', id=pkg.id if is_activity_archive else pkg.name, resource_id=res.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
                         <tr class="border-t border-gray-400">
-                            <td class="px-4 py-3" style="border-top-width: 1px;">{{ _(res.get('name')) }}</td>
-                            <td class="px-4 py-3 font-semibold text-base text-gray-900 uppercase" style="border-top-width: 1px;">{{ h.format_size(res.get('format')) }}</td>
-                            <td class="px-4 py-3" style="border-top-width: 1px;">{{res.get('Size')}}</td>
-                            <td class="has-tooltip px-4 py-3" style="border-top-width: 1px;">{{ h.time_ago_from_timestamp(res.get('last_modified')) }}
+                            <td class="px-1 py-3" style="border-top-width: 1px;">{{ _(res.get('name')) }}</td>
+                            <td class="px-1 py-3 font-semibold text-base text-gray-900 uppercase" style="border-top-width: 1px;">{{ res.get('format') }}</td>
+                            <td class="px-1 py-3" style="border-top-width: 1px;">{{h.format_size(res.get('Size')) }}</td>
+                            <td class="px-1 py-3" style="border-top-width: 1px;">
+                                <div class="has-tooltip">
+                                {{ h.time_ago_from_timestamp(res.get('last_modified')) }}
                                 <span class="tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8">{{ res.get('last_modified') }}</span>
+                                </div>
                             </td>
-                            <td class="px-4 py-3 text-base text-primary" style="border-top-width: 1px;">
+                            <td class="px-10 py-3 text-base text-primary" style="border-top-width: 1px;">
                                 <a href="{{ res.get('url') }}" target="_blank">
                                     <svg class="fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
                                         <path fill-rule="evenodd" d="M12.376 15.927a1 1 0 01-1.083-.22l-5-5a1 1 0 011.414-1.414L11 12.586V3a1 1 0 012 0v12a1 1 0 01-.61.921zM20 15a1 1 0 012 0v4a3 3 0 01-3 3H5a3 3 0 01-3-3v-4a1 1 0 012 0v4a1 1 0 001 1h14a1 1 0 001-1v-4zm-3.707-5.707a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414-1.414l2-2z"></path>
                                     </svg>
                                 </a>
                             </td>
-                            <td class="px-4 py-3" style="border-top-width: 1px;">
+                            <td class="px-10 py-3" style="border-top-width: 1px;">
                               {% if res.get('has_views')%}
                                 <a href="{{ url }}">
                                     <svg class="fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">

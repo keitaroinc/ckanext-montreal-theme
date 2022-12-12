@@ -99,18 +99,6 @@
                 #}
                 {% block primary_content %}
                   <article class="module">
-                    {% block page_header %}
-                      <header>
-                        {% if self.content_action() | trim %}
-                          <div>
-                            {% block content_action %}{% endblock %}
-                          </div>
-                        {% endif %}
-                        <ul>
-                          {% block content_primary_nav %}{% endblock %}
-                        </ul>
-                      </header>
-                    {% endblock %}
                     <div>
                       {% if self.page_primary_action() | trim %}
                         <div>
