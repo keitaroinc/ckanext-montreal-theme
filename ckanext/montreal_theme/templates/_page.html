@@ -56,6 +56,8 @@
             </div>
           {% endblock %}
 
+          {% block extra_content %}{% endblock %}
+
           <div class="container mx-auto md:flex p-gutter">
             {#
             The pre_primary block can be used to add content to before the
@@ -97,18 +99,6 @@
                 #}
                 {% block primary_content %}
                   <article class="module">
-                    {% block page_header %}
-                      <header>
-                        {% if self.content_action() | trim %}
-                          <div>
-                            {% block content_action %}{% endblock %}
-                          </div>
-                        {% endif %}
-                        <ul>
-                          {% block content_primary_nav %}{% endblock %}
-                        </ul>
-                      </header>
-                    {% endblock %}
                     <div>
                       {% if self.page_primary_action() | trim %}
                         <div>

@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+
+{% import 'macros/form.html' as form %}
+
+
+{% set search_config = data.get('search_config', []) %}
+{% if not search_config %}
+  {% set search_config = [{"link[1]": "", "text[1]": ""}] %}
+{% endif %}
+{% block primary_content_inner %}
+    <h1 class="page-heading">
+    {% block page_heading %}{{  _('Manage Search Confguration') }}{% endblock %}
+  </h1>
+    {% block form %}
+    <form class="search-config" method="post">
+        <div class="form-inline">
+          {% for sc in search_config %}
+            <div id="search-data{{ loop.index }}">
+              {{ form.input('link', sc.link, label='Link', placeholder='Link', value=sc.link) }}
+              {{ form.input('value', sc.value, label='Value', placeholder='Value', value=sc.value) }} 
+              {% set btn =  'add' if loop.index == 1 else 'remove' %}
+              {% set sign =  '+' if loop.index == 1 else '-' %}
+              <input id="add[{{loop.index}}]" name="{{btn}}" type="button" class="btn" value="{{sign}}" />
+            </div>
+          {% endfor %}
+        </div>
+        <div class="form-actions">
+        <button class="btn btn-primary" type="submit" name="save" >
+          {{ _('Update Search Config') }}
+        </button>
+      </div>
+      </form>
+    {% endblock %}
+
+    {% block preview%}
+
+    {% endblock %}
+{% endblock%}

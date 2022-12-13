@@ -12741,6 +12741,10 @@ body{
   background:none
 }
 
+.modal-open{
+  font-size:14px
+}
+
 header .nav-trigger{
   background-color:#288be4;
   color:#fff;
@@ -13518,6 +13522,17 @@ body{
 }
 
 .breadcrumb-read{
+  font-size:1.125rem;
+  font-weight:700
+}
+
+.breadcrumb{
+  background-color:transparent;
+  background-color:initial
+}
+
+.breadcrumb_collection{
+  color:#637381;
   font-size:1.125rem;
   font-weight:700
 }

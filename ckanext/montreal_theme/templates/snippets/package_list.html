@@ -27,5 +27,11 @@ Example:
 {% endblock %}
 
 {% block page_pagination %}
-    {{ g.page.pager(q=q) }}
+{% if not g.userobj.sysadmin %}
+
+    {% if 'page' in g %}
+      {{ g.page.pager(q=q) }}
+    {% endif %}
+
+{% endif %}
 {% endblock %}

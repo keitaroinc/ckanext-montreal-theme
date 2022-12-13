@@ -1,14 +1,15 @@
 {% set datasets = h.latest_datasets() %}
 {% if datasets %}
-    {% for dataset in datasets %}
+    {% for dataset in datasets[:3] %}
+        {% set group = dataset.groups[0] if dataset.groups else None %}
         <div class="md:w-1/3">
             <a class="block m-4 rounded hover:border-1 hover:border-solid hover:boder-transparent hover:bg-white hover:shadow-xl" href="{{ url_for('dataset.read', id=dataset.name) }}">
                 <div class="card-body border-1 border-gray-300 p-8 font-open-sans rounded">
-                    <div class="text-gray-600 text-xs font-bold mb-2 h-10">{{ dataset.title }}</div>
+                    <div class="text-gray-600 text-xs font-bold mb-2 h-10">{{ group.title }}</div>
                     <div class="text-xl font-bold text-black font-medium mb-4" style="display: -webkit-box; max-width: 100%;-webkit-line-clamp: 2; -webkit-box-orient:vertical; overflow: hidden; text-overflow: ellipsis; height: 60px;">
-                        {{ dataset.groups.title }}
+                         {{ dataset.title }}
                     </div>
-                    <div class="text-gray-600 font-normal text-base">{{ h.render_datetime(dataset.metadata_created) }}</div>
+                    <div class="text-gray-600 font-normal text-base">{{ h.render_datetime(dataset.metadata_created, date_format='%d %b. %Y') }}</div>
                 </div>
             </a>
         </div>

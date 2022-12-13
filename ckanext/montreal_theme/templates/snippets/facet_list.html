@@ -27,7 +27,7 @@
                 </li>
                 {% endfor %}
                 {% if h.get_param_int('_%s_limit' % name) %}
-                {% if h.has_more_facets(name, search_facets or c.search_facets, limit=3) %}
+                {% if h.has_more_facets(name, search_facets or c.search_facets) %}
                 <li class="search-facet flex justify-between items-center text-gray-900 group hover:bg-sarcelle-lightest cursor-point" style="list-style-type: none;">
                     <a href="{{ h.remove_url_param('_%s_limit' % name, replace=0, extras=extras, alternative_url=alternative_url) }}" class="flex-1 font-bold text-secondary text-base pl-3 py-3" aria-label="Show More Organizations">
                         {{ _('Show More {facet_type}').format(facet_type=title) }}
