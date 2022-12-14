@@ -40,7 +40,7 @@ msgstr "Haut de la page"
 #: ckanext/montreal_theme/templates/footer.html:12
 #: ckanext/montreal_theme/templates/header.html:15
 msgid "Open Data"
-msgstr "Open Data"
+msgstr "Données ouvertes"
 
 #: ckanext/montreal_theme/templates/footer.html:15
 #: ckanext/montreal_theme/templates/home/snippets/frontend_search.html:4
