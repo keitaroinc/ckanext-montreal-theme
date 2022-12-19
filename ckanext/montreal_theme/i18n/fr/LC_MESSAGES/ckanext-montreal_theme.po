@@ -60,7 +60,7 @@ msgstr ""
 #: ckanext/montreal_theme/templates/home/layout4.html:89
 #: ckanext/montreal_theme/templates/package/_base.html:16
 msgid "Organizations"
-msgstr ""
+msgstr "Organisations"
 
 #: ckanext/montreal_theme/templates/footer.html:26
 msgid "Initiative"
@@ -80,8 +80,10 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/footer.html:40
 #: ckanext/montreal_theme/templates/home/layout4.html:64
+#: ckanext/montreal_theme/templates/ckanext_pages/_blog_list.html:10
+#: ckanext/montreal_theme/templates/ckanext_pages/_blog_list.html:20
 msgid "News"
-msgstr ""
+msgstr "Actualités"
 
 #: ckanext/montreal_theme/templates/footer.html:43
 msgid "Contact us"
@@ -228,6 +230,10 @@ msgstr ""
 msgid "Social"
 msgstr ""
 
+#: ckanext/montreal_theme/templates/ckanext_pages/_blog.html:45
+msgid "Share"
+msgstr "Partager"
+
 #: ckanext/montreal_theme/templates/contact/success.html:18
 msgid "Contact Us"
 msgstr ""
@@ -283,7 +289,7 @@ msgstr ""
 #: ckanext/montreal_theme/templates/group/read_base.html:16
 #: ckanext/montreal_theme/templates/home/collections.html:15
 msgid "Dataset Collections"
-msgstr ""
+msgstr "Catégories de données"
 
 #: ckanext/montreal_theme/templates/group/snippets/info.html:15
 #: ckanext/montreal_theme/templates/organization/snippets/info.html:12
@@ -291,9 +297,9 @@ msgstr ""
 msgid "Deleted"
 msgstr ""
 
-#: ckanext/montreal_theme/templates/home/collections.html:12
+#: ckanext/montreal_theme/templates/snippets/home_breadcrumb_item.html:6
 msgid "Home"
-msgstr ""
+msgstr "Accueil"
 
 #: ckanext/montreal_theme/templates/home/collections.html:23
 msgid "Our Data"
@@ -430,7 +436,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/package/_read.html:219
 msgid "Get Started"
-msgstr ""
+msgstr "Bien démarrer"
 
 #: ckanext/montreal_theme/templates/package/_resource_read.html:38
 #: ckanext/montreal_theme/templates/package/resource_read.html:38
@@ -683,4 +689,3 @@ msgstr ""
 #: ckanext/montreal_theme/templates/user/login.html:47
 msgid "Forgot your password?"
 msgstr ""
-
