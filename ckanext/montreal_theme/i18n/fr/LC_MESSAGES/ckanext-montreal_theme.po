@@ -371,11 +371,11 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/package/_read.html:62
 msgid "Size"
-msgstr ""
+msgstr "Taille"
 
 #: ckanext/montreal_theme/templates/package/_read.html:63
 msgid "Last Changed"
-msgstr ""
+msgstr "Dernière modification"
 
 #: ckanext/montreal_theme/templates/package/_read.html:64
 msgid "Download"
@@ -387,7 +387,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/package/_read.html:119
 msgid "Methodology"
-msgstr ""
+msgstr "Méthodologie"
 
 #: ckanext/montreal_theme/templates/package/_read.html:121
 msgid "Data Dictionary"
@@ -395,7 +395,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/package/_read.html:136
 msgid "Territories"
-msgstr ""
+msgstr "Territoires"
 
 #: ckanext/montreal_theme/templates/package/_read.html:138
 msgid "Montreal"
@@ -404,7 +404,11 @@ msgstr ""
 #: ckanext/montreal_theme/templates/package/_read.html:147
 #: ckanext/montreal_theme/templates/showcase/_read.html:72
 msgid "Keywords"
-msgstr ""
+msgstr "Mots-clés"
+
+#: ckanext/montreal_theme/templates/package/_read.html:44
+msgid "Published by"
+msgstr "Publié par"
 
 #: ckanext/montreal_theme/templates/package/_read.html:160
 msgid "Additional Information"

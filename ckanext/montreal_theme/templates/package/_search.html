@@ -7,7 +7,7 @@
         {% block breadcrumb_content %}
             {{super() }}
             <li class="breadcrumb_item hover:text-primary">
-                <a href="{{ h.url_for('dataset.search') }}" class="breadcrumb_link">{{ dataset_type + 's' }}</a>
+                <a href="{{ h.url_for('dataset.search') }}" class="breadcrumb_link">{{ _(dataset_type + 's') }}</a>
             </li>
         {% endblock %}
         </ol>
