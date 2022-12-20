@@ -1,5 +1,5 @@
 include README.rst
 include LICENSE
 include requirements.txt
-recursive-include ckanext/montreal_theme *.html *.json *.js *.less *.css *.mo *.yml *.ico *.svg *.gif *.eot *.ttf *.woff 
+recursive-include ckanext/montreal_theme *.html *.json *.js *.less *.css *.mo *.yml *.ico *.svg *.gif *.eot *.ttf *.woff *.png 
 recursive-include ckanext/montreal_theme/migration *.ini *.py *.mako
