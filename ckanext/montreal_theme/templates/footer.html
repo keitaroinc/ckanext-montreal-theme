@@ -12,13 +12,13 @@
                         <div class="list-heading font-bold mb-4 pt-8">{{_('Open Data')}}</div>
                         <ul class="list-unstyled mb-16 text-sm">
                             <li class="mb-4">
-                                <a href="#" class="hover:text-primary">{{_('Search')}}</a>
+                                <a href="{{ h.url_for('dataset.search') }}" class="hover:text-primary">{{_('Search')}}</a>
                             </li>
                             <li class="mb-4">
                                 <a href="#" class="hover:text-primary">{{_('Applications')}}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#" class="hover:text-primary">{{_('Organizations')}}</a>
+                                <a href="{{ h.url_for('organization.index') }}" class="hover:text-primary">{{_('Organizations')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -104,18 +104,25 @@
                                     <a href="https://montreal.ca/en/topics/legal-notices" class="hover:text-primary">{{_('Legal notice')}}</a>
                                 </li>
                                 <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
+                                <li class="list-inline-item">
+                                    {% set current_lang = request.environ.CKAN_LANG %}
+                                    {% if current_lang=='fr' %}
+                                        <a href="{% url_for h.current_url(), locale='en' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('English')}}</a>
+                                    {% else %}
+                                        <a href="{% url_for h.current_url(), locale='fr' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('Français')}}</a>
+                                    {% endif %}
+                                </li>
                             </ul>
                         </div>
-                        <div class="text-center">
-                            {% block footer_lang %}
-                                {% snippet "snippets/language_selector.html" %}
-                            {% endblock %}
-                        </div>
+      
+                            
                     </div>
                 </div>
             </div>
         </div>
     </footer>
+    {% block footer_lang %}
+        {% endblock %}
     {% block footer_nav %}
         {% block footer_nav_links %}{% endblock %}
 
