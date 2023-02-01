@@ -68,11 +68,11 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/footer.html:29
 msgid "Our Approach"
-msgstr ""
+msgstr "Notre démarche"
 
 #: ckanext/montreal_theme/templates/footer.html:32
 msgid "User License"
-msgstr ""
+msgstr "Licence d'utilisation"
 
 #: ckanext/montreal_theme/templates/footer.html:37
 msgid "Communication"
@@ -91,19 +91,19 @@ msgstr "Nous joindre"
 
 #: ckanext/montreal_theme/templates/footer.html:48
 msgid "Follow us"
-msgstr ""
+msgstr "Nous suivre"
 
 #: ckanext/montreal_theme/templates/footer.html:70
 msgid "RSS FEED"
-msgstr ""
+msgstr "Fil RSS"
 
 #: ckanext/montreal_theme/templates/footer.html:96
 msgid "Accessibility"
-msgstr ""
+msgstr "Accessibilité"
 
 #: ckanext/montreal_theme/templates/footer.html:104
 msgid "Legal notice"
-msgstr ""
+msgstr "Mentions légales"
 
 #: ckanext/montreal_theme/templates/header.html:20
 msgid "Sysadmin settings"
