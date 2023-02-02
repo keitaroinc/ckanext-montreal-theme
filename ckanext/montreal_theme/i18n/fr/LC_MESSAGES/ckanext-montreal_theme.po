@@ -412,15 +412,15 @@ msgstr "Publié par"
 
 #: ckanext/montreal_theme/templates/package/_read.html:160
 msgid "Additional Information"
-msgstr ""
+msgstr "Informations additionnelles"
 
 #: ckanext/montreal_theme/templates/package/_read.html:162
 msgid "Publisher"
-msgstr ""
+msgstr "Publieur"
 
 #: ckanext/montreal_theme/templates/package/_read.html:166
 msgid "Temporal coverage"
-msgstr ""
+msgstr "Couverture temporelle"
 
 #: ckanext/montreal_theme/templates/package/_read.html:170
 msgid "Source (URL)"
@@ -428,15 +428,15 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/package/_read.html:174
 msgid "Update frequency"
-msgstr ""
+msgstr "Fréquence de mise à jour"
 
 #: ckanext/montreal_theme/templates/package/_read.html:178
 msgid "Descriptive Information Last Updated"
-msgstr ""
+msgstr "Dernière modification de la fiche descriptive"
 
 #: ckanext/montreal_theme/templates/package/_read.html:182
 msgid "Date the dataset was first added"
-msgstr ""
+msgstr "Date d'ajout de l'ensemble de données"
 
 #: ckanext/montreal_theme/templates/package/_read.html:219
 msgid "Get Started"

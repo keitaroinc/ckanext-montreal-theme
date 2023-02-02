@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 {# -------- end readme ---------- #}
-                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Data') }}</h2>
+                <h2 id="data" class="text-3xl font-semibold pt-gutter pb-4 text-gray-900" >{{ _('Data') }}</h2>
                 {# -------- resource table ---------- #}
                 <table class="info block pb-24">
                     <thead class="font-semibold text-left text-gray-900">
@@ -71,7 +71,7 @@
                         <tr class="border-t border-gray-400">
                             <td class="px-1 py-3" style="border-top-width: 1px;">{{ _(res.get('name')) }}</td>
                             <td class="px-1 py-3 font-semibold text-base text-gray-900 uppercase" style="border-top-width: 1px;">{{ res.get('format') }}</td>
-                            <td class="px-1 py-3" style="border-top-width: 1px;">{{h.format_size(res.get('Size')) }}</td>
+                            <td class="px-1 py-3" style="border-top-width: 1px;">{{h.format_size(res.get('Size')) or '--' }}</td>
                             <td class="px-1 py-3" style="border-top-width: 1px;">
                                 <div class="has-tooltip">
                                 {{ h.time_ago_from_timestamp(res.get('last_modified')) }}
@@ -126,7 +126,7 @@
                 </div>
                 {# -------- end methodology ---------- #}
                 {# -------- territories ---------- #}
-                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Territories') }}</h2>
+                <h2 id="territories" class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Territories') }}</h2>
                 <div id="hidden-territories" class="hidden">
                     <p id="hidden-p">{{ _('Montreal') }}</p>
                 </div>
@@ -161,7 +161,7 @@
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Source (URL)') }}</h3>
-                        <p>{{pkg.get('URL') or '--' }}</p>
+                        <p>{{pkg.get('url') or '--' }}</p>
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Update frequency') }}</h3>
@@ -196,7 +196,6 @@
                 </div>
 
             </div>
-            {{h.disqus_recent(num_comments=10)}}
             {{h.disqus_comments()}}
         {% endblock %}
     </div>
