@@ -13137,7 +13137,8 @@ div.card-body:hover{
 
 footer{
   background:url(/img/b-logo-light.svg) no-repeat 1.75em center #091f2f;
-  padding:1.75em 0 1.75em 6em;
+  /*padding:1.75em 0 1.75em 6em;*/
+  padding:0;
   color:#fff
 }
 
