@@ -1,7 +1,7 @@
 <!-- This file keeps the new layout of the homepage -->
 
   <div id="main-container z-10">
-    <section class="bg-center bg-no-repeat bg-contain" style="background-image: url(/static/img/MTLdonneesGRIS.png); background-color: rgba(247,248,249,255);">
+    <section class="bg-center bg-no-repeat bg-contain" style="background-image: url(base/images/MTLdonneesGRIS.png); background-size: contain; background-position:50%;background-color: rgba(247,248,249,255);">
       <div class="container flex flex-col  w-5/6 content-justify m-auto lg:max-w-2xlm pt-8 pb-8">
         <h1 class="text-center text-black font-normal text-4xl mb-8 px-8">{{_('Search for a dataset')}}</h1>
         {% block search %}
@@ -65,6 +65,9 @@
           <div class="sm:flex flex-wrap sm:-mx-4 items-center">
             {% snippet 'home/snippets/news.html' %}
           </div>
+          <a href="{{ h.url_for('pages.blog_index') }}" class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white mt-4 py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full">
+            {{_('All News')}}
+          </a>
         </div>
         {# <-------------- End of News section -------------> #}
 

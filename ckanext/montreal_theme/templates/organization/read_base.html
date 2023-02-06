@@ -12,6 +12,9 @@
 
             {% else %}
             {% include 'snippets/home_breadcrumb_item.html' %}
+            <li class="breadcrumb_item hover:text-primary">
+                <a href="{{ h.url_for('organization.index') }}" class="breadcrumb_link">{{ _('Organizations') }}</a>
+            </li>
                 <li class="breadcrumb_item hover:text-primary">
                     <a href="{{ h.url_for('organization.read', id=group_dict.name) }}" class="breadcrumb_link">{{ group_dict.title }}</a>
                 </li>
