@@ -4,7 +4,7 @@
 {% if not g.userobj.sysadmin %}
 
     <div class="w-full font-sans font-bold text-gray-ink text-lg py-3" aria-label="{{ _('breadcrumb') }}">
-        <nav class="breadcrumb" style="background-color: initial !important;" aria-label="{{ _('breadcrumb') }}">
+        <nav class="breadcrumb font-sans font-bold text-gray-ink text-lg py-3" style="background-color: initial !important;" aria-label="{{ _('breadcrumb') }}">
             <ol>
             {% block breadcrumb_content %}
             {% if g.userobj.sysadmin %}
