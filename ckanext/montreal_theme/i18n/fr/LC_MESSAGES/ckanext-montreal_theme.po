@@ -220,7 +220,6 @@ msgstr ""
 msgid "This page currently has no content"
 msgstr ""
 
-#: ckanext/montreal_theme/templates/ckanext_pages/page.html:50
 #: ckanext/montreal_theme/templates/contact/form.html:26
 msgid "Groups"
 msgstr ""
@@ -321,7 +320,7 @@ msgstr "Bienvenue"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:6
 msgid "Search for a dataset"
-msgstr "Rechercher des jeux de données"
+msgstr "Rechercher un ensemble de données"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:25
 msgid "Our data"
@@ -334,7 +333,7 @@ msgstr "Voir tous les ensembles"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:46
 msgid "Datasets recently updated"
-msgstr "Jeux de données récemment mis à jour"
+msgstr "Ensembles de données récemment mis à jour"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:81
 msgid "All Applications"
@@ -355,7 +354,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/home/snippets/frontend_search.html:4
 msgid "Search datasets"
-msgstr "Rechercher des jeux de données"
+msgstr "Rechercher un ensemble de données"
 
 #: ckanext/montreal_theme/templates/package/_base.html:24
 msgid "Create Dataset"
@@ -590,11 +589,11 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/showcase/_read.html:31
 msgid "Find out more"
-msgstr ""
+msgstr "En savoir plus"
 
 #: ckanext/montreal_theme/templates/showcase/_read.html:52
 msgid "Dataset(s) used in this application"
-msgstr ""
+msgstr "Ensemble(s) de données intégré(s) à l'application"
 
 #: ckanext/montreal_theme/templates/showcase/_search.html:27
 msgid ""
@@ -693,3 +692,13 @@ msgstr ""
 #: ckanext/montreal_theme/templates/user/login.html:47
 msgid "Forgot your password?"
 msgstr ""
+
+#: ckanext/montreal_theme/templates/ckanext_pages/page.html:50
+msgid "Groups"
+msgstr "Catégories"
+
+#: ckan/templates/snippets/search_result_text.html:15
+msgid "{number} dataset found for \"{query}\""
+msgid_plural "{number} datasets found for \"{query}\""
+msgstr[0] "{number}  Résltat \"{query}\""
+msgstr[1] "{number}  Résultats \"{query}\""
