@@ -44,7 +44,8 @@ def get_all_groups(include_dataset_count=True):
 
 def get_showcases(num=6):
     '''Return a list of showcases'''
-    return tk.get_action("ckanext_showcase_list")() or []
+    showcases = tk.get_action("ckanext_showcase_list")() or []
+    return showcases[:9]
 
 
 def get_value_from_showcase_extras(extras, key):
