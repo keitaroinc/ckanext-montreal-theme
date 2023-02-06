@@ -684,3 +684,9 @@ msgid "{number} dataset found for \"{query}\""
 msgid_plural "{number} datasets found for \"{query}\""
 msgstr[0] "{number}  Résltat \"{query}\""
 msgstr[1] "{number}  Résultats \"{query}\""
+
+#: ckan/templates/snippets/search_result_text.html:17
+msgid "{number} dataset found"
+msgid_plural "{number} datasets found"
+msgstr[0] "{number} Résultat"
+msgstr[1] "{number} Résultats"
