@@ -26,6 +26,9 @@
                     <a class="breadcrumb_link" href="{{ h.url_for('dataset.read', id=package.name) }}">{{ _("Dataset") }}</a>
                 </li>
                 <li class="breadcrumb_item">
+                    <a class="breadcrumb_link" href="{{ h.url_for('dataset.read', id=package.name) }}">{{ _(package.title) }}</a>
+                </li>
+                <li class="breadcrumb_item">
                     <a class="breadcrumb_link" href="{{ h.url_for('resource.read', id=package.name, resource_id=resource.id) }}">{{ resource.name }}</a>
                 </li>
             </ol>
@@ -48,7 +51,7 @@
                         <nav class="pt-4 pb-1">
                             <a href="{{ h.url_for('resource.download', id=package.name, resource_id=resource.id) }}" class="inline-block mr-3 mb-6 py-2 px-4 rounded text-white bg-primary hover:bg-sarcelle-dark cursor-pointer" target="_blank">
                                 <dl class="data-file-type_inner">
-                                    <dt class="data-file-type_term">{{ _("Download " + "(" + resource.format + ")") }}</dt>
+                                    <dt class="data-file-type_term">{{ _("Télécharger " + "(" + resource.format + ")") }}</dt>
                                 </dl>
                             </a>
                             <a data-module="api-info" data-module-template="{{ '/api/1/util/snippet/api_info.html?resource_id=' + resource.id }}" class="inline-block mr-3 mb-6 py-2 px-4 rounded text-white bg-primary hover:bg-sarcelle-dark cursor-pointer">
