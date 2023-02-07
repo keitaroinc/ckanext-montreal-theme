@@ -596,7 +596,7 @@ msgstr "Visa mer {facet_type}"
 
 #: ckanext/montreal_theme/templates/snippets/facet_list.html:38
 msgid "Show Less {facet_type}"
-msgstr ""
+msgstr "Afficher moins de {facet_type}"
 
 #: ckanext/montreal_theme/templates/snippets/facet_list.html:45
 msgid "There are no {facet_type} that match this search"
