@@ -63211,9 +63211,10 @@ body{
     animation: bounce 1s infinite;
   }
 
-  .actions{
+   .actions{
     position: relative;
   }
+  
   .ckanext-datapreview > iframe {
     min-height: 750px !important;
   }
@@ -63222,22 +63223,17 @@ body{
   #content > div.container.mx-auto.md\:flex.p-gutter > main > section > div:nth-child(1) > table{
     font-size:0.85rem;
   }
+  
   #content > div.container.mx-auto.md\:flex.p-gutter > main > section > div:nth-child(2) > table{
     font-size:0.85rem;
   }
+  
   #content > div:nth-child(4) > main > section > div:nth-child(1){
     padding: 1.5rem;
   }
+  
   #content > div:nth-child(4) > main > section > div:nth-child(2){
     padding: 1.5rem;
   }
-
-  #content > div.container.mx-auto.md\:flex.p-gutter > aside{
-    display:none !important;
-  }
-  #content > div.container.mx-auto.md\:flex.p-gutter > aside{
-    display:none !important;
-  }
- 
   
 }
