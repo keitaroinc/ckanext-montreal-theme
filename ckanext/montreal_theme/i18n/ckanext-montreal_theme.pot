@@ -364,7 +364,11 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/package/_read.html:64
 msgid "Download"
-msgstr ""
+msgstr "Télécharger"
+
+#: ckanext/montreal_theme/templates/package/resource_read.html:54
+msgid "Download"
+msgstr "Télécharger"
 
 #: ckanext/montreal_theme/templates/package/_read.html:65
 msgid "Preview"
