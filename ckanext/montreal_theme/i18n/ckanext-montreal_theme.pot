@@ -319,6 +319,9 @@ msgid "Our data"
 msgstr ""
 
 #: ckanext/montreal_theme/templates/home/layout4.html:36
+msgid "View all datasets"
+msgstr "Voir tous les ensembles"
+
 #: ckanext/montreal_theme/templates/home/layout4.html:98
 msgid "View all"
 msgstr ""
