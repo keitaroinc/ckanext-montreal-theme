@@ -318,10 +318,13 @@ msgstr "Rechercher un ensemble de données"
 msgid "Our data"
 msgstr ""
 
-#: ckanext/montreal_theme/templates/home/layout4.html:36
 #: ckanext/montreal_theme/templates/home/layout4.html:98
 msgid "View all"
 msgstr ""
+
+#: ckanext/montreal_theme/templates/home/layout4.html:36
+msgid "View all"
+msgstr "Voir tous les ensembles"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:46
 msgid "Datasets recently updated"

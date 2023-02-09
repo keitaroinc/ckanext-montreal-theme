@@ -327,6 +327,9 @@ msgid "Our data"
 msgstr "Nos données"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:36
+msgid "View all"
+msgstr "Voir tous les ensembles"
+
 #: ckanext/montreal_theme/templates/home/layout4.html:98
 msgid "View all"
 msgstr "Toute les organisations"
