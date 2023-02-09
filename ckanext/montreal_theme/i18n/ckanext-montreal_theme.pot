@@ -331,6 +331,10 @@ msgstr "Ensembles de données récemment mis à jour"
 msgid "All Applications"
 msgstr ""
 
+#: ckanext/montreal_theme/templates/home/layout4.html:69
+msgid "All News"
+msgstr "Voir toutes les actualités"
+
 #: ckanext/montreal_theme/templates/home/layout4.html:116
 msgid ""
 "By opening its data to everyone, the City of Montreal allows it to be reused "
