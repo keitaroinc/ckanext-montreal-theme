@@ -7,7 +7,7 @@
         {% block search %}
           {% snippet 'home/snippets/frontend_search.html' %}
         {% endblock %}
-        <div class="container mx-auto flex flex-wrap justify-center pt-4 w-4/5 md:w-3/5 lg:w-8/12">
+        <div class="container mx-auto flex flex-wrap justify-center w-4/5 md:w-3/5 lg:w-8/12">
             {% set search_configs = h.homepage_search_configs() %}
             <!-- quick search links -->
             {% for sc in search_configs %}

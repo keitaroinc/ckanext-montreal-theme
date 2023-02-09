@@ -63235,4 +63235,8 @@ body{
     padding: 1.5rem;
   
   }
+
+  .small-padding {
+    padding-bottom: 10px !important;
+  }
 }
