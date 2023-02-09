@@ -15,7 +15,7 @@
                                 <a href="{{ h.url_for('dataset.search') }}" class="hover:text-primary">{{_('Search')}}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#" class="hover:text-primary">{{_('Applications')}}</a>
+                                <a href="{{ site_url }}/showcase" class="hover:text-primary">{{_('Applications')}}</a>
                             </li>
                             <li class="mb-4">
                                 <a href="{{ h.url_for('organization.index') }}" class="hover:text-primary">{{_('Organizations')}}</a>
@@ -26,10 +26,10 @@
                         <div class="list-heading font-bold mb-4 pt-8">{{_('Initiative')}}</div>
                         <ul class="list-unstyled mb-16 text-sm">
                             <li class="mb-4">
-                                <a href="#" class="hover:text-primary">{{_('Our Approach')}}</a>
+                                <a href="{{ site_url }}/pages/our-approach" class="hover:text-primary">{{_('Our Approach')}}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="#" class="hover:text-primary">{{_('User License')}}</a>
+                                <a href="{{ site_url }}/pages/licence-d-utilisation" class="hover:text-primary">{{_('User License')}}</a>
                             </li>
                         </ul>
                     </div>
@@ -48,7 +48,7 @@
                         <div class="list-heading font-bold mb-4 pt-8">{{_('Follow us')}}</div>
                         <ul class="list-unstyled mb-16 text-sm">
                             <li class="mb-4">
-                                <a href="https://twittercom/mtl_do" class="hover:text-primary block flex items-center">
+                                <a href="https://twitter.com/mtl_do" class="hover:text-primary block flex items-center">
                                     <div class="mr-1">
                                         <svg width="18px" height="18px" class="fill-current" fill="white" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" role="icon">
                                             <defs>
@@ -61,7 +61,7 @@
                                 </a>
                             </li>
                             <li class="mb-4">
-                                <a href="#" class="hover:text-primary blok flex items-center">
+                                <a href="{{ site_url }}/feeds/dataset.atom" target="_self" class="hover:text-primary blok flex items-center">
                                     <div class="mr-2">
                                         <svg width="14px" height="14px" class="fill-current" fill="white" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" clip-rule="evenodd" d="M0.5 1.33333C0.5 0.873096 0.873096 0.5 1.33333 0.5C5.09057 0.5 8.69391 1.99256 11.3507 4.64932C14.0074 7.30609 15.5 10.9094 15.5 14.6667C15.5 15.1269 15.1269 15.5 14.6667 15.5C14.2064 15.5 13.8333 15.1269 13.8333 14.6667C13.8333 11.3515 12.5164 8.17204 10.1722 5.82783C7.82796 3.48363 4.64854 2.16667 1.33333 2.16667C0.873096 2.16667 0.5 1.79357 0.5 1.33333ZM0.5 7.16667C0.5 6.70643 0.873096 6.33333 1.33333 6.33333C3.54347 6.33333 5.66309 7.21131 7.22589 8.77411C8.78869 10.3369 9.66667 12.4565 9.66667 14.6667C9.66667 15.1269 9.29357 15.5 8.83333 15.5C8.3731 15.5 8 15.1269 8 14.6667C8 12.8986 7.29762 11.2029 6.04738 9.95262C4.79714 8.70238 3.10144 8 1.33333 8C0.873096 8 0.5 7.6269 0.5 7.16667ZM2.16667 12.1667C1.24619 12.1667 0.5 12.9129 0.5 13.8333C0.5 14.7538 1.24619 15.5 2.16667 15.5C3.08714 15.5 3.83333 14.7538 3.83333 13.8333C3.83333 12.9129 3.08714 12.1667 2.16667 12.1667Z"></path>
@@ -88,6 +88,32 @@
                         <path class="" style="fill:#e00000" d="M167.3,36c-0.8-0.8-1.3-1.9-1.3-3.1V22.7c0-1.3,1.2-1.9,1.9-1.9h10.3c2.1,0,4.4,1.7,4.4,4.4c0,2.4-1.9,4.4-4.3,4.4 c-1.5,0-2.6-0.7-3.2-1.3c0,0-0.4-0.4-0.5-0.5c0.1-0.2,0.2-0.5,0.2-0.9l0,0c0-1.5-1.2-2.6-2.7-2.6c-0.7,0-1.3,0.3-1.8,0.7 c-0.5,0.5-0.8,1.2-0.8,1.9s0.3,1.4,0.8,1.9s1.1,0.7,1.9,0.7c0.4,0,0.7-0.1,0.9-0.2c0.1,0.1,0.5,0.5,0.5,0.5 c0.3,0.3,1.3,1.4,1.3,3.1l0,0c0,2.7-2.3,4.4-4.4,4.4C169.3,37.3,168.2,36.8,167.3,36 M148.7,28.3c-0.8-0.8-1.3-2-1.3-3.1 c0-1.2,0.4-2.3,1.3-3.1c0.8-0.8,1.9-1.3,3.1-1.3H162c1.3,0,2,1.1,2,1.9v10.2c0,1.2-0.5,2.3-1.3,3.1c-0.6,0.6-1.6,1.3-3.1,1.3 c-2.4,0-4.4-1.9-4.4-4.3l0,0c0-1.5,0.7-2.6,1.3-3.2c0,0,0.4-0.4,0.5-0.5c0.2,0.1,0.5,0.2,0.9,0.2c1.5,0,2.6-1.2,2.6-2.7 c0-0.7-0.3-1.3-0.7-1.8c-0.5-0.5-1.2-0.8-1.9-0.8s-1.4,0.3-1.9,0.8s-0.7,1.1-0.7,1.8l0,0c0,0.4,0.1,0.7,0.2,0.9 c-0.1,0.1-0.5,0.5-0.5,0.5c-0.3,0.3-1.4,1.3-3.1,1.3C150.6,29.6,149.5,29.1,148.7,28.3z M166,6.5c0-1.2,0.5-2.3,1.3-3.1 c0.6-0.6,1.6-1.3,3.1-1.3c1.2,0,2.3,0.5,3.1,1.3s1.3,1.9,1.3,3l0,0c0,1.5-0.7,2.6-1.3,3.2c0,0-0.4,0.4-0.5,0.5 c-0.2-0.1-0.5-0.2-0.9-0.2c-1.5,0-2.6,1.2-2.6,2.7c0,0.7,0.3,1.3,0.7,1.8c0.5,0.5,1.2,0.8,1.9,0.8l0,0c0.7,0,1.4-0.3,1.9-0.8 s0.7-1.1,0.7-1.8l0,0c0-0.4-0.1-0.7-0.2-0.9c0.1-0.1,0.5-0.5,0.5-0.5c0.3-0.3,1.4-1.3,3.1-1.3c2.7,0,4.4,2.3,4.4,4.4 c0,1.2-0.5,2.3-1.3,3.1s-1.9,1.3-3.1,1.3H168c-1.3,0-1.9-1.1-1.9-1.9L166,6.5L166,6.5z M156.5,9.7L156.5,9.7 c-0.3-0.3-1.3-1.4-1.3-3.1l0,0c0-2.7,2.3-4.4,4.4-4.4c1.2,0,2.3,0.5,3.1,1.3s1.3,1.9,1.3,3.1v10.1c0,1.3-1.1,1.9-1.9,1.9h-10.2 c-1.2,0-2.3-0.5-3.1-1.3c-0.6-0.6-1.3-1.6-1.3-3.1c0-1.2,0.5-2.3,1.3-3.1c0.8-0.8,1.9-1.3,3-1.3c1.5,0,2.6,0.7,3.2,1.3 c0,0,0.4,0.4,0.5,0.5c-0.1,0.2-0.2,0.5-0.2,0.9c0,1.5,1.2,2.6,2.7,2.6c0.7,0,1.3-0.3,1.8-0.7c0.5-0.5,0.8-1.2,0.8-1.9 s-0.3-1.4-0.8-1.9s-1.1-0.7-1.9-0.7c-0.4,0-0.7,0.1-0.9,0.2C156.9,10.1,156.5,9.7,156.5,9.7z M165,3.1c-1.3-1.9-3.3-3.1-5.5-3.1 c-3.6,0-6.5,2.9-6.5,6.5c0,0.4,0.1,0.8,0.2,1.5c-0.3-0.1-1-0.2-1.5-0.2c-3.7,0-6.5,2.8-6.5,6.4c0,2.1,1.2,4.2,3.1,5.5 c-1.9,1.3-3.1,3.3-3.1,5.4c0,3.6,2.9,6.5,6.6,6.5c0.4,0,1-0.1,1.4-0.2c-0.1,0.6-0.2,1.1-0.2,1.4c0,3.7,2.8,6.5,6.5,6.5 c2.1,0,4.1-1.1,5.4-3c1.2,1.8,3.4,3,5.5,3c3.6,0,6.4-2.9,6.4-6.5c0-0.5-0.1-1.1-0.2-1.4c0.6,0.1,1.1,0.2,1.5,0.2 c3.6,0,6.5-2.9,6.5-6.5c0-2.1-1.1-4.2-3-5.4c1.8-1.2,3-3.3,3-5.4c0-3.5-3-6.4-6.6-6.4c-0.5,0-1,0.1-1.4,0.2c0.1-0.3,0.2-1,0.2-1.5 c0-3.7-2.8-6.5-6.4-6.5C168.3,0,166.2,1.2,165,3.1z"></path>
                     </svg>
                 </div>
+                {% set current_lang = request.environ.CKAN_LANG %}
+                {% if current_lang=='fr' %}
+                <div>
+                    <div class="flex flex-col md:flex-row text-sm">
+                        <div class="text-center mb-4 mb-md-0">
+                            <ul class="flex flex-wrap md:flex-row items-center justify-center">
+                                <li class="list-inline-item">
+                                    <a href="https://montreal.ca/sujets/interventions-en-accessibilite" class="hover:text-primary">{{_('Accessibility')}}</a>
+                                </li>
+                                <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
+                                <li class="list-inline-item">
+                                    <a href="https://montreal.ca/sujets/politique-de-confidentialite" class="hover:text-primary">{{('Privacy')}}</a>
+                                </li>
+                                <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
+                                <li class="list-inline-item">
+                                    <a href="https://montreal.ca/articles/mentions-legales-2654" class="hover:text-primary">{{_('Legal notice')}}</a>
+                                </li>
+                                <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
+                                <li class="list-inline-item">
+                                     <a href="{% url_for h.current_url(), locale='en' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('English')}}</a>         
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
                 <div>
                     <div class="flex flex-col md:flex-row text-sm">
                         <div class="text-center mb-4 mb-md-0">
@@ -101,23 +127,17 @@
                                 </li>
                                 <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
                                 <li class="list-inline-item">
-                                    <a href="https://montreal.ca/en/topics/legal-notices" class="hover:text-primary">{{_('Legal notice')}}</a>
+                                    <a href="https://montreal.ca/en/articles/legal-notices-2654" class="hover:text-primary">{{_('Legal notice')}}</a>
                                 </li>
                                 <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
                                 <li class="list-inline-item">
-                                    {% set current_lang = request.environ.CKAN_LANG %}
-                                    {% if current_lang=='fr' %}
-                                        <a href="{% url_for h.current_url(), locale='en' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('English')}}</a>
-                                    {% else %}
-                                        <a href="{% url_for h.current_url(), locale='fr' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('Français')}}</a>
-                                    {% endif %}
+                                    <a href="{% url_for h.current_url(), locale='fr' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('Français')}}</a>        
                                 </li>
                             </ul>
                         </div>
-      
-                            
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </footer>
