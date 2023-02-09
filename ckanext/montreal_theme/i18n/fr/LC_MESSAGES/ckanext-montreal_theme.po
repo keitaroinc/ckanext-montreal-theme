@@ -706,3 +706,8 @@ msgid "{number} dataset found for \"{query}\""
 msgid_plural "{number} datasets found for \"{query}\""
 msgstr[0] "{number}  Résltat \"{query}\""
 msgstr[1] "{number}  Résultats \"{query}\""
+
+#: ckanext/montreal_theme/templates/showcase/_search.html:27
+msgid "Showcases are any app, article or report that relate to the published dataset. For example, an annual report that contains aggregated information relating to the dataset or a website where there is further background information on the dataset or a link to an app that has been created utilising some or all of the dataset."
+msgstr "Cette galerie d’applications utilise les données ouvertes de la Ville de Montréal ou d’autres données provenant de partenaires de la Ville de Montréal. Ces applications citoyennes sont développées principalement par des concepteurs montréalais. La Ville de Montréal n’est pas responsable de ces applications citoyennes. Les auteurs respectifs sont garants de leur maintenance."
+
