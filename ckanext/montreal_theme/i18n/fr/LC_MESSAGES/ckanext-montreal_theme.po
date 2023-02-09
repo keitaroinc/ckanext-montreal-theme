@@ -329,7 +329,11 @@ msgstr "Nos données"
 #: ckanext/montreal_theme/templates/home/layout4.html:36
 #: ckanext/montreal_theme/templates/home/layout4.html:98
 msgid "View all"
-msgstr "Toute les organisations"
+msgstr "Voir tous les ensembles"
+
+#: ckanext/montreal_theme/templates/home/layout4.html:69
+msgid "All News"
+msgstr "Voir toutes les actualités"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:46
 msgid "Datasets recently updated"
