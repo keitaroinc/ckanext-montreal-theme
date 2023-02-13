@@ -276,6 +276,11 @@ msgstr ""
 msgid "Add Group"
 msgstr ""
 
+#: ckanext/montreal_theme/templates/group/index.html:29
+msgid "Data Categories"
+msgstr "Catégories de données"
+
+
 #: ckanext/montreal_theme/templates/group/read_base.html:6
 #: ckanext/montreal_theme/templates/group/read_base.html:7
 #: ckanext/montreal_theme/templates/organization/read_base.html:6
@@ -289,6 +294,11 @@ msgstr ""
 #: ckanext/montreal_theme/templates/home/collections.html:15
 msgid "Dataset Collections"
 msgstr "Catégories de données"
+
+#: ckanext/montreal_theme/templates/package/_read.html:64
+msgid "Download/Preview"
+msgstr "Télécharger/Aperçu"
+
 
 #: ckanext/montreal_theme/templates/group/snippets/info.html:15
 #: ckanext/montreal_theme/templates/organization/snippets/info.html:12
@@ -327,9 +337,13 @@ msgid "Our data"
 msgstr "Nos données"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:36
-#: ckanext/montreal_theme/templates/home/layout4.html:98
-msgid "View all"
+msgid "View all datasets"
 msgstr "Voir tous les ensembles"
+
+#: ckanext/montreal_theme/templates/home/layout4.html:101
+msgid "View all"
+msgstr "Voir toutes les organisations"
+
 
 #: ckanext/montreal_theme/templates/home/layout4.html:69
 msgid "All News"

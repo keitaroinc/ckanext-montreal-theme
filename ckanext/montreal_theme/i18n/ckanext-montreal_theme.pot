@@ -268,6 +268,10 @@ msgstr ""
 msgid "Add Group"
 msgstr ""
 
+#: ckanext/montreal_theme/templates/group/index.html:29
+msgid "Data Categories"
+msgstr ""
+
 #: ckanext/montreal_theme/templates/group/read_base.html:6
 #: ckanext/montreal_theme/templates/group/read_base.html:7
 #: ckanext/montreal_theme/templates/organization/read_base.html:6
@@ -275,6 +279,11 @@ msgstr ""
 #: ckanext/montreal_theme/templates/package/_search.html:4
 #: ckanext/montreal_theme/templates/package/_search.html:5
 msgid "breadcrumb"
+msgstr ""
+
+
+#: ckanext/montreal_theme/templates/package/_read.html:64
+msgid "Download/Preview"
 msgstr ""
 
 #: ckanext/montreal_theme/templates/group/read_base.html:16
@@ -289,6 +298,7 @@ msgid "Deleted"
 msgstr ""
 
 #: ckanext/montreal_theme/templates/home/collections.html:12
+#: ckanext/montreal_theme/templates/group/index.html:27
 msgid "Home"
 msgstr ""
 
@@ -321,6 +331,10 @@ msgstr ""
 #: ckanext/montreal_theme/templates/home/layout4.html:36
 #: ckanext/montreal_theme/templates/home/layout4.html:98
 msgid "View all"
+msgstr ""
+
+#: ckanext/montreal_theme/templates/group/index.html:28
+msgid "Data categories"
 msgstr ""
 
 #: ckanext/montreal_theme/templates/home/layout4.html:46

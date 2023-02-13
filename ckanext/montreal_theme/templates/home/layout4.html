@@ -33,7 +33,7 @@
           {% set groups = h.all_groups() %}
           {% if groups|length > 0 %}
           <div class="flex flex-col pt-6 pb-3 items-center">
-            <a class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full" href="{{ h.url_for('group.index') }}"> {{_('View all')}}</a>
+            <a class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full" href="{{ h.url_for('group.index') }}"> {{_('View all datasets')}}</a>
           </div>
           {% endif %}
         </section>

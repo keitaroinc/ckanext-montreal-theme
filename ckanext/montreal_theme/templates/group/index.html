@@ -23,11 +23,10 @@
         {{ super() }}
 
         {% else %}
+        {% snippet 'snippets/home_breadcrumb_item.html' %}
             <li class="breadcrumb_item hover:text-primary">
-                <a href="/" class="breadcrumb_link">Welcome</a>
-            </li>
-            <li class="breadcrumb_item hover:text-primary">
-                <a href="#" class="breadcrumb_link">Data Categories</a>
+
+                <a href="#" class="breadcrumb_link">{{ _('Data Categories') }} </a>
             </li>
 
         {% endif %}
