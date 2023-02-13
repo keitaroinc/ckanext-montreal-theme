@@ -1,0 +1,45 @@
+{% block facet_list %}
+{# 
+    This snippet is only called  in the
+    ckanext-swocase extension instead of facet_list.html
+    because of specifc client requests. 
+#}
+{% set hide_empty = hide_empty or false %}
+{% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
+{% if items or not hide_empty %}
+    {% block facet_list_item %}
+    <section class="mb-8 font-open-sans">
+        {% block facet_list_heading %}
+            {% set title = title or h.get_facet_title(name) %}
+            <h3 class="pb-4 font-semibold text-2xl text-gray-900">{{ title }}</h3>
+        {% endblock %}
+        {% block facet_list_items %}
+        {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
+            {% if items %}
+            <ul class="pb-3">
+                {% for item in items %}
+                {% if loop.index <= 3 %}
+                {% set href = h.remove_url_param(name, item.name, extras=extras, alternative_url=alternative_url) if item.active else h.add_url_param(new_params={name: item.name}, extras=extras, alternative_url=alternative_url) %}
+                {% set label = label_function(item) if label_function else item.display_name %}
+                {% set label_truncated = h.truncate(label, 22) if not label_function else label %}
+                {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
+
+                <li class="search-facet flex justify-between items-center text-gray-900 group hover:bg-sarcelle-lightest cursor-pointer">
+                    <a href="{{ href }}" class="flex-1 font-bold group-hover:text-primary text-base pl-3 py-3">{{ label_truncated }}</a>
+                    <span class="flex-none font-bold text-sm text-gray-ink group-hover:text-primary px-3">
+                        {{ count }}
+                    </span>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="pb-4 text-sm text-gray-ink">{{ _('There are no {facet_type} that match this search').format(facet_type=title) }}</p>
+            {% endif %}
+        {% endwith %}
+        {% endblock %}
+    </section>
+    {% endblock %}
+{% endif %}
+{% endwith %}
+{% endblock %}
