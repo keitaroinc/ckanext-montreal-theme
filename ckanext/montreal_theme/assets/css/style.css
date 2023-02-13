@@ -14761,15 +14761,53 @@ body{
   display: none
 }
 
-.tooltip{
-  visibility:hidden;
-  position:absolute
+.has-tooltip{
+  position: relative;
+  display: inline-block;
+  /* visibility:hidden;
+  position:absolute */
 }
 
-.has-tooltip:hover .tooltip{
+/* local-date tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8 */
+
+.has-tooltip .tooltip {
+  visibility: hidden;
+  width: 120px;
+  --bg-opacity: 1;
+  background-color: #f8f9fa;
+  background-color: rgba(248, 249, 250, var(--bg-opacity));
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  color: #929eab;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.has-tooltip .tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+.has-tooltip:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* .has-tooltip:hover .tooltip{
   visibility:visible;
   z-index:50
-}
+} */
 
 .hljs{
   display:block;
