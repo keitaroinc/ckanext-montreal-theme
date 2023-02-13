@@ -24,13 +24,13 @@
             <h1 class="text-4xl font-semibold text-gray-700">{{ _(g.page.title) }}</h1>
             <time class="text-gray-500">{{  h.render_datetime(g.page.publish_date, date_format='%b %d, %Y') }}</time>
             <br>
-            <div class="content">
+            <div class="content markdown-content leading-relaxed">
                 {% if g.page.content %}
                     {% set editor = h.get_wysiwyg_editor() %}
                     {% if editor %}
-                        {{ g.page.content|safe }}
+                        {{ h.render_markdown(g.page.content|safe) }}
                     {% else %}
-                        {{ g.page.content|safe }}
+                        {{ h.render_markdown(g.page.content|safe)}}
                     {% endif %}
                 {% else %}
                     <p class="empty">{{ _('This page currently has no content') }}</p>
@@ -51,6 +51,5 @@
             </ul>
         </div>
     </div>
-    {{h.disqus_recent(num_comments=10)}}
     {{h.disqus_comments()}}
 {% endblock %}
