@@ -69,9 +69,9 @@
                         {% for res in pkg.get('resources') %}
                         {% set url = h.url_for('resource.read', id=pkg.id if is_activity_archive else pkg.name, resource_id=res.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
                         <tr class="border-t border-gray-400">
-                            <td class="px-1 py-3" style="border-top-width: 1px;">{{ _(res.get('name')) }}</td>
+                            <td class="px-1 py-3" style="border-top-width: 1px; text-align:center;">{{ _(res.get('name')) }}</td>
                             <td class="px-1 py-3 font-semibold text-base text-gray-900 uppercase" style="text-align:center; border-top-width: 1px;">{{ res.get('format') }}</td>
-                            <td class="px-1 py-3" style="border-top-width: 1px;">{{h.format_size(res.get('Size')) or '--' }}</td>
+                            <td class="px-1 py-3" style="border-top-width: 1px; text-align:center;">{{h.format_size(res.get('Size')) or '--' }}</td>
                             <td class="px-1 py-3" style="text-align:center; border-top-width: 1px;">
                                 <div class="has-tooltip">
                                 {{ h.time_ago_from_timestamp(res.get('last_modified')) }}
