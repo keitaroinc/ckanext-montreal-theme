@@ -39,8 +39,8 @@
 
 {% block primary_content %}
     <h2 class="pb-8 text-3xl font-bold text-gray-700">{{ pkg.get('title') }}</h2>
-    <span class="markdown-contnt leading-relaxed border-t border-gray-200 p-4 text-lg">
-        <p>{{ pkg.get('notes') }}</p>
+    <span class="markdown-content leading-relaxed border-t border-gray-200 p-4 text-lg">
+        {{ h.render_markdown(pkg.get('notes')) }}
     </span>
 
     <div class="container w-full md:p-8">
