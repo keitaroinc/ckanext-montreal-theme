@@ -2,6 +2,9 @@
 
 
 {% set pkg = pkg_dict %}
+
+{% block subtitle %}{{ _(pkg.get('title')) }}{% endblock %}
+
 {% block breadcrumb %}
 
 <div class="w-full font-sans font-semibold text-gray-ink py-3 py-gutter p-gutter" aria-label="breadcrumb">
