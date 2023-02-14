@@ -36,16 +36,10 @@
 </div>
   {% endblock %}
 </div>
-{% endblock %}
 
 
 
-      {% block section %}
-      {% block page_primary_action %}
-      {% if h.check_access('organization_create') %}
-        {% link_for _('Add Organization'), named_route=organization+'.new', class_='btn btn-primary', icon='plus-square' %}
-      {% endif %}
-    {% endblock %}
+    
 
 
 {% block primary_content_inner %}
