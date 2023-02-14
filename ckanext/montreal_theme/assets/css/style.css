@@ -63281,4 +63281,9 @@ body{
   .border-b{
     border-bottom-width: 1px;
   }
+
+  .action-columnflex{
+    display: flex;
+    flex-direction: column;
+  }
 }
