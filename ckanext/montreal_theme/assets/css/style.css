@@ -63277,4 +63277,8 @@ body{
   .small-padding {
     padding-bottom: 10px !important;
   }
+
+  .border-b{
+    border-bottom-width: 1px;
+  }
 }

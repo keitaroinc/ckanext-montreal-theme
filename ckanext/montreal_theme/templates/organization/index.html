@@ -1,0 +1,104 @@
+{% ckan_extends %}
+
+{% block styles%}
+ {{ super() }}
+{% endblock %}
+
+
+
+
+
+{%- block content %}
+  {% block maintag %}<div class="main-container z-10">{% endblock %}
+    
+
+   
+    {% block toolbar %}
+      {% block breadcrumb %}
+  <div class=" container mx-auto px-gutter pt-12 w-full font-sans font-bold text-gray-ink text-lg pl-16" aria-label="{{ _('breadcrumb') }}">
+    <nav class="breadcrumb font-sans font-bold text-gray-ink text-lg " style="background-color: initial !important;" aria-label="{{ _('breadcrumb') }}">
+        <ol>
+        {% block breadcrumb_content %}
+        {% if g.userobj.sysadmin %}
+        {{ super() }}
+
+        {% else %}
+        {% snippet 'snippets/home_breadcrumb_item.html' %}
+            <li class="breadcrumb_item hover:text-primary">
+
+                <a href="#" class="breadcrumb_link">{{ _('Organizations') }} </a>
+            </li>
+
+        {% endif %}
+        {% endblock breadcrumb_content %}
+        </ol>
+    </nav>
+</div>
+  {% endblock %}
+</div>
+{% endblock %}
+
+
+
+      {% block section %}
+      {% block page_primary_action %}
+      {% if h.check_access('organization_create') %}
+        {% link_for _('Add Organization'), named_route=organization+'.new', class_='btn btn-primary', icon='plus-square' %}
+      {% endif %}
+    {% endblock %}
+
+
+{% block primary_content_inner %}
+      {% block groups_search_form %}{% endblock %}
+
+    <div class="bg-gray-100">
+      <section class="flex flex-col px-4 mx-auto max-w-6xl pt-16 pb-32">
+        <div data-title="our-data">
+          <h2 class="text-4xl text-zambezi font-semibold"> {{ _('Organizations') }}</h2>
+        </div>
+        <div data-title="collection-grid" class="flex w-full">
+            {% block featured_groups%}
+              {% snippet 'home/snippets/all_organizations.html' %}
+            {% endblock %}
+        </div>
+        {% set groups = h.all_groups() %}
+      </section>
+    </div>
+
+    <div class="border-1"></div>
+    <div class="px-4 mx-auto max-w-6xl pt-16 pb-32">
+      <div class="flex justify-between items-center w-full">
+        <div class="w-1/3">
+          <a class="block w-24 font-bold" href="https://ckan.org/">
+            <div class="text-xs mb-2">{{_('Powered by')}}</div>
+            <div class="text-xl">CKAN</div>
+          </a>
+        </div>
+        <div class="w-2/3 text-base">
+          <div class="mb-2">
+            {{_('By opening its data to everyone, the City of Montreal allows it to be reused for different purposes, including commercial purposes. The results of this reuse can then be shared in the community, which creates a multiplier effect.')}}
+          </div>
+          <a class="text-primary font-bold" href="/pages/our-approach">{{_('Read our approach')}}</a>
+        </div>
+      </div>
+    </div>
+</div>
+    
+      {% block groups_list %}{% endblock %}
+
+
+{% block secondary %} {% endblock %}
+  
+
+  {% block page_pagination %}
+    {{ page.pager(q=q or '', sort=sort_by_selected or '') }}
+  {% endblock %}
+
+{% endblock %}
+
+      {% endblock %}
+{% endblock %}
+
+
+
+{% block secondary_content %} {% endblock %}
