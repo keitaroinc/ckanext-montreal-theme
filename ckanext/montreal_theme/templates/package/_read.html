@@ -19,7 +19,7 @@
             {% endif %}
 
             {{ super() }}
-            <li class="breadcrumb_item b_package_read hover:text-primary">{% link_for _('Collections'), named_route='montreal_theme.collections' %}</li>
+            <li class="breadcrumb_item b_package_read hover:text-primary">{% link_for _('Collections'), named_route='group.index' %}</li>
             {#<li class="breadcrumb_item b_package_read hover:text-primary">{% link_for title|truncate(30), named_route='group' ~ '.read', id=group_name %}</li> #}
             <li class="breadcrumb_item b_package_read hover:text-primary">
                 {% set href = h.url_for('group.read', id=group_name) %}
@@ -81,10 +81,15 @@
                                                               
                                 <span class="tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8">
                                 {% set time_str = res.get('last_modified') %}
-                                {% set minutes = time_str[11:13] %}
-                                {% set seconds = time_str[14:16] %} 
-                                {{ h.render_datetime(pkg.get('metadata_modified'),  date_format='%b %d, %Y') + " " + minutes + ":" + seconds }}
+                                    {% if time_str is none %}
 
+
+                                    {% else %}
+                                        {% set minutes = time_str[11:13] %}
+                                        {% set seconds = time_str[14:16] %} 
+                                        {{ h.render_datetime(pkg.get('metadata_modified'),  date_format='%b %d, %Y') + " " + minutes + ":" + seconds }}
+
+                                {% endif %}
                                 </span>
                                 </div>
                             </td>
@@ -192,9 +197,14 @@
                         <p>{{h.time_ago_from_timestamp(pkg.get('metadata_modified')) or '--' }}</p>
                         <span class="tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8" style="bottom: 50%; left:20%;"> 
                         {% set time_str = pkg.get('metadata_modified') %}
-                        {% set minutes = time_str[11:13] %}
-                        {% set seconds = time_str[14:16] %}
-                        {{ h.render_datetime(pkg.get('metadata_modified'),  date_format='%b %d, %Y') + " " + minutes + ":" + seconds }}
+                        {% if time_str is none %}
+
+
+                        {% else %}
+                            {% set minutes = time_str[11:13] %}
+                            {% set seconds = time_str[14:16] %}
+                            {{ h.render_datetime(pkg.get('metadata_modified'),  date_format='%b %d, %Y') + " " + minutes + ":" + seconds }}
+                        {% endif %}
                         </span>
                     </div>
                     <div class="py-2">

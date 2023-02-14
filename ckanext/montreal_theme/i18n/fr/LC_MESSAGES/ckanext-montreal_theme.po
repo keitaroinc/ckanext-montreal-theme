@@ -333,6 +333,7 @@ msgid "Search for a dataset"
 msgstr "Rechercher un ensemble de données"
 
 #: ckanext/montreal_theme/templates/home/layout4.html:25
+#: ckanext/montreal_theme/templates/group/index.html:57
 msgid "Our data"
 msgstr "Nos données"
 
