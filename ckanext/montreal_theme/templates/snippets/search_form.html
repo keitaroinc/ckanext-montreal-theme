@@ -42,7 +42,7 @@
         {% endif %}
         {% block search_title %}
         {% if not error %}
-          <h1 class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-4xl text-3-1/2xl text-semibold text-black">
+          <h1 class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-4xl text-3-1/2xl font-bold text-black">
             {% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}
           </h1>
         {% else %}

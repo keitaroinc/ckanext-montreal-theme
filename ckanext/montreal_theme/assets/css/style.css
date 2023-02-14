@@ -63286,4 +63286,8 @@ body{
     display: flex;
     flex-direction: column;
   }
+
+  #field-giant-search{
+    color: #5a5a5a;
+  }
 }

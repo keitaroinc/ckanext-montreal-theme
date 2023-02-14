@@ -1,0 +1,5 @@
+{% if g.user and g.userobj.sysadmin %}
+{% ckan_extends %}
+{% else %}
+{% extends "organization/_read.html" %}
+{% endif %}
