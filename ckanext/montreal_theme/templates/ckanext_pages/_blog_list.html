@@ -30,7 +30,7 @@
                             {% if editor %}
                                 <p class="text-gray-700">{{ h.render_markdown(blog.content|striptags|truncate) }}</p>
                             {% else %}
-                                <p class="text-gray-700">{{ h.render_markdown(blog.content|truncate) }}</p>
+                                <p class="text-gray-700">{{ h.render_markdown(blog.content|striptags|truncate) }}</p>
                             {% endif %}
                         {% else %}
                             <p class="text-gray-700">{{ _("This page currently has no content") }}</p>
