@@ -28,9 +28,9 @@
                 {% if g.page.content %}
                     {% set editor = h.get_wysiwyg_editor() %}
                     {% if editor %}
-                        {{ h.render_markdown(g.page.content|safe) }}
+                    {{g.page.content|safe}}
                     {% else %}
-                        {{ h.render_markdown(g.page.content|safe)}}
+                    {{g.page.content|safe}}                    
                     {% endif %}
                 {% else %}
                     <p class="empty">{{ _('This page currently has no content') }}</p>
