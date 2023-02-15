@@ -4,7 +4,7 @@
         {% set group = dataset.groups[0] if dataset.groups else None %}
         <div class="container md:w-1/3 justify-center">
             <a class="block m-4 rounded hover:border-1 hover:border-solid hover:boder-transparent hover:bg-white hover:shadow-xl" href="{{ url_for('dataset.read', id=dataset.name) }}">
-                <div class="card-body border-1 border-gray-300 p-8 font-open-sans rounded">
+                <div class="card-body border-1 border-gray-300 p-10 font-open-sans rounded" style="width: 228.72;">
                     <div class="text-gray-600 text-xs font-bold mb-2 h-10">{{ group.title }}</div>
                     <div class="text-xl font-bold text-black font-medium mb-4" style="display: -webkit-box; max-width: 100%;-webkit-line-clamp: 2; -webkit-box-orient:vertical; overflow: hidden; text-overflow: ellipsis; height: 60px;">
                          {{ dataset.title }}
