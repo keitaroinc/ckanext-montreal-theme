@@ -1,13 +1,16 @@
-{# 
-{% extends '_page.html' %} file for test
-{% extends 'page-admin.html' %} previous code but file is missing
-#}
-
-{% extends '_page.html' %} 
+{% extends 'page.html' %}
 
 {% block subtitle %}{{ c.page.title }}{% endblock %}
 
+
+
+
+
 {% block primary %}
+  {% if g.userobj.sysadmin %}
+
+  
+
 <div class="primary col-sm-9">
   <section class="module-content">
 
@@ -45,9 +48,14 @@
       {% endblock %}
   </section>
 </div>
+  {% else %}
+
+  {% endif %}
 {% endblock %}
 
 {% block secondary %}
+  {% if g.userobj.sysadmin %}
+
 {% set groups = h.montreal_get_groups() %}
 <aside class="secondary col-sm-3">
 
@@ -82,4 +90,64 @@
   </section>
 
 </aside>
+
+  {% else %} 
+
+  {% endif %}
 {% endblock %}
+
+
+{% block toolbar %}
+<div class="container mx-auto" style="padding-top: 35px">
+    {% block breadcrumb_content %}
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <ol class="text-gray-700 font-semibold">
+                {% include 'snippets/home_breadcrumb_item.html' %}
+                <li class="breadcrumb_item">
+                    <a class="breadcrumb_link" href="#">{{ _(g.page.title) }}</a>
+                </li>
+               
+            </ol>
+        </nav>
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block extra_content %}
+    <div class="container mx-auto lg:flex p-gutter">
+        <main class="mb-gutter lg:mb-0 lg:w-2/3 lg:mr-gutter">
+            <h1 class="text-4xl font-semibold text-gray-700">{{ _(g.page.title) }}</h1>
+            <time class="text-gray-500">{{  h.render_datetime(g.page.publish_date, date_format='%b %d, %Y') }}</time>
+            <br>
+            <div class="content markdown-content leading-relaxed">
+                {% if g.page.content %}
+                    {% set editor = h.get_wysiwyg_editor() %}
+                    {% if editor %}
+                    {{g.page.content|safe}}
+                    {% else %}
+                    {{g.page.content|safe}}                    
+                    {% endif %}
+                {% else %}
+                    <p class="empty">{{ _('This page currently has no content') }}</p>
+                {% endif %}
+            </div>
+        </main>
+        <div class="lg:w-1/3 lg:pl-gutter">
+            <h2 class="bg-gray-200 px-4 py-3 font-bold mb-1">
+                {{ _("Share") }}
+            </h2>
+            <ul class="text-sm">
+                <li class="border-b-2 border-gray-200">
+                    <a href="" class="block px-4 py-3 text-primary" target="_blank">{{ _("Twitter") }}</a>
+                </li>
+                <li>
+                    <a href="" class="block px-4 py-3 text-primary">{{ _("Facebook") }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
