@@ -36,6 +36,7 @@
 {% block primary %}
     <div class="md:w-2/3 pt-3 pb-5 text-gray-ink">
         {% block primary_content %}
+
             {% set pkg_org = pkg.get('organization') %}
             {% set pkg_title = pkg.get('title') %}
             {% set notes = h.render_markdown(pkg.get('notes')) %}
@@ -154,7 +155,17 @@
                 <div id="methodology" class="py-2">
                     <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Methodology') }}</h2>
                     <div class="markdown-content leading-relaxed">
-                        {{ h.render_markdown(pkg.methodologie) }}
+                    {% if pkg.get('methodologie') %}
+                        {{ h.render_content(pkg.get('methodologie')) }}
+                    {% elif pkg.get('extras') %}
+                        {% for item in pkg.get('extras')%}
+                            {% if item.key== 'methodologie'%}
+                            {{ h.render_content(item.value) }}
+                            {% endif %}
+                        {% endfor%}
+                    {% else %}
+                        <p>--</p>
+                    {% endif %}
                     </div>
                 </div>
                 {# -------- end methodology ---------- #}
@@ -165,7 +176,7 @@
                 </div>
                 <div id="mapid">
                
-                     {% snippet 'package/snippets/teritorries.html', territoire=pkg.get('territoire', None) %}
+                     {% snippet 'package/snippets/teritorries.html', territoire=pkg.get('territoire') %}
                 </div>
                 {# -------- end territories ---------- #}
                 {# -------- keywords ---------- #}
@@ -194,11 +205,36 @@
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Source (URL)') }}</h3>
-                        <p>{{pkg.get('url') or '--' }}</p>
+                        <p>
+                            {% if pkg.get('url') %}
+                                {{ h.render_content(pkg.get('url')) }}
+                            {% elif pkg.get('extras') %}
+                                {% for item in pkg.get('extras')%}
+                                    {% if item.key== 'url'%}
+                                    {{ h.render_content(item.value) }}
+                                    {% endif %}
+                                {% endfor%}
+                            {% else %}
+                            {{ _('--') }}
+                            {% endif %}
+
+                        </p>
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Update frequency') }}</h3>
-                        <p>{{pkg.get('update_frequency') or '--' }}</p>
+                        <p>
+                            {% if pkg.get('update_frequency') %}
+                                {{ h.render_content(pkg.get('update_frequency')) }}
+                            {% elif pkg.get('extras') %}
+                                {% for item in pkg.get('extras')%}
+                                    {% if item.key== 'update_frequency'%}
+                                    {{ h.render_content(item.value) }}
+                                    {% endif %}
+                                {% endfor%}
+                            {% else %}
+                            {{ _('--') }}
+                            {% endif %} 
+                        </p>
                     </div>
                     <div class="has-tooltip py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Descriptive Information Last Updated') }}</h3>
@@ -219,7 +255,19 @@
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Date the dataset was first added') }}</h3>
-                        <p>{{ h.render_datetime(pkg.get('created')) or '--' }}</p>
+                        <p>
+                            {% if pkg.get('created') %}
+                                {{ h.render_content(pkg.get('created')) }}
+                            {% elif pkg.get('extras') %}
+                                {% for item in pkg.get('extras')%}
+                                    {% if item.key== 'created'%}
+                                    {{ h.render_content(item.value) }}
+                                    {% endif %}
+                                {% endfor%}
+                            {% else %}
+                            {{ _('--') }}
+                            {% endif %}                           
+                        </p>
                     </div>
                     {# -------- end additional info ---------- #}
                     {# -------- Organization block ---------- #}
