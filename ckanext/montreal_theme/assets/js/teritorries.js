@@ -5,8 +5,7 @@ $(document).ready(function () {
     let map = L.map('territorie-map', {
     }).setView([45.55, -73.7], 10);
 
-    let teritoire = $('#territoire').val();
-
+    let teritoire = document.getElementById("ters").innerText;
     if (!teritoire ){
         return "";
     };
