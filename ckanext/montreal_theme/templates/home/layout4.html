@@ -92,13 +92,17 @@
           <h2 class="text-4xl text-zambezi font-semibold w-full">{{_('Organizations')}}</h2>
           <div data-title="collection-grid" class="flex w-full">
             {% block featured_organization %}
-              {% snippet 'home/snippets/all_organizations.html' %}
+              {% snippet 'home/snippets/all_organizations_homepage.html' %}
             {% endblock %}
           </div>
   
           {% set org = h.all_organizations() %}
           {% if org|length > 0 %}
+              {% if g.userobj.sysadmin %}
+              <a class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white mt-2 py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full" href="/dashboard/organizations"> {{_('View all')}}</a>
+                {% else %}
             <a class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white mt-2 py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full" href="{{ h.url_for('organization.index') }}"> {{_('View all')}}</a>
+              {% endif %}
           {% endif %}
         </div>
         {# <------------- End of Organizations section -------------> #}
