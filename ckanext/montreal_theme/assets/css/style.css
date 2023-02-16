@@ -63290,4 +63290,34 @@ body{
   #field-giant-search{
     color: #5a5a5a;
   }
+
+  .nav-admin{
+    background-color: black !important;
+    opacity: 1 !important;
+    height: 30px; 
+    text-align:right;
+    padding-right:15px;
+    color: white !important;
+
+  }
+
+  .name-uppercase{
+    text-transform: capitalize;
+  }
+
+  .nav-logout{
+    display:flex;
+    gap:10px;
+  }
+
+  .nav-logo-title{
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-items-flex{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
