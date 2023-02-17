@@ -170,27 +170,23 @@
                 </div>
                 {# -------- end methodology ---------- #}
                 {# -------- territories ---------- #}
+
                 <h2 id="territories" class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Territories') }}</h2>
                 <div id="hidden-territories" class="hidden">
                     <p id="hidden-p">{{ _('Montreal') }}</p>
                 </div>
-                <div id="mapid">                
+                <div id="mapid"> 
+                {% set ter_pass = [] %}              
                 {% if pkg.get('territoire') %}
                     {% set ter_pass = pkg.get('territoire') %}
-                {% elif pkg.get('extras') %}
-                    {% for item in pkg.get('extras')%}
-                        {% if item.key== 'territoire'%}
-                        {% set ter_pass = item.value %}
+                {% else %}
+                    {% for item in pkg.get('extras') %}
+                        {% if item.key == "territoire" %}
+                            {{ ter_pass.append(item.value) }}
                         {% endif %}
                     {% endfor%}
-                {% else %}
-                    <h3>No territory selected</h3>
-                {% endif %}
-                <p> package territorie </p>
-                {{ pkg.get('territoire') }}
-                <p> ter_pass</p>
-                {{ ter_pass }}
-                {% snippet 'package/snippets/teritorries.html', territoire = ter_pass %}
+                {% endif %}        
+                {% snippet 'package/snippets/teritorries.html', territoire_pass = ter_pass %}
                 </div>
                 {# -------- end territories ---------- #}
                 {# -------- keywords ---------- #}
