@@ -43,6 +43,7 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
             'get_value_from_showcase_extras': h.get_value_from_showcase_extras,
             'homepage_search_configs': h.homepage_search_configs,
             'format_size': h.format_size,
+            'teritories_string': h.teritories_string,
         }
 
     # IFacets

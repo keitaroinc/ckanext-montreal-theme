@@ -6,6 +6,7 @@ from ckan.plugins import toolkit as tk
 
 from ckanext.montreal_theme.model import SearchConfig
 
+import json
 
 g = tk.g
 
@@ -66,3 +67,8 @@ def format_size(size):
     except Exception as e:
         value = size
     return value
+
+
+def teritories_string(data):
+    if data:
+        return str(data)
