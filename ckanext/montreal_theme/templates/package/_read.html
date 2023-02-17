@@ -186,6 +186,10 @@
                 {% else %}
                     <h3>No territory selected</h3>
                 {% endif %}
+                <p> package territorie </p>
+                {{ pkg.get('territoire') }}
+                <p> ter_pass</p>
+                {{ ter_pass }}
                 {% snippet 'package/snippets/teritorries.html', territoire = ter_pass %}
                 </div>
                 {# -------- end territories ---------- #}
