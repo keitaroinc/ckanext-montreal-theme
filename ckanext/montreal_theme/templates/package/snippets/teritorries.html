@@ -1,6 +1,14 @@
 <div id="territorie-map" style="width: 600px; height: 400px; position: relative; outline: none;"></div>
-<input type="hidden" id="territoire" name="territoire" value={{territoire}} />
+<div id="ters" hidden="hidden">
+    {% if territoire is none %}
+        
+    {% else %}
+    {% for ter in territoire %}
+    <span id="{{loop.index}}">{{ter}}</span>
+    {% endfor %}
+    {% endif %}
+    </div>
+    {% block scripts %}
+        {% asset 'montreal_theme/montreal_territory-js' %}
+    {% endblock%}
 
-{% block scripts %}
-    {% asset 'montreal_theme/montreal_territory-js' %}
-{% endblock%}
