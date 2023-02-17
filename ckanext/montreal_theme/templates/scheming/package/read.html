@@ -11,7 +11,20 @@
 
 {% block package_tags %}
 <h3> Methodology</h3>
-{{h.render_markdown(pkg_dict.get('methodologie'))}}
+
+{% if pkg_dict.get('methodologie') %}
+        {{ h.render_content(pkg.get('methodologie')) }}
+                    
+{% elif pkg_dict.get('extras') %}
+    {% for item in pkg_dict.get('extras')%}
+            {% if item.key== 'methodologie'%}
+                    {{ h.render_content(item.value) }}
+            {% endif %}
+    {% endfor%}
+
+    {% else %}
+      <p>--</p>
+  {% endif %}
 </br>
 
 
