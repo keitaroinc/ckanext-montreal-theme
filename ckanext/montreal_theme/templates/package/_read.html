@@ -182,10 +182,10 @@
                 {% else %}
                     {% for item in pkg.get('extras') %}
                         {% if item.key == "territoire" %}
-                            {{ ter_pass.append(item.value) }}
+                        <div hidden="hidden">{{ ter_pass.append(item.value) }}</div>
                         {% endif %}
                     {% endfor%}
-                {% endif %}        
+                {% endif %}
                 {% snippet 'package/snippets/teritorries.html', territoire_pass = ter_pass %}
                 </div>
                 {# -------- end territories ---------- #}
