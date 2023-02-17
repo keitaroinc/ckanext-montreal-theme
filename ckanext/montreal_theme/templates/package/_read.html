@@ -174,9 +174,19 @@
                 <div id="hidden-territories" class="hidden">
                     <p id="hidden-p">{{ _('Montreal') }}</p>
                 </div>
-                <div id="mapid">
-               
-                     {% snippet 'package/snippets/teritorries.html', territoire = pkg.get('territoire', None) %}
+                <div id="mapid">                
+                {% if pkg.get('territoire') %}
+                    {% set ter_pass = pkg.get('territoire') %}
+                {% elif pkg.get('extras') %}
+                    {% for item in pkg.get('extras')%}
+                        {% if item.key== 'territoire'%}
+                        {% set ter_pass = item.value %}
+                        {% endif %}
+                    {% endfor%}
+                {% else %}
+                    <h3>No territory selected</h3>
+                {% endif %}
+                {% snippet 'package/snippets/teritorries.html', territoire = ter_pass %}
                 </div>
                 {# -------- end territories ---------- #}
                 {# -------- keywords ---------- #}
