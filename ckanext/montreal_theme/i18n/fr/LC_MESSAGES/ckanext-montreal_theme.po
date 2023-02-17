@@ -109,9 +109,9 @@ msgstr "Mentions légales"
 msgid "Sysadmin settings"
 msgstr ""
 
-#: ckanext/montreal_theme/templates/header.html:21
+#: ckanext/montreal_theme/templates/header.html:95
 msgid "Admin"
-msgstr ""
+msgstr "Administration"
 
 #: ckanext/montreal_theme/templates/header.html:25
 msgid "View profile"
@@ -220,9 +220,9 @@ msgstr ""
 msgid "This page currently has no content"
 msgstr ""
 
-#: ckanext/montreal_theme/templates/contact/form.html:26
+#: ckanext/montreal_theme/templates/contact/form.html:84
 msgid "Groups"
-msgstr ""
+msgstr "Catégories"
 
 #: ckanext/montreal_theme/templates/ckanext_pages/page.html:65
 #: ckanext/montreal_theme/templates/contact/form.html:40

@@ -63320,4 +63320,8 @@ body{
     justify-content: space-between;
     align-items: center;
   }
+
+  .text-nav-name:hover{
+    color:#868e96;
+  }
 }
