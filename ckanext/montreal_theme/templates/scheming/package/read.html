@@ -1,13 +1,22 @@
 {% ckan_extends %}
+{%- set schema = h.scheming_get_dataset_schema(dataset_type) -%}
+
 
 {% block primary_content_inner %}
 
+  {{super()}}
+{% endblock %}
 
-  {% block package_tags %}
-  {% endblock %}
 
-  {% block package_additional_info %}
-    {% snippet "scheming/package/snippets/additional_info.html", dataset=pkg, owner=g.user %}
-  {% endblock %}
+
+{% block package_tags %}
+<h3> Methodology</h3>
+{{h.render_markdown(pkg_dict.get('methodologie'))}}
+</br>
+
+
+
+
 
 {% endblock %}
+

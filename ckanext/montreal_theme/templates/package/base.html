@@ -1,5 +1,5 @@
 {% if g.user and g.userobj.sysadmin %}
-{% ckan_extends %}
+{% extends "package/_base-admin.html" %}
 {% else %}
 {% extends "package/_base.html" %}
 {% endif %}
