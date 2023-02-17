@@ -7,16 +7,23 @@
 {% if g.userobj.sysadmin %}
 <nav class="nav-admin font-open-sans">
     {% if current_lang =='fr' %}
-    <span class="nav-admin-welcome">Bienvenue, <span class="name-uppercase">{{g.userobj.name}}</span>. Vous êtes sur l'instance de <strong style="font-weight: bold;">développement.</strong></span>
+    <span class="nav-admin-welcome">Bienvenue, 
+        <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+            <span class="font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}</span>
+        </a>
+        Vous êtes sur l'instance de <strong style="font-weight: bold;">développement.</strong></span>
         {% else %}
-    <span class="nav-admin-welcome">Welcome, <span class="name-uppercase">{{g.userobj.name}}</span>. You are on the instance of <strong style="font-weight: bold;">developement.</strong></span>
+    <span class="nav-admin-welcome">Welcome, 
+        <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+            <span class="font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}</span>
+        </a>         You are on the instance of <strong style="font-weight: bold;">developement.</strong></span>
     {% endif %}
 </nav>
 
 {% endif %}
     {% block header_logo %}
         {% if g.site_logo %}
-        <header class="mx-auto w-full " style="border-bottom: 2px solid #ced4da;">
+        <header class="mx-auto w-full " style="border-bottom: 1px solid #ced4da;">
             <div class="nav-items-flex py-4 px-5">
                 <div class="nav-logo-title">
                     <a class="logo" href="{{ h.url_for('home.index') }}">
@@ -34,7 +41,7 @@
 
                  
 
-                    <div class="flex font-open-sans text-base items-center mx-auto">
+                    <div class="flex font-open-sans text-base items-center mx-auto" style="text-align:center;">
 
 
                         <div class="container">
@@ -73,14 +80,21 @@
     
     
                         <div class="container">
-                            <a href="/dashboard/groups" title="{{ _('Sysadmin settings') }}">
+                            <a href="{{ h.url_for('group.index') }}" title="{{ _('Sysadmin settings') }}">
                                 <span class="text-black font-bold hover:text-primary">{{ _('Groups') }}</span>
                             </a>
                         </div>
     
                         <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        
+                        <div class="container">
+                            <a href="{{ h.url_for('showcase_blueprint.index') }}" title="{{ _('Sysadmin settings') }}">
+                                <span class="text-black font-bold hover:text-primary">{{ _('Applications') }}</span>
+                            </a>
+                        </div>
     
-    
+                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+
 
 
                         <div class="container">
@@ -89,18 +103,17 @@
                             </a>
                         </div>
 
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
 
 
+                        {#
                         <div class="container">
                             <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
                                 <span class="text-black font-bold hover:text-primary">{{ c.userobj.display_name }}</span>
                             </a>
                         </div>
+                        #}
 
-
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
-
+                        {# 
                         {% set new_activities = h.new_activities() %}
                         <div class="container notifications {% if new_activities > 0 %}notifications-important{% endif %}">
                             {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities)%}
@@ -116,6 +129,7 @@
                                 <span class="text-black font-bold hover:text-primary">{{ _('Settings') }}</span>
                               </a>
                         </div>
+                        #}
 
                         <div class=" h-4 border-1 border-solid border-gray-400"></div>
 
