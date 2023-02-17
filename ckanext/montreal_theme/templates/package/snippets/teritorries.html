@@ -1,9 +1,9 @@
 <div id="territorie-map" style="width: 600px; height: 400px; position: relative; outline: none;"></div>
 <div id="ters" hidden="hidden">
-    {% if territoire is none %}
+    {% if territoire_pass is none %}
         
     {% else %}
-    {% for ter in territoire %}
+    {% for ter in territoire_pass %}
     <span id="{{loop.index}}">{{ter}}</span>
     {% endfor %}
     {% endif %}
