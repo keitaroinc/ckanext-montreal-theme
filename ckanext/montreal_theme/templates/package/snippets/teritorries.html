@@ -1,9 +1,5 @@
 <div id="territorie-map" style="width: 600px; height: 400px; position: relative; outline: none;"></div>
-<div id="ters" hidden="hidden">
-{% for ter in territoire %}
-<span id="{{loop.index}}">{{ h.teritories_string(ter) }}</span>
-{% endfor %}
-</div>
+<input type="hidden" id="territoire" name="territoire" value={{territoire}} />
 {% block scripts %}
     {% asset 'montreal_theme/montreal_territory-js' %}
 {% endblock%}
