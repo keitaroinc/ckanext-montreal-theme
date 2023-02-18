@@ -2,46 +2,28 @@
 
 {% block breadcrumb_content %}
     {{ super() }}
-  <li><a href="{{ h.url_for('montreal.contact_form') }}">Contact</a></li>
-
 {% endblock %}
 
 {% block primary_content %}
   <article class="module">
     <div class="module-content">
-      <h1 class="page-heading">Contact us</h1>
-
+      <h2 class="text-4xl text-zambezi font-semibold w-full">{{  _('Contact us') }}</h2>
+      <p>{{ _('Write in the form your comments, questions, requests or problems regarding open data. A message will be sent to the open data team. We will answer you as quickly as we can.') }} </p>
+      </br>
         {% block contact_form_content %}
             {% include "contact/snippets/form.html" %}
         {% endblock %}
-
     </div>
   </article>
 {% endblock %}
 
 {% block secondary_content %}
 
-{% set groups = h.montreal_get_groups() %}
-<section class="module module-narrow module-shallow groups">
-<h2 class="module-heading">{{ _('Groups') }}</h2>
-<nav>
-  <ul class="unstyled nav nav-simple nav-facet">
-    {% for group in groups %}
-    <li class="nav-item">
-      <a href="{{ h.url_for('group.read', id=group.name) }}"><span>{{group.display_name|truncate(40)}} ({{ group.package_count }})</span></a>
-    </li>
-    {% endfor %}
-  </ul>
-</nav>
-</section>
-
 {% set current_url = h.full_current_url() %}
 <section class="module module-narrow module-shallow groups">
 <h2 class="module-heading">{{ _('Social') }}</h2>
   <ul class="unstyled nav nav-simple nav-facet">
     <li class="nav-item"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
-    <li class="nav-item"><a href="https://plus.google.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-google-plus"></i> Google+</a></li>
-    <li class="nav-item"><a href="http://www.linkedin.com/shareArticle?mini=true&url={ current_url }&source=Portail%20donn%C3%A9es%20ouvertes%20de%20la%20Ville%20de%20Montr%C3%A9al" target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
     <li class="nav-item"><a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
   </ul>
 </section>
