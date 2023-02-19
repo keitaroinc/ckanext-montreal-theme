@@ -734,3 +734,15 @@ msgstr[1] "{number}  Résultats \"{query}\""
 msgid "Showcases are any app, article or report that relate to the published dataset. For example, an annual report that contains aggregated information relating to the dataset or a website where there is further background information on the dataset or a link to an app that has been created utilising some or all of the dataset."
 msgstr "Cette galerie d’applications utilise les données ouvertes de la Ville de Montréal ou d’autres données provenant de partenaires de la Ville de Montréal. Ces applications citoyennes sont développées principalement par des concepteurs montréalais. La Ville de Montréal n’est pas responsable de ces applications citoyennes. Les auteurs respectifs sont garants de leur maintenance."
 
+#: ckanext/montreal_theme/templates/contact/form.html:10
+msgid "Contact us"
+msgstr "Nous joindre"
+
+#: ckanext/montreal_theme/templates/contact/form.html:11
+msgid "Write in the form your comments, questions, requests or problems regarding open data. A message will be sent to the open data team. We will answer you as quickly as we can."
+msgstr "Inscrivez dans ce formulaire vos commentaires, questions, demandes ou problème concernant les données ouvertes. Un message est envoyé à l'équipe des données ouvertes. On vous répond le plus rapidement possible."
+
+#: ckanext/montreal_theme/templates/contact/snippets/form.html:30
+msgid "Submit"
+msgstr "Soumettre"
+

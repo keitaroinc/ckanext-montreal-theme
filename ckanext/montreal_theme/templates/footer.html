@@ -45,7 +45,11 @@
                                 <a href="{{ h.url_for('pages.blog_index') }}" class="hover:text-primary">{{_('News')}}</a>
                             </li>
                             <li class="mb-4">
-                                <a href="{{ site_url }}/pages/contact-us" class="hover:text-primary">{{_('Contact us')}}</a>
+                                {% if current_lang=='fr' %}
+                                    <a href="{{ site_url }}/nous-joindre" class="hover:text-primary">{{_('Nous joindre')}}</a>
+                                {% else %}
+                                    <a href="{{ site_url }}/contact-us" class="hover:text-primary">{{_('Contact us')}}</a>
+                                {% endif %}
                             </li>
                         </ul>
                     </div>
