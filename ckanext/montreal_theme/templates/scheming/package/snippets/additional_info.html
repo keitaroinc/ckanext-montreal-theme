@@ -14,6 +14,31 @@
 {% block package_additional_info %}
 
 
+
+{% set ter_pass = [] %}
+{% set new_pkg = pkg_dict.copy() %}
+
+                {% if pkg_dict.get('territoire') %}
+                    {% set ter_pass = pkg_dict.get('territoire') %}
+                {% else %}
+                    {% for item in pkg_dict.get('extras') %}
+                        {% if item.key == "territoire" %}
+                        <div hidden="hidden">{{ ter_pass.append(item.value) }}</div>
+
+                   
+                        {% endif %}
+                    {% endfor%}
+                    {% set new_key_territory = 'territoire' %}
+                    {% set new_value_territory = ter_pass %}
+                    {{ new_pkg.update({ new_key_territory: new_value_territory}) }}
+
+
+                {% endif %}
+
+
+
+{{new_pkg}}
+
   {%- for field in schema.dataset_fields -%}
  
     {%- if field.field_name not in exclude_fields and field.display_snippet is not none -%}
@@ -22,7 +47,7 @@
         <th scope="row" class="dataset-label">{{
           h.scheming_language_text(field.label) }}</th>
         <td class="dataset-details" {% if field.display_property %} property="{{ field.display_property}}"{% endif %}>
-          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}</td>
+          {%- snippet 'scheming/snippets/display_field.html', field=field, data=new_pkg, schema=schema -%}</td>
       </tr>
     {%- endif -%}
   {%- endfor -%}
