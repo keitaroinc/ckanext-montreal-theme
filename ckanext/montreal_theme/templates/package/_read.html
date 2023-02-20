@@ -211,7 +211,19 @@
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Temporal coverage') }}</h3>
-                        <p>{{pkg.get('temporal') or '--' }}</p>
+                        <p>
+                            {% if pkg.get('temporal') %}
+                                {{ h.render_content(pkg.get('temporal')) }}
+                            {% elif pkg.get('extras') %}
+                                {% for item in pkg.get('extras')%}
+                                    {% if item.key== 'temporal'%}
+                                    {{ h.render_content(item.value) }}
+                                    {% endif %}
+                                {% endfor%}
+                            {% else %}
+                            {{ _('--') }}
+                            {% endif %}
+                        </p>
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Source (URL)') }}</h3>
@@ -265,19 +277,7 @@
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Date the dataset was first added') }}</h3>
-                        <p>
-                            {% if pkg.get('created') %}
-                                {{ h.render_content(pkg.get('created')) }}
-                            {% elif pkg.get('extras') %}
-                                {% for item in pkg.get('extras')%}
-                                    {% if item.key== 'created'%}
-                                    {{ h.render_content(item.value) }}
-                                    {% endif %}
-                                {% endfor%}
-                            {% else %}
-                            {{ _('--') }}
-                            {% endif %}                           
-                        </p>
+                        <p>{{ h.render_content(pkg.get('metadata_created')) }}</p>
                     </div>
                     {# -------- end additional info ---------- #}
                     {# -------- Organization block ---------- #}
