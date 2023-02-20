@@ -14,6 +14,23 @@
 {% block package_additional_info %}
 
 
+{#
+We may need this kind of code later for attributes:
+territoire,
+created,
+ext_spatial,
+language,
+extras_flag_donnees_normalise,
+methodologie,
+temporal,
+update_frequency
+
+When we try to read old dataset's data, the values for the keys above are placed in "extras" list in the dictionary.
+Thus, we can not read them. 
+One solution is to extract that data and append it to the existing dictionary to the appropriate keys.
+The data from the newly created datasets is OK and can be read, this is only for the old datasets.
+
+Suggested code for sending new dictionary to the snippets (only for territoire below), instead of changing all the snippets and templates: 
 
 {% set ter_pass = [] %}
 {% set new_pkg = pkg_dict.copy() %}
@@ -35,6 +52,8 @@
 
                 {% endif %}
 
+Then we can send new_pkg as data to the snippet below.
+#}
 
 
   {%- for field in schema.dataset_fields -%}
@@ -45,7 +64,7 @@
         <th scope="row" class="dataset-label">{{
           h.scheming_language_text(field.label) }}</th>
         <td class="dataset-details" {% if field.display_property %} property="{{ field.display_property}}"{% endif %}>
-          {%- snippet 'scheming/snippets/display_field.html', field=field, data=new_pkg, schema=schema -%}</td>
+          {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}</td>
       </tr>
     {%- endif -%}
   {%- endfor -%}
