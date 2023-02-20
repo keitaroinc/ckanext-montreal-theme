@@ -20,8 +20,8 @@ $(document).ready(function () {
             location = teritories.features.filter((el) => teritoire.includes(el.properties.NOM))
         };
 
-    
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'})
     .addTo(map);
 
