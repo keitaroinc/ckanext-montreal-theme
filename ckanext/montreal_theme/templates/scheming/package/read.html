@@ -13,12 +13,12 @@
 <h3> Methodology</h3>
 
 {% if pkg_dict.get('methodologie') %}
-        {{ h.render_content(pkg.get('methodologie')) }}
+        {{ h.render_markdown(pkg.get('methodologie')) }}
                     
 {% elif pkg_dict.get('extras') %}
     {% for item in pkg_dict.get('extras')%}
             {% if item.key== 'methodologie'%}
-                    {{ h.render_content(item.value) }}
+                    {{ h.render_markdown(item.value) }}
             {% endif %}
     {% endfor%}
 

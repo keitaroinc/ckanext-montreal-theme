@@ -9,13 +9,13 @@
     {% if current_lang =='fr' %}
     <span class="nav-admin-welcome">Bienvenue, 
         <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
-            <span class="font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}</span>
+            <span class="border-dotted border-b border-gray-600 font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}.</span>
         </a>
-        Vous êtes sur l'instance de <strong style="font-weight: bold;">développement.</strong></span>
+         Vous êtes sur l'instance de <strong style="font-weight: bold;">développement.</strong></span>
         {% else %}
     <span class="nav-admin-welcome">Welcome, 
         <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
-            <span class="font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}</span>
+            <span class="border-dotted border-b border-gray-600 font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}.</span>
         </a>         You are on the instance of <strong style="font-weight: bold;">developement.</strong></span>
     {% endif %}
 </nav>
@@ -71,7 +71,7 @@
     
     
                         <div class="container">
-                            <a href="/dashboard/organizations" title="{{ _('Sysadmin settings') }}">
+                            <a href="{{ h.url_for('organization.index') }}" title="{{ _('Sysadmin settings') }}">
                                 <span class="text-black font-bold hover:text-primary">{{ _('Organizations') }}</span>
                             </a>
                         </div>
