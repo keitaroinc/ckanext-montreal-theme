@@ -66,8 +66,8 @@ Then we can send new_pkg as data to the snippet below.
           <div hidden="hidden">{{ ter_pass.append(item.value) }}</div>
       {% endif %}
   {% endfor%}
-{{pkg_dict.update({"territoire":ter_pass})}}
-
+  <div hidden="hidden">{{pkg_dict.update({'territoire':ter_pass})}}</div>
+{{pkg_dict}}
 
     {%- for field in schema.dataset_fields -%}
     
