@@ -59,14 +59,13 @@ Then we can send new_pkg as data to the snippet below.
 
 {% if pkg_dict.get('extras') %}
 <!-- adding territoire to the pkg_dict dictionary-->
-{% set ter_pass = [] %}
+{% set ter_pass = "" %}
   {% for item in pkg_dict.get('extras') %}
       {% if item.key == "territoire" %}
-          <div hidden="hidden">{{ ter_pass.append(item.value) }}</div>
+      <div hidden="hidden">{{pkg_dict.update({'territoire': item.value.strip("[]'").split("', '")})}}</div>
       {% endif %}
-  {% endfor%}
-  <div hidden="hidden">{{pkg_dict.update({'territoire':ter_pass})}}</div>
-
+  {% endfor %}
+ 
     {%- for field in schema.dataset_fields -%}
     
     {%- if field.field_name not in exclude_fields and field.display_snippet is not none -%}

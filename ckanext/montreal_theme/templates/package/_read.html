@@ -1,5 +1,6 @@
 {% extends "page.html" %}
 
+{% set current_lang = request.environ.CKAN_LANG %}
 
 {% set pkg = pkg_dict %}
 
@@ -78,7 +79,11 @@
                         <tr class="border-t border-gray-400">
                             <td class="px-1 py-3" style="border-top-width: 1px; text-align:left;">{{ _(res.get('name')) }}</td>
                             <td class="px-1 py-3 font-semibold text-base text-gray-900 uppercase" style="text-align:center; border-top-width: 1px;">{{ res.get('format') }}</td>
+                            {% if current_lang == 'fr'%}
+                            <td class="px-1 py-3" style="border-top-width: 1px; text-align:center;">{{h.format_size(res.get('Taille')) or '--' }}</td>
+                                {% else %}
                             <td class="px-1 py-3" style="border-top-width: 1px; text-align:center;">{{h.format_size(res.get('Size')) or '--' }}</td>
+                            {% endif %}
                             <td class="px-1 py-3" style="text-align:center; border-top-width: 1px;">
                                 <div class="has-tooltip">
 

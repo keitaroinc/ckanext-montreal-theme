@@ -30,7 +30,8 @@
                     <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}"
                         title="{{ g.site_title }}" width="190px" />
                     </a>
-                    <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
+                    <!-- <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div> -->
+                    <div class="mx-6 h-4 testklasa border-gray-400"></div>
                     <div class="text-black font-bold" style="white-space: nowrap;">{{ _('Open Data') }}</div>
                 </div>
                 <!-- <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
@@ -50,7 +51,7 @@
                             </a>
                         </div>
 
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
     
     
                         <div class="container">
@@ -59,7 +60,7 @@
                              </a>
                         </div>
 
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
     
                         <div class="container">
                             <a href="{{ h.url_for('pages.blog_index') }}" title="{{ _('Sysadmin settings') }}">
@@ -67,7 +68,7 @@
                             </a>
                         </div>
     
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
     
     
                         <div class="container">
@@ -76,7 +77,7 @@
                             </a>
                         </div>
     
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
     
     
                         <div class="container">
@@ -85,7 +86,7 @@
                             </a>
                         </div>
     
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
                         
                         <div class="container">
                             <a href="{{ h.url_for('showcase_blueprint.index') }}" title="{{ _('Sysadmin settings') }}">
@@ -93,7 +94,7 @@
                             </a>
                         </div>
     
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
 
 
 
@@ -122,7 +123,7 @@
                               </a>
                         </div>
 
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
 
                         <div class="container">
                             <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Profile settings') }}">
@@ -131,7 +132,7 @@
                         </div>
                         #}
 
-                        <div class=" h-4 border-1 border-solid border-gray-400"></div>
+                        <div class=" h-4 border-half border-solid border-gray-400"></div>
 
                         <div class="container">
                             <a class="nav-logout" href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">

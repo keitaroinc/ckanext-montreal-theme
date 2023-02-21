@@ -4615,6 +4615,10 @@ video {
   border-width: 0;
 }
 
+.border-half{
+  border-width: 0.5px;
+}
+
 .border-1{
   border-width: 1px;
 }
@@ -63329,4 +63333,15 @@ body{
   .text-nav-name:hover{
     color:#868e96;
   }
+
+  .testklasa{
+    display: block;
+    height: 17px;
+    width: 1px;
+    border:1px solid #ced4da;
+    
+  }
+
+     
+               
 }

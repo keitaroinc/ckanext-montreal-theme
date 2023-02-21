@@ -39,7 +39,7 @@
                   <p>{{ _('The Data API can be accessed via the following actions of the CKAN action API.') }}</p>
                   <table class="table-condensed table-striped table-bordered">
                     <thead></thead>
-                    <tbody>
+                    <tbody style="word-break: break-word;">
                       <tr>
                         <th scope="row">{{ _('Query') }}</th>
                         <td><code>{{ h.url_for(controller='api', action='action', ver=3, logic_function='datastore_search', qualified=True) }}</code></td>
