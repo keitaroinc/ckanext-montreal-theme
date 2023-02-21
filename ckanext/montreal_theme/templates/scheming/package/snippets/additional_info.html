@@ -58,7 +58,6 @@ Then we can send new_pkg as data to the snippet below.
 
 
 {% if pkg_dict.get('extras') %}
-
 <!-- adding territoire to the pkg_dict dictionary-->
 {% set ter_pass = [] %}
   {% for item in pkg_dict.get('extras') %}
@@ -67,7 +66,6 @@ Then we can send new_pkg as data to the snippet below.
       {% endif %}
   {% endfor%}
   <div hidden="hidden">{{pkg_dict.update({'territoire':ter_pass})}}</div>
-{{pkg_dict}}
 
     {%- for field in schema.dataset_fields -%}
     
@@ -81,8 +79,6 @@ Then we can send new_pkg as data to the snippet below.
       </tr>
     {%- endif -%}
     {%- endfor -%}
-
-
 
 
 
