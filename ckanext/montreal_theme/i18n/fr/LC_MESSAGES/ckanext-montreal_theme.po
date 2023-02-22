@@ -746,3 +746,28 @@ msgstr "Inscrivez dans ce formulaire vos commentaires, questions, demandes ou pr
 msgid "Submit"
 msgstr "Soumettre"
 
+#: ckanext/pages/theme/templates_main/ckanext_pages/blog_edit_base.html:12
+msgid "Add blog articles to CKAN here."
+msgstr "Ajouter un nouvel article."
+
+#: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:65
+msgid "Publish Date"
+msgstr "Date de publication"
+
+#: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:42
+msgid "Edit Blog Article"
+msgstr "Éditer un article"
+
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:104
+msgid "Header Order"
+msgstr "Ordre d'apparition dans l'entête"
+
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:107
+msgid "Not in Menu"
+msgstr "Exclure de l'entête"
+
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:142
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:129
+msgid "Content"
+msgstr "Contenu"
+
