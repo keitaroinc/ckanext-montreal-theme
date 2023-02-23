@@ -783,3 +783,6 @@ msgstr "Ajouter une page"
 msgid "Edit page"
 msgstr "Modifier la page"
 
+#: ckanext-montreal-theme/ckanext/montreal_theme/templates/user/logout.html:10
+msgid "Login"
+msgstr "Se connecter"
