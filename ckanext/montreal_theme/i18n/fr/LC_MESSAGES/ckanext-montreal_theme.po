@@ -754,9 +754,13 @@ msgstr "Ajouter un nouvel article."
 msgid "Publish Date"
 msgstr "Date de publication"
 
-#: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:42
+#: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:57
 msgid "Edit Blog Article"
 msgstr "Éditer un article"
+
+#: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:55
+msgid "Add Blog Article"
+msgstr "Ajouter un nouvel article"
 
 #: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:104
 msgid "Header Order"
@@ -770,4 +774,12 @@ msgstr "Exclure de l'entête"
 #: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:129
 msgid "Content"
 msgstr "Contenu"
+
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:63
+msgid "Add page"
+msgstr "Ajouter une page"
+
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:65
+msgid "Edit page"
+msgstr "Modifier la page"
 
