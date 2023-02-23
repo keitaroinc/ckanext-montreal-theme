@@ -736,4 +736,8 @@ msgstr "Inscrivez dans ce formulaire vos commentaires, questions, demandes ou pr
 msgid "Submit"
 msgstr "Soumettre"
 
+#: ckanext/pages/theme/templates_main/ckanext_pages/blog_edit_base.html:12
+msgid " <p>Add blog articles to CKAN here.</p> "
+msgstr " <p>Ajouter un nouvel article. </p> "
+
 
