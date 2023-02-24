@@ -157,6 +157,18 @@ msgstr ""
 msgid "Site Tag Line"
 msgstr ""
 
+#: ckanext/montreal_theme/templates/contact/snippets/form.html:12
+msgid "Name"
+msgstr "Nom"
+
+#: ckanext/montreal_theme/templates/contact/snippets/form.html:16
+msgid "Comment"
+msgstr "Message"
+
+#: ckanext/montreal_theme/templates/contact/snippets/form.html:14
+msgid "Email"
+msgstr "Courriel"
+
 #: ckanext/montreal_theme/templates/admin/config.html:29
 msgid "Site logo"
 msgstr ""
