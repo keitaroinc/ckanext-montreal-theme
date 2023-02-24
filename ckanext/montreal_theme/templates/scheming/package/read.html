@@ -10,7 +10,7 @@
 
 
 {% block package_tags %}
-<h3> Methodology</h3>
+<h3> {{ _('Methodology') }}</h3>
 
 {% if pkg_dict.get('methodologie') %}
         {{ h.render_markdown(pkg.get('methodologie')) }}
