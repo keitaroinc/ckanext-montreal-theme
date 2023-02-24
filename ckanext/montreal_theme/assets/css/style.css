@@ -14911,8 +14911,10 @@ body{
 }
 
 .markdown-content p{
+  line-height: 1.625;
   font-size:1.125rem;
-  margin-bottom:.5rem;
+  margin-bottom:1.5rem;
+  margin-top:1.5rem;
   color:#868E96;
 }
 
