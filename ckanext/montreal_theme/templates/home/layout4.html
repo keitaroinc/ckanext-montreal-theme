@@ -1,5 +1,7 @@
 <!-- This file keeps the new layout of the homepage -->
 
+{% set current_lang = request.environ.CKAN_LANG %}
+
   <div id="main-container z-10">
     <section class="bg-center bg-no-repeat bg-contain" style="background-image: url(base/images/MTLdonneesGRIS.png); background-size: contain; background-position:50%;background-color: rgba(247,248,249,255);">
       <div class="container flex flex-col  w-5/6 content-justify m-auto lg:max-w-2xlm pt-8 pb-8">
@@ -122,7 +124,11 @@
             <div class="mb-2">
               {{_('By opening its data to everyone, the City of Montreal allows it to be reused for different purposes, including commercial purposes. The results of this reuse can then be shared in the community, which creates a multiplier effect.')}}
             </div>
+            {% if current_lang =='fr' %}
+            <a class="text-primary font-bold" href="/pages/notre-demarche">{{_('Read our approach')}}</a>
+            {% else %}
             <a class="text-primary font-bold" href="/pages/our-approach">{{_('Read our approach')}}</a>
+            {% endif %}
           </div>
         </div>
       </div>
