@@ -9,15 +9,15 @@
 {% endif %}
 {% block primary_content_inner %}
     <h1 class="page-heading">
-    {% block page_heading %}{{  _('Manage Search Confguration') }}{% endblock %}
+    {% block page_heading %}{{  _('Manage Search Configuration') }}{% endblock %}
   </h1>
     {% block form %}
     <form class="search-config" method="post">
         <div class="form-inline">
           {% for sc in search_config %}
             <div id="search-data{{ loop.index }}">
-              {{ form.input('link', sc.link, label='Link', placeholder='Link', value=sc.link) }}
-              {{ form.input('value', sc.value, label='Value', placeholder='Value', value=sc.value) }} 
+              {{ form.input('link', sc.link, label=_('Link'), placeholder='Link', value=sc.link) }}
+              {{ form.input('value', sc.value, label=_('Value'), placeholder='Value', value=sc.value) }} 
               {% set btn =  'add' if loop.index == 1 else 'remove' %}
               {% set sign =  '+' if loop.index == 1 else '-' %}
               <input id="add[{{loop.index}}]" name="{{btn}}" type="button" class="btn" value="{{sign}}" />

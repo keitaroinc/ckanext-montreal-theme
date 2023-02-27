@@ -20,9 +20,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ckanext/montreal_theme/plugin.py:27
+#: ckanext/montreal_theme/plugin.py:29
 msgid "Search Config"
-msgstr "Rechercher Confguration"
+msgstr "Configuration de la recherche"
 
 #: ckanext/montreal_theme/plugin.py:47
 #: ckanext/montreal_theme/templates/package/_read.html:19
@@ -130,7 +130,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/header.html:37
 msgid "Profile settings"
-msgstr ""
+msgstr "Réglase du profil"
 
 #: ckanext/montreal_theme/templates/header.html:38
 msgid "Settings"
@@ -214,12 +214,20 @@ msgid "Update Config"
 msgstr ""
 
 #: ckanext/montreal_theme/templates/admin/search_config.html:12
-msgid "Manage Search Confguration"
-msgstr ""
+msgid "Manage Search Configuration"
+msgstr "Gérer la configuration de la recherche"
 
 #: ckanext/montreal_theme/templates/admin/search_config.html:29
 msgid "Update Search Config"
-msgstr ""
+msgstr "Mettre à jour la config de recherche"
+
+#: ckanext/montreal_theme/templates/admin/search_config.html:19
+msgid "Value"
+msgstr "Valeur"
+
+#: ckanext/montreal_theme/templates/admin/search_config.html:20
+msgid "Link"
+msgstr "Lien"
 
 #: ckanext/montreal_theme/templates/ckanext_pages/page.html:16
 #: ckanext/montreal_theme/templates/ckanext_pages/page.html:18
@@ -798,3 +806,20 @@ msgstr "Modifier la page"
 #: ckanext-montreal-theme/ckanext/montreal_theme/templates/user/logout.html:10
 msgid "Login"
 msgstr "Se connecter"
+
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/blog_list.html:6
+#: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/blog_list.html:8
+msgid "Add Article"
+msgstr "Ajouter une article"
+
+#: ckan/templates/admin/base.html:11
+msgid "Search Config"
+msgstr "Configuration de la recherche"
+
+#: ckanext-spatial/ckanext/spatial/templates/spatial/snippets/spatial_query.html:18
+msgid "Filter by location"
+msgstr "Filtrer par localisation"
+
+#: ckanext-spatial/ckanext/spatial/templates/spatial/snippets/spatial_query.html:19
+msgid "Clear"
+msgstr "Enlever"
