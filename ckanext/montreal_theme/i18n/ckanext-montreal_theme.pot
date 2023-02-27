@@ -18,9 +18,9 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ckanext/montreal_theme/plugin.py:27
+#: ckanext/montreal_theme/plugin.py:30
 msgid "Search Config"
-msgstr ""
+msgstr "Configuration de la recherche"
 
 #: ckanext/montreal_theme/plugin.py:47
 #: ckanext/montreal_theme/templates/package/_read.html:19
