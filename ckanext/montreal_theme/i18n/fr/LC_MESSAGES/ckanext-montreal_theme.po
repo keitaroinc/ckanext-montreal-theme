@@ -215,19 +215,19 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/admin/search_config.html:12
 msgid "Manage Search Configuration"
-msgstr "Gérer la configuration de la recherche"
+msgstr "Configuration des raccourcis de la page d'accueil"
 
 #: ckanext/montreal_theme/templates/admin/search_config.html:29
 msgid "Update Search Config"
-msgstr "Mettre à jour la config de recherche"
+msgstr "Sauvegarder"
 
 #: ckanext/montreal_theme/templates/admin/search_config.html:19
 msgid "Value"
-msgstr "Valeur"
+msgstr "Étiquette"
 
 #: ckanext/montreal_theme/templates/admin/search_config.html:20
 msgid "Link"
-msgstr "Lien"
+msgstr "Adresse web"
 
 #: ckanext/montreal_theme/templates/ckanext_pages/page.html:16
 #: ckanext/montreal_theme/templates/ckanext_pages/page.html:18
@@ -823,3 +823,41 @@ msgstr "Filtrer par localisation"
 #: ckanext-spatial/ckanext/spatial/templates/spatial/snippets/spatial_query.html:19
 msgid "Clear"
 msgstr "Enlever"
+
+#: ckan/templates/admin/trash.html:31
+msgid ""
+"Purge deleted datasets, organizations or groups forever and irreversibly."
+msgstr ""
+"Purger de façon définitive et irréversible les ensembles de données organisations et groupes supprimés."
+
+#: ckan/templates/admin/trash.html:13
+msgid "Purge all"
+msgstr "Purger tout"
+
+#: ckan/templates/admin/snippets/data_type.html:7
+msgid "Deleted datasets"
+msgstr "Ensembles de données supprimés"
+
+#: ckan/templates/admin/snippets/data_type.html:9
+msgid "Deleted organizations"
+msgstr "Organisations supprimées"
+
+#: ckan/templates/admin/snippets/data_type.html:11
+msgid "Deleted groups"
+msgstr "Groupes supprimés"
+
+#: ckan/views/admin.py:170
+msgid "There are no datasets to purge"
+msgstr "Il n'y a pas d'ensembles de données à purger."
+
+#: ckan/views/admin.py:171
+msgid "There are no organizations to purge"
+msgstr "Il n'y a pas d'organisations à purger."
+
+#: ckan/views/admin.py:172
+msgid "There are no groups to purge"
+msgstr "Il n'y a pas de groupes à purger."
+
+#: ckan/views/admin.py:215
+msgid "Massive purge complete"
+msgstr "Purge massive terminée"

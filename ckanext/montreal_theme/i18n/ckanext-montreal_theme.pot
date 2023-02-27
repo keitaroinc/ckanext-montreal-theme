@@ -138,7 +138,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/header.html:37
 msgid "Profile settings"
-msgstr ""
+msgstr "Réglase du profil"
 
 #: ckanext/montreal_theme/templates/header.html:38
 msgid "Settings"
