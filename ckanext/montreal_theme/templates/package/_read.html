@@ -80,7 +80,7 @@
                             <td class="px-1 py-3" style="border-top-width: 1px; text-align:left;">{{ _(res.get('name')) }}</td>
                             <td class="px-1 py-3 font-semibold text-base text-gray-900 uppercase" style="text-align:center; border-top-width: 1px;">{{ res.get('format') }}</td>
                             {% if current_lang == 'fr'%}
-                            <td class="px-1 py-3" style="border-top-width: 1px; text-align:center;">{{h.format_size(res.get('Taille')) or '--' }}</td>
+                            <td class="px-1 py-3" style="border-top-width: 1px; text-align:center;">{{ _(h.format_size(res.get('Taille'))) or '--' }}</td>
                                 {% else %}
                             <td class="px-1 py-3" style="border-top-width: 1px; text-align:center;">{{h.format_size(res.get('Size')) or '--' }}</td>
                             {% endif %}
@@ -255,7 +255,7 @@
                             {% elif pkg.get('extras') %}
                                 {% for item in pkg.get('extras')%}
                                     {% if item.key== 'update_frequency'%}
-                                    {{ h.render_content(item.value) }}
+                                    {{ _('h.render_content(item.value)') }}
                                     {% endif %}
                                 {% endfor%}
                             {% else %}
@@ -282,7 +282,19 @@
                     </div>
                     <div class="py-2">
                         <h3 class="font-semibold text-gray-900">{{ _('Date the dataset was first added') }}</h3>
-                        <p>{{ h.render_content(pkg.get('metadata_created')) }}</p>
+
+                       
+                        {% set time_str_third = pkg.get('metadata_created') %}
+                        
+                        
+                        {% if time_str_third is none %}
+
+
+                        {% else %}
+                            {% set minutes = time_str_third[11:13] %}
+                            {% set seconds = time_str_third[14:16] %}
+                            {{ h.render_datetime(time_str_third,  date_format='%Y-%m-%d') + " " + minutes + ":" + seconds }}
+                        {% endif %}
                     </div>
                     {# -------- end additional info ---------- #}
                     {# -------- Organization block ---------- #}

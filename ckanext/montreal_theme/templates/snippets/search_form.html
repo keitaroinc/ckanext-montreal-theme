@@ -35,10 +35,11 @@
       <div class="flex flex-wrap items-center justify-center py-gutter">
         {% if show_empty and count == 0 and not error %}
         {% trans %}
-            <p class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-2xl text-3-1/2xl text-black">
+            <!-- <p class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-2xl text-3-1/2xl text-black">
                 Please try another search.
-            </p>
+            </p> -->
         {% endtrans %}
+        
         {% endif %}
         {% block search_title %}
         {% if not error %}
