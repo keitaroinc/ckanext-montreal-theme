@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.7.0\n"
 
-#: ckanext/montreal_theme/plugin.py:29
+#: ckanext/montreal_theme/plugin.py:30
 msgid "Search Config"
 msgstr "Configuration de la recherche"
 
@@ -812,9 +812,13 @@ msgstr "Se connecter"
 msgid "Add Article"
 msgstr "Ajouter une article"
 
-#: ckan/templates/admin/base.html:11
+#: ckan/templates/admin/base.html:7
 msgid "Search Config"
 msgstr "Configuration de la recherche"
+
+#: ckan/templates/admin/base.html:8
+msgid "Showcase Config"
+msgstr "Administrateurs des applications"
 
 #: ckanext-spatial/ckanext/spatial/templates/spatial/snippets/spatial_query.html:18
 msgid "Filter by location"
