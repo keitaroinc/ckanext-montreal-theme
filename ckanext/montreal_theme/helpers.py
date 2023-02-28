@@ -10,6 +10,31 @@ import json
 
 g = tk.g
 
+def is_user_editor():
+    all_organizations = get_all_organizations()
+
+    for organization in all_organizations:
+        info = get_organization_info(organization.get('id'))
+            
+        for user in (info.get('users')):
+            if user.get('id') == g.userobj.id:
+                if user.get('capacity') == 'editor':
+                    return True
+
+    return False
+
+          
+
+def get_organization_info(id,include_dataset_count=True):
+    '''Return organization information.
+    '''
+    context = {'user': g.user}
+    data_dict = {
+        'id': id,
+        'all_fields': True}
+    return tk.get_action('organization_show')(context, data_dict)
+
+
 def get_all_organizations(include_dataset_count=True):
     '''Return a list of organizations that the current user has the specified
     permission for.

@@ -36,6 +36,8 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
     # ITemplateHelpers
     def get_helpers(self):
         return {
+            'is_editor':h.is_user_editor,
+            'organization_info': h.get_organization_info,
             'all_organizations': h.get_all_organizations,
             'all_groups': h.get_all_groups,
             'latest_datasets': h.get_latest_datasets,

@@ -251,7 +251,8 @@
                         <h3 class="font-semibold text-gray-900">{{ _('Update frequency') }}</h3>
                         <p>
                             {% if pkg.get('update_frequency') %}
-                                {{ h.render_content(pkg.get('update_frequency')) }}
+                            {% set freq = pkg.get('update_frequency') %}
+                                {{ _(freq) }}
                             {% elif pkg.get('extras') %}
                                 {% for item in pkg.get('extras')%}
                                     {% if item.key== 'update_frequency'%}

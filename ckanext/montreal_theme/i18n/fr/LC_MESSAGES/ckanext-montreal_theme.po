@@ -161,6 +161,86 @@ msgstr ""
 msgid "Name"
 msgstr "Nom"
 
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "daily"
+msgstr "Quotidien"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "irregular"
+msgstr "Irrégulier"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "hourly"
+msgstr "Horaire"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "weekly"
+msgstr "Hebdomadaire"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "monthly"
+msgstr "Mensuel"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "quarterly"
+msgstr "Trimestriel"
+
+
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "semi-annual"
+msgstr "Semi-annuel"
+
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "annual"
+msgstr "Annuel"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "biennial"
+msgstr "Biennal"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "triennial"
+msgstr "Triennial"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "not planned"
+msgstr "Non planifié"
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "as needed"
+msgstr "Au besoin"
+
+
+#: ckanext/montreal_theme/templates/package/_read.html:255
+msgid "quinquennial"
+msgstr "Quinquennal"
+
+
+#: ckanext/montreal_theme/templates/package/_read.html:83
+msgid "{bytes} bytes"
+msgstr "{bytes} bytes"
+
+#: ckanext/montreal_theme/templates/package/_read.html:83
+msgid "{kibibytes} KiB"
+msgstr "{kibibytes} KiB"
+
+#: ckanext/montreal_theme/templates/package/_read.html:83
+msgid "{mebibytes} MiB"
+msgstr "{mebibytes} MiB"
+
+#: ckanext/montreal_theme/templates/package/_read.html:83
+msgid "{gibibytes} GiB"
+msgstr "{gibibytes} GiB"
+
+#: ckanext/montreal_theme/templates/package/_read.html:83
+msgid "{tebibytes} TiB"
+msgstr "{tebibytes} TiB"
+
+
+
 #: ckanext/montreal_theme/templates/contact/snippets/form.html:16
 msgid "Comment"
 msgstr "Message"

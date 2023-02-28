@@ -63336,7 +63336,7 @@ body{
     color:#868e96;
   }
 
-  .testklasa{
+  .nav-line-changed{
     display: block;
     height: 17px;
     width: 1px;
@@ -63344,6 +63344,13 @@ body{
     
   }
 
+  #content > div.row.wrapper > section.module.module-narrow.resources > ul{
+    display: none;
+  }
+
+  #content > div.row.wrapper > section.module.module-narrow.resources > h2{
+    display:none;
+  }
      
                
 }
