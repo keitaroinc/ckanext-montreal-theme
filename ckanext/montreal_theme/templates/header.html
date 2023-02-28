@@ -5,7 +5,7 @@
 
 
 
-{% if g.userobj != None %}
+{% if g.userobj is not none %}
 {% set isEditor = h.is_editor() %}
 {% endif %}
 
@@ -41,7 +41,7 @@
                 </div>
                 <!-- <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
                 <div class="text-black font-bold">{{ _('Open Data') }}</div> -->
-                {% if g.userobj != None %}
+                {% if g.userobj is not none %}
                     {% set isEditor = h.is_editor() %}
                 {% endif %}
 
