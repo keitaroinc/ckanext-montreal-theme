@@ -64,7 +64,7 @@
             <a href="{{ h.url_for('dataset.read', id=package_id) }}" class="application_dataset flex border-t border-gray-200 p-4">
                 <img src="{{ group.get('image_display_url')  }}" class="block" width="50px" height="50px">
                 <span class="text-base filter-button font-bold">
-                    {{ group.get('title') }}
+                    {{showcase_pkg.get('title')}}
                 </span>
             </a>
         </ul>
