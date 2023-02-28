@@ -945,3 +945,7 @@ msgstr "Il n'y a pas de groupes à purger."
 #: ckan/views/admin.py:215
 msgid "Massive purge complete"
 msgstr "Purge massive terminée"
+
+#: ckanext-montreal-theme/ckanext/montreal_theme/templates/user/login.html:6
+msgid "Connection to the data publication and administration area"
+msgstr "Connexion à l'espace de publication de données et d'administration"

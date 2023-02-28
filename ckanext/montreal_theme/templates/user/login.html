@@ -3,11 +3,12 @@
 {% block subtitle %}{{ _('Login') }}{% endblock %}
 
 {% block breadcrumb_content %}
+<h3 class="text-lg font-bold" id="info-header-login">{{ _('Connection to the data publication and administration area') }}</h3>
 {% endblock %}
 
 {% block primary_content %}
   <section class="module">
-    <div class="module-content">
+    <div class="module-content" id="login-form">
       <h1 class="page-heading">{% block page_heading %}{% endblock %}</h1>
       {% block form %}
         {% snippet "user/snippets/login_form.html", action=g.login_handler, error_summary=error_summary %}
@@ -21,10 +22,10 @@
   {% block help_register %}
   <section class="module module-narrow module-shallow">
     {% block help_register_inner %}
-      <h2 class="module-heading">{{ _('Need an Account?') }}</h2>
-      <div class="module-content">
+      <h3 class="text-lg" >{{ _('Need an Account?') }}</h3>
+      <div>
         <p>{% trans %}Then sign right up, it only takes a minute.{% endtrans %}</p>
-        <p class="action">
+        <p class="action" id="register-account-button">
         {% block help_register_button %}
           <a class="btn btn-default" href="{{ h.url_for('user.register') }}">{{ _('Create an Account') }}</a>
         {% endblock %}
@@ -38,15 +39,13 @@
   {% block help_forgotten %}
   <section class="module module-narrow module-shallow">
     {% block help_forgotten_inner %}
-    <h2 class="module-heading">{{ _('Forgotten your password?') }}</h2>
-    <div class="module-content">
+    <h3 class="text-lg">{{ _('Forgotten your password?') }}</h3>
       <p>{% trans %}No problem, use our password recovery form to reset it.{% endtrans %}</p>
-      <p class="action">
+      <p class="action" id="forgot-password-button">
         {% block help_forgotten_button %}
         <a class="btn btn-default" href="{{ h.url_for('user.request_reset') }}">{{ _('Forgot your password?') }}</a>
         {% endblock %}
       </p>
-    </div>
     {% endblock %}
   </section>
   {% endblock %}
