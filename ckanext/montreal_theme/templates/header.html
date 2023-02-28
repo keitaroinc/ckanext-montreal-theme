@@ -4,12 +4,13 @@
 {% block header_account %}
 
 
-
+{#
 {% if g.userobj is not none %}
 {% set isEditor = h.is_editor() %}
 {% endif %}
+#}
 
-{% if g.userobj.sysadmin or isEditor==true %}
+{% if g.userobj.sysadmin %}
 <nav class="nav-admin font-open-sans">
     {% if current_lang =='fr' %}
     <span class="nav-admin-welcome">Bienvenue, 
@@ -41,11 +42,13 @@
                 </div>
                 <!-- <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
                 <div class="text-black font-bold">{{ _('Open Data') }}</div> -->
+                {#
                 {% if g.userobj is not none %}
                     {% set isEditor = h.is_editor() %}
                 {% endif %}
+                #}
 
-                {% if g.userobj.sysadmin or isEditor==true %}
+                {% if g.userobj.sysadmin %}
                 <nav class="flex items-right" style="padding-left: 340px;">
 
 
