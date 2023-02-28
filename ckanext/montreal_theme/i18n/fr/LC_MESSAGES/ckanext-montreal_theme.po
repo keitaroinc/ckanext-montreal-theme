@@ -22,7 +22,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/plugin.py:30
 msgid "Search Config"
-msgstr "Configuration de la recherche"
+msgstr "Raccourcis page d'accueil"
 
 #: ckanext/montreal_theme/plugin.py:47
 #: ckanext/montreal_theme/templates/package/_read.html:19
@@ -892,9 +892,9 @@ msgstr "Se connecter"
 msgid "Add Article"
 msgstr "Ajouter un article"
 
-#: ckan/templates/admin/base.html:7
+#: ckanext-montreal-theme/ckanext/montreal_theme/templates/admin/base.html:7
 msgid "Search Config"
-msgstr "Configuration de la recherche"
+msgstr "Raccourcis page d'accueil"
 
 #: ckan/templates/admin/base.html:8
 msgid "Showcase Config"
