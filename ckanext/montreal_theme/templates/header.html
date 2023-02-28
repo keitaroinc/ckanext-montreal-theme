@@ -1,10 +1,15 @@
-
-{% block header_account %}
-
 {% set current_lang = request.environ.CKAN_LANG %}
 
 
-{% if g.userobj.sysadmin %}
+{% block header_account %}
+
+
+
+{% if g.userobj != None %}
+{% set isEditor = h.is_editor() %}
+{% endif %}
+
+{% if g.userobj.sysadmin or isEditor==true %}
 <nav class="nav-admin font-open-sans">
     {% if current_lang =='fr' %}
     <span class="nav-admin-welcome">Bienvenue, 
@@ -31,12 +36,16 @@
                         title="{{ g.site_title }}" width="190px" />
                     </a>
                     <!-- <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div> -->
-                    <div class="mx-6 h-4 testklasa border-gray-400"></div>
+                    <div class="mx-6 h-4 nav-line-changed border-gray-400"></div>
                     <div class="text-black font-bold" style="white-space: nowrap;">{{ _('Open Data') }}</div>
                 </div>
                 <!-- <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
                 <div class="text-black font-bold">{{ _('Open Data') }}</div> -->
-                {% if g.userobj.sysadmin %}
+                {% if g.userobj != None %}
+                    {% set isEditor = h.is_editor() %}
+                {% endif %}
+
+                {% if g.userobj.sysadmin or isEditor==true %}
                 <nav class="flex items-right" style="padding-left: 340px;">
 
 
@@ -88,22 +97,23 @@
     
                         <div class=" h-4 border-half border-solid border-gray-400"></div>
                         
+
                         <div class="container">
                             <a href="{{ h.url_for('showcase_blueprint.index') }}" title="{{ _('Sysadmin settings') }}">
                                 <span class="text-black font-bold hover:text-primary">{{ _('Applications') }}</span>
                             </a>
                         </div>
     
+
+                        {% if g.userobj.sysadmin %}
                         <div class=" h-4 border-half border-solid border-gray-400"></div>
-
-
-
+                        
                         <div class="container">
                             <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
                                 <span class="text-black font-bold hover:text-primary">{{ _('Admin') }}</span>
                             </a>
                         </div>
-
+                        {% endif %}
 
 
                         {#
