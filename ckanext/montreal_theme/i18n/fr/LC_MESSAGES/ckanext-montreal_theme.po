@@ -130,7 +130,7 @@ msgstr ""
 
 #: ckanext/montreal_theme/templates/header.html:37
 msgid "Profile settings"
-msgstr "Réglase du profil"
+msgstr "Paramètres du profil"
 
 #: ckanext/montreal_theme/templates/header.html:38
 msgid "Settings"
@@ -810,7 +810,7 @@ msgstr "Se connecter"
 #: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/blog_list.html:6
 #: ckanext-pages/ckanext/pages/theme/templates_main/ckanext_pages/blog_list.html:8
 msgid "Add Article"
-msgstr "Ajouter une article"
+msgstr "Ajouter un article"
 
 #: ckan/templates/admin/base.html:7
 msgid "Search Config"
