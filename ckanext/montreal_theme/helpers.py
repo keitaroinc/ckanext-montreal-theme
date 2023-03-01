@@ -4,6 +4,8 @@ import ckan.lib.formatters as formatters
 
 from ckan.plugins import toolkit as tk
 
+
+
 from ckanext.montreal_theme.model import SearchConfig
 
 import json
@@ -11,44 +13,31 @@ import json
 g = tk.g
 
 def is_user_editor():
-    
-    all_organizations = get_all_organizations() #returns list of organizations with their informations
-    
-
-    for organization in all_organizations:
-        info = get_organization_info(organization.get('id')) #gets the whole information for every organization
-        
-        users = info.get('users')
        
-        if users is None:
-            return False  
+    info = get_organization_info_for_user()  #Gets the whole information for every organization the user has permissions for 
 
-        for user in users:  #checking if the logged in user is editor in some organization
-            print("user ")
-            print(user)
-            if user.get('id') == g.userobj.id:
-                print("This is the logged in user")
-                print(user.get('fullname'))
-                if user.get('capacity') == 'editor':
-                    return True
+    for organization in info:  #checking if the user has the role of editor in the organizations for which it has permissions
+        if organization.get('capacity') == 'editor':
+            return True
 
     return False
 
           
 
-def get_organization_info(id,include_dataset_count=True):
-    '''Return organization information.
+def get_organization_info_for_user(include_dataset_count=True):
+    '''Return a list of organizations with additional data such as user role ('capacity')
+       for the ones that the user has permission.
     '''
     context = {'user': g.user}
     data_dict = {
-        'id': id,
-        'all_fields': True}
-    return tk.get_action('organization_show')(context, data_dict)
+        'id': g.userobj.id,
+        }
+    return tk.get_action('organization_list_for_user')(context, data_dict)
 
 
 def get_all_organizations(include_dataset_count=True):
     '''Return a list of organizations that the current user has the specified
-    permission for.
+       permission for.
     '''
     context = {'user': g.user}
     data_dict = {
