@@ -1,0 +1,17 @@
+#login-form{
+    margin-top: -25px;
+    padding-top: 0px;
+    }
+
+#info-header-login{
+    margin-left: -1em ;
+    margin-bottom: 1em;
+}
+#register-account-button{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#forgot-password-button{
+    padding-top: 1em;
+}
