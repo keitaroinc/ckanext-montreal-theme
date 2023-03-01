@@ -11,13 +11,24 @@ import json
 g = tk.g
 
 def is_user_editor():
-    all_organizations = get_all_organizations()
+    
+    all_organizations = get_all_organizations() #returns list of organizations with their informations
+    
 
     for organization in all_organizations:
-        info = get_organization_info(organization.get('id'))
-            
-        for user in (info.get('users')):
+        info = get_organization_info(organization.get('id')) #gets the whole information for every organization
+        
+        users = info.get('users')
+       
+        if users is None:
+            return False  
+
+        for user in users:  #checking if the logged in user is editor in some organization
+            print("user ")
+            print(user)
             if user.get('id') == g.userobj.id:
+                print("This is the logged in user")
+                print(user.get('fullname'))
                 if user.get('capacity') == 'editor':
                     return True
 
