@@ -89,6 +89,16 @@ def homepage_search_configs():
 def format_size(size):
     try:
         value = formatters.localised_filesize(int(size))
+        
+        if "KiB" in value:
+            value = value.replace("KiB","KB")
+        if "MiB" in value:
+            value = value.replace("MiB","MB")
+        if "GiB" in value:
+            value = value.replace("GiB","GB")
+        if "TiB" in value:
+            value = value.replace("TiB","TB")
+            
     except Exception as e:
         value = size
     return value
