@@ -225,19 +225,19 @@ msgstr "{bytes} bytes"
 
 #: ckanext/montreal_theme/templates/package/_read.html:83
 msgid "{kibibytes} KiB"
-msgstr "{kibibytes} KiB"
+msgstr "{kibibytes} KB"
 
 #: ckanext/montreal_theme/templates/package/_read.html:83
 msgid "{mebibytes} MiB"
-msgstr "{mebibytes} MiB"
+msgstr "{mebibytes} MB"
 
 #: ckanext/montreal_theme/templates/package/_read.html:83
 msgid "{gibibytes} GiB"
-msgstr "{gibibytes} GiB"
+msgstr "{gibibytes} GB"
 
 #: ckanext/montreal_theme/templates/package/_read.html:83
 msgid "{tebibytes} TiB"
-msgstr "{tebibytes} TiB"
+msgstr "{tebibytes} TB"
 
 
 
