@@ -165,8 +165,8 @@ msgstr "{tebibytes} TiB"
 
 
 #: ckanext/montreal_theme/templates/footer.html:43
-msgid "Contact us"
-msgstr ""
+msgid "Contact Us"
+msgstr "Nous joindre"
 
 #: ckanext/montreal_theme/templates/contact/snippets/form.html:12
 msgid "Name"

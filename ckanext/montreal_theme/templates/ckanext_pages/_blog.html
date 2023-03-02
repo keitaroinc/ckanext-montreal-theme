@@ -38,17 +38,11 @@
             </div>
         </main>
         <div class="lg:w-1/3 lg:pl-gutter">
-            <h2 class="bg-gray-200 px-4 py-3 font-bold mb-1">
-                {{ _("Share") }}
-            </h2>
-            <ul class="text-sm">
-                <li class="border-b-2 border-gray-200">
-                    <a href="" class="block px-4 py-3 text-primary" target="_blank">{{ _("Twitter") }}</a>
-                </li>
-                <li>
-                    <a href="" class="block px-4 py-3 text-primary">{{ _("Facebook") }}</a>
-                </li>
-            </ul>
+            <h2 class="contact-us-social">{{ _('Share') }}</h2>
+                <ul class="unstyled nav nav-simple nav-facet">
+                    <li class="nav-item"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
+                    <li class="nav-item"><a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
+                </ul>
         </div>
     </div>
     {{h.disqus_comments()}}

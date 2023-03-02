@@ -15,3 +15,24 @@
 #forgot-password-button{
     padding-top: 1em;
 }
+
+#contact-us-container{
+    float: left;
+    margin-right: 3em;
+    background-color: white;
+}
+
+.contact-us-social {
+    margin: 0;
+    padding: 10px 17px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #5a5a5a;
+    line-height: 1.3;
+    background-color: #e9ecef;
+  }
+
+  #contact-us-sidebar {
+    margin-top: 45px;
+ 
+  }
