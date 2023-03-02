@@ -34,24 +34,25 @@
     {% if sorting %}
       <div class="flex flex-wrap items-center justify-center py-gutter">
         {% if show_empty and count == 0 and not error %}
-        {% trans %}
-            <!-- <p class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-2xl text-3-1/2xl text-black">
-                Please try another search.
-            </p> -->
-        {% endtrans %}
-        
+          {% trans %}
+              <!-- <p class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-2xl text-3-1/2xl text-black">
+                  Please try another search.
+              </p> -->
+          {% endtrans %}
         {% endif %}
+
         {% block search_title %}
-        {% if not error %}
-          <h1 class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-4xl text-3-1/2xl font-bold text-black">
-            {% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}
-          </h1>
-        {% else %}
-          <h2 class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-4xl text-3-1/2xl text-semibold text-black">
-            Error
-          </h2>
-        {% endif %}
+          {% if not error %}
+            <h1 class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-4xl text-3-1/2xl font-bold text-black">
+              {% snippet 'snippets/search_result_text.html', query=query, count=count, type=type %}
+            </h1>
+          {% else %}
+            <h2 class="w-full flex-auto pb-5 text-center sm:w-auto sm:pb-0 sm:text-left md:w-full md:pb-5 md:text-center lg:w-auto lg:pb-0 lg:text-left text-4xl text-3-1/2xl text-semibold text-black">
+              Error
+            </h2>
+          {% endif %}
         {% endblock %}
+        {% if count !=0 %}
         <label class="flex-none font-bold text-lg text-black px-2" for="field-order-by">{{ _('Order by') }}</label>
         <div class="flex-none relative">
             <select class="bg-white appearence-none border-1 border-solid boder-gray-400 text-base text-gray-900 rounded py-3 px-2 pr-8 leading-tight focus:outline-none focus:bg-white" id="field-order-by" name="sort">
@@ -64,6 +65,7 @@
             {% block search_sortby_button %}
          </div>
         {% endblock %}
+        {% endif %}
       </div>
     {% endif %}
   {% endblock %}
