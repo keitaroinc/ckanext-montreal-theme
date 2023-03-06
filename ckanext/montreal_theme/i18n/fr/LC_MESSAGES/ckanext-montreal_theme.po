@@ -949,3 +949,23 @@ msgstr "Purge massive terminée"
 #: ckanext-montreal-theme/ckanext/montreal_theme/templates/user/login.html:6
 msgid "Connection to the data publication and administration area"
 msgstr "Connexion à l'espace de publication de données et d'administration"
+
+#: ckan/controllers/group.py:318
+msgid "Organizations"
+msgstr "organisations"
+
+#: ckan/controllers/group.py:318
+msgid "Groups"
+msgstr "catégories"
+
+#: ckan/controllers/group.py:319
+msgid "Tags"
+msgstr "mots-clés"
+
+#: ckan/controllers/group.py:320
+msgid "Formats"
+msgstr "formats"
+
+#: ckan/controllers/group.py:320
+msgid "Licenses"
+msgstr "licences"

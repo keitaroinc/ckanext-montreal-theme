@@ -11,7 +11,7 @@
     <section class="mb-8 font-open-sans">
         {% block facet_list_heading %}
             {% set title = title or h.get_facet_title(name) %}
-            <h3 class="pb-4 font-semibold text-2xl text-gray-900">{{ title }}</h3>
+            <h3 class="pb-4 font-semibold text-2xl text-gray-900 facet-title">{{ title }}</h3>
         {% endblock %}
         {% block facet_list_items %}
         {% with items = items or h.get_facet_items_dict(name, search_facets or c.search_facets) %}
