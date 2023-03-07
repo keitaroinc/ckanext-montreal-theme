@@ -12,17 +12,30 @@ import json
 
 g = tk.g
 
-def is_user_editor():
+def is_user_editor_no_arg():
        
     info = get_organization_info_for_user()  #Gets the whole information for every organization the user has permissions for 
 
-    for organization in info:  #checking if the user has the role of editor in the organizations for which it has permissions
+    for organization in info: 
+            #checking if the user has the role of editor or admin in the organizations for which it has permissions
         if organization.get('capacity') == 'editor':
             return True
-
+        elif organization.get('capacity') == 'admin':
+            return True
+        
     return False
 
-          
+def is_user_editor(org_id):
+       
+    info = get_organization_info_for_user()  #Gets the whole information for every organization the user has permissions for 
+
+    for organization in info: 
+            #checking if the user has the role of editor in the organizations for which it has permissions
+        if (organization.get('id') == org_id and organization.get('capacity') == 'editor') or (organization.get('id') == org_id and organization.get('capacity') == 'admin'):
+            return True
+        
+    return False
+    
 
 def get_organization_info_for_user(include_dataset_count=True):
     '''Return a list of organizations with additional data such as user role ('capacity')
