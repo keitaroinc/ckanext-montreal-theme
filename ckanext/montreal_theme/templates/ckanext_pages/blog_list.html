@@ -1,4 +1,12 @@
+{% if g.userobj is not none %}
+  {% set isEditor = h.is_editor_header() %}
+{% endif %}
+
+
+
 {% if g.user and g.userobj.sysadmin %}
+{% ckan_extends %}
+{% elif g.user and isEditor==true %}
 {% ckan_extends %}
 {% else %}
 {% extends "ckanext_pages/_blog_list.html" %}

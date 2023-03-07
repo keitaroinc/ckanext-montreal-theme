@@ -1,15 +1,24 @@
-{% ckan_extends %}
+
+{% if g.userobj is not none %}
+    {% set isEditor = h.is_editor(group_dict.id) %}
+    {% ckan_extends %}
+{% else %}
+    {% extends "page.html"%}
+{% endif %}
+
+{% set group_type = group_type or group_dict.type or 'organization' %}
+
 
 {% block breadcrumb %}
-{% if not g.userobj.sysadmin %}
+{% if not g.userobj.sysadmin or isEditor %}
 
     <div class="w-full font-sans font-bold text-gray-ink text-lg py-3" aria-label="{{ _('breadcrumb') }}">
         <nav style="background-color: initial !important;" aria-label="{{ _('breadcrumb') }}">
             <ol>
             {% block breadcrumb_content %}
-            {% if g.userobj.sysadmin %}
+            {% if g.userobj.sysadmin or isEditor %}
             {{ super() }}
-
+            
             {% else %}
             {% include 'snippets/home_breadcrumb_item.html' %}
             <li class="breadcrumb_item hover:text-primary">
@@ -24,12 +33,20 @@
         </nav>
     </div>
 {% else %}
+
     {{ super() }}
 {% endif %}
 {% endblock %}
 
+
+{% block content_action %}
+  {% if h.check_access('organization_update', {'id': group_dict.id}) %}
+    {% link_for _('Manage'), named_route='organization' +'.edit', id=group_dict.name, class_='btn btn-default', icon='wrench' %}
+  {% endif %}
+{% endblock %}
+
 {% block secondary_content %}
-    {% if g.userobj.sysadmin %}
+    {% if g.userobj.sysadmin  or isEditor%}
         {{ super() }}
 
     {% else %}
@@ -37,11 +54,13 @@
         {% block organization_facets %}{% endblock %}
 
     {% endif %}
-{% endblock %}
+{% endblock %} 
+
 
 {% block content_primary_nav %}
-    {% if g.userobj.sysadmin %}
+    {% if g.userobj.sysadmin or isEditor %}
         {{ super() }}
+        
 
     {% else %}
     {% endif  %}

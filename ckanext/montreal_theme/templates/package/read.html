@@ -1,5 +1,16 @@
+{% if g.userobj is not none %}
+    {% set isEditor = h.is_editor(pkg_dict.organization.id) %}
+{% endif %}
+
+
+
 {% if g.user and g.userobj.sysadmin %}
-{% ckan_extends %}
+    {% ckan_extends %}
+
+{% elif g.user and isEditor%}
+    {% ckan_extends%}
+
 {% else %}
-{% extends "package/_read.html" %}
+    {% extends "package/_read.html" %}
+
 {% endif %}

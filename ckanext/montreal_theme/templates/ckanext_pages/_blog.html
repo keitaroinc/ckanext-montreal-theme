@@ -22,7 +22,7 @@
     <div class="container mx-auto lg:flex p-gutter">
         <main class="mb-gutter lg:mb-0 lg:w-2/3 lg:mr-gutter">
             <h1 class="text-4xl font-semibold text-gray-700">{{ _(g.page.title) }}</h1>
-            <time class="text-gray-500">{{  h.render_datetime(g.page.publish_date, date_format='%b %d, %Y') }}</time>
+            <time class="text-gray-500">{{  h.render_datetime(g.page.publish_date) }}</time>
             <br>
             <div class="content markdown-content leading-relaxed">
                 {% if g.page.content %}

@@ -1,5 +1,16 @@
+{% if g.userobj is not none %}
+    {% set isEditor = h.is_editor(pkg_dict.organization.id) %}
+{% endif %}
+
+
+
 {% if g.user and g.userobj.sysadmin %}
-{% extends "package/_base-admin.html" %}
+    {% extends "package/_base-admin.html" %}
+
+{% elif g.user and isEditor==true%}
+    {% extends "package/_base-admin.html" %}
+
 {% else %}
-{% extends "package/_base.html" %}
+    {% extends "package/_base.html" %}
+    
 {% endif %}
