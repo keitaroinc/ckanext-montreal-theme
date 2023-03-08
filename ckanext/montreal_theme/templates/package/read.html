@@ -3,11 +3,13 @@
 {% endif %}
 
 
-
 {% if g.user and g.userobj.sysadmin %}
     {% ckan_extends %}
 
 {% elif g.user and isEditor%}
+    {% ckan_extends%}
+
+{% elif g.user and isEditor==false%}
     {% ckan_extends%}
 
 {% else %}
