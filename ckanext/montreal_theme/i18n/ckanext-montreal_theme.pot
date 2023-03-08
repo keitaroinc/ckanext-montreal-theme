@@ -824,7 +824,7 @@ msgid "Contact us"
 msgstr "Nous joindre"
 
 #: ckanext/montreal_theme/templates/contact/form.html:11
-msgid "Write in the form your comments, questions, requests or problems regarding open data. A message will be sent to the open data team. We will answer you as quickly as we can."
+msgid "Please contact us regarding any comment, question, request or problem regarding our open data. The message will be sent to our open data team and they will get back to you shortly."
 msgstr "Inscrivez dans ce formulaire vos commentaires, questions, demandes ou problème concernant les données ouvertes. Un message est envoyé à l'équipe des données ouvertes. On vous répond le plus rapidement possible."
 
 #: ckanext/montreal_theme/templates/contact/snippets/form.html:30
