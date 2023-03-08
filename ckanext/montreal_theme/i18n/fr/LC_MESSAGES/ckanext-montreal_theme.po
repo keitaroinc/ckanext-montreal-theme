@@ -736,12 +736,12 @@ msgid "Search showcases..."
 msgstr ""
 
 #: ckanext/montreal_theme/templates/snippets/facet_list.html:33
-msgid "Show More {facet_type}"
-msgstr ""
+msgid "Show More"
+msgstr "Afficher plus"
 
 #: ckanext/montreal_theme/templates/snippets/facet_list.html:38
-msgid "Show Less {facet_type}"
-msgstr "Afficher moins de {facet_type}"
+msgid "Show Less"
+msgstr "Afficher moins"
 
 #: ckanext/montreal_theme/templates/snippets/facet_list.html:45
 msgid "There are no {facet_type} that match this search"
