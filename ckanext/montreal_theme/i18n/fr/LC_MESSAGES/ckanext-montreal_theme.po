@@ -969,3 +969,12 @@ msgstr "formats"
 #: ckan/controllers/group.py:320
 msgid "Licenses"
 msgstr "licences"
+
+#: ckan/templates/user/request_reset.html:22
+msgid "Request Reset"
+msgstr "Demander une réinitialisation"
+
+#: ckan/templates/emails/reset_password_subject.txt:1
+#, python-format
+msgid "Reset your password - %(site_title)s"
+msgstr "Réinitialisez votre mot de passe"
