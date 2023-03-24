@@ -21,7 +21,7 @@ $(document).ready(function () {
         };
 
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYmxhZ29qYWJvemlub3Zza2kiLCJhIjoiY2xmbWJ0c2NlMDczOTN4b2Y1MnQyaXJkciJ9.XYM8Ir-GWaoIIGAogv5xYw', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'})
     .addTo(map);
 
