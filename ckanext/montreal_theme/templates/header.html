@@ -12,17 +12,26 @@
 
 {% if g.userobj.sysadmin or isEditor %}
 <nav class="nav-admin font-open-sans">
+
+    {% if "dev" in config.get('ckan.site_url') %}
+    {% set loc_fr = "développement" %}
+    {% set loc_en = "developement" %}
+    {% else %}
+    {% set loc_fr = "production" %}
+    {% set loc_en = "production" %}
+    {% endif %}
+
     {% if current_lang =='fr' %}
     <span class="nav-admin-welcome">Bienvenue, 
         <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
             <span class="border-dotted border-b border-gray-600 font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}.</span>
         </a>
-         Vous êtes sur l'instance de <strong style="font-weight: bold;">développement.</strong></span>
+         Vous êtes sur l'instance de <strong style="font-weight: bold;">{{loc_fr}}.</strong></span>
         {% else %}
     <span class="nav-admin-welcome">Welcome, 
         <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
             <span class="border-dotted border-b border-gray-600 font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}.</span>
-        </a>         You are on the instance of <strong style="font-weight: bold;">developement.</strong></span>
+        </a>         You are on the instance of <strong style="font-weight: bold;">{{loc_en}}.</strong></span>
     {% endif %}
 </nav>
 

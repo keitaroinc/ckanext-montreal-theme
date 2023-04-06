@@ -100,7 +100,12 @@ def homepage_search_configs():
 
 
 def format_size(size):
+
+    if size == None:
+        value = "--"
+        return value
     try:
+
         value = formatters.localised_filesize(int(size))
         
         if "KiB" in value:
