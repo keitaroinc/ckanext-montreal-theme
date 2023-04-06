@@ -98,9 +98,17 @@
 
 
                                     {% else %}
-                                        {% set minutes = time_str[11:13] %}
-                                        {% set seconds = time_str[14:16] %} 
-                                        {{ h.render_datetime(time_str,  date_format='%Y-%m-%d') + " " + minutes + ":" + seconds }}
+                                        {% set hour = time_str[11:13] %}
+                                        {% set hourToInt = hour|int - 4 %}
+
+                                        {% if hourToInt < 10 %}
+                                        {% set montrealHour = '0' + hourToInt|string %}
+                                        {% else %}
+                                        {% set montrealHour = hourToInt|string %}
+                                        {%endif%}
+
+                                        {% set minutes = time_str[14:16] %} 
+                                        {{ h.render_datetime(time_str,  date_format='%Y-%m-%d') + " " + montrealHour + ":" + minutes }}
                                         
                                 {% endif %}
                                 </span>
@@ -275,9 +283,21 @@
 
 
                         {% else %}
-                            {% set minutes = time_str_sec[11:13] %}
-                            {% set seconds = time_str_sec[14:16] %}
-                            {{ h.render_datetime(time_str_sec,  date_format='%Y-%m-%d') + " " + minutes + ":" + seconds }}
+    
+                            {% set hour = time_str_sec[11:13] %}
+                            {% set hourToInt = hour|int - 4 %}
+
+                            {% if hourToInt < 10 %}
+                            {% set montrealHour = '0' + hourToInt|string %}
+                            {% else %}
+                            {% set montrealHour = hourToInt|string %}
+                            {%endif%}
+
+                            {% set minutes = time_str_sec[14:16] %} 
+                            {{ h.render_datetime(time_str_sec,  date_format='%Y-%m-%d') + " " + montrealHour + ":" + minutes }}
+                            
+                        
+                        
                         {% endif %}
                         </span>
                     </div>
