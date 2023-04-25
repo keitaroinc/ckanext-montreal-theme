@@ -21,8 +21,8 @@ $(document).ready(function () {
         };
 
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYmxhZ29qYWJvemlub3Zza2kiLCJhIjoiY2xmbWJ0c2NlMDczOTN4b2Y1MnQyaXJkciJ9.XYM8Ir-GWaoIIGAogv5xYw', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'})
+    L.tileLayer('http://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'})
     .addTo(map);
 
     // control that shows state info on hover
