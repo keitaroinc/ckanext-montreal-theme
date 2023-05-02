@@ -21,8 +21,11 @@ $(document).ready(function () {
         };
 
 
-    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYmxhZ29qYWJvemlub3Zza2kiLCJhIjoiY2xmbWJ0c2NlMDczOTN4b2Y1MnQyaXJkciJ9.XYM8Ir-GWaoIIGAogv5xYw', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'})
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+    })
     .addTo(map);
 
     // control that shows state info on hover
