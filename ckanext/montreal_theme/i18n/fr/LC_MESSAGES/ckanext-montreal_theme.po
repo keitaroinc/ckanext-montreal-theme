@@ -979,6 +979,11 @@ msgstr "Demander une réinitialisation"
 msgid "Reset your password - %(site_title)s"
 msgstr "Réinitialisez votre mot de passe"
 
+#: ckan/templates/snippets/activities/changed_package.html:16
+#: ckan/templates/snippets/activities/new_package.html:15
+msgid "View this version"
+msgstr "Voir cette version"
+
 #: ckan/templates/emails/reset_password.txt:1
 #, python-format
 msgid ""
@@ -991,3 +996,17 @@ msgstr ""
 "Merci de suivre ce lien pour confirmer et compléter votre demande:"
 "%(reset_link)s Passez une bonne journée. -- Message envoyé par %(site_title)s "
 "(%(site_url)s)"
+
+#: ckanext/pages/theme/templates_main/ckanext_pages/base_form.html:117
+msgid "Are you sure you want to delete this Page?"
+msgstr "Êtes-vous certain de vouloir suprimer cette page?"
+
+#: ckan/templates/package/read.html:15
+#: ckan/templates/package/resource_read.html:77
+#, python-format
+msgid ""
+"You're currently viewing an old version of this dataset. To see the current "
+"version, click <a href=\"%(url)s\">here</a>."
+msgstr ""
+"Vous consultez présentement une ancienne version de cet ensemble de données. Pour voir la version "
+"actuelle, cliquez <a href=\"%(url)s\">ici</a>."
