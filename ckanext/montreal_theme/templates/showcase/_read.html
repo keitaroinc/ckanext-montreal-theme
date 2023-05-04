@@ -2,7 +2,7 @@
 
 {% set pkg = pkg_dict or c.pkg_dict %}
 {% set name = pkg.title or pkg.name %}
-{% set editor = h.get_wysiwyg_editor() %}
+{% set editor = h.showcase_get_wysiwyg_editor() %}
 
 {% block breadcrumb_content %}
     <nav class="breadcrumb w-full font-sans font-bold text-gray-ink text-lg" aria-label="breadcrumb">
@@ -40,7 +40,11 @@
 {% block primary_content %}
     <h2 class="pb-8 text-3xl font-bold text-gray-700">{{ pkg.get('title') }}</h2>
     <span class="markdown-content leading-relaxed border-t border-gray-200 p-4 text-lg">
-        {{ h.render_markdown(pkg.get('notes')) }}
+    {% if editor == "ckeditor" %}
+        {{ pkg.get('notes')|safe }}
+    {% else %}
+	    {{ h.render_markdown(pkg.get('notes')) }}
+    {% endif %}
     </span>
 
     <div class="container w-full md:p-8">
