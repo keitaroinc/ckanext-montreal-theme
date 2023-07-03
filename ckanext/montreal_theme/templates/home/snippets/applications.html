@@ -3,9 +3,9 @@
     <a href="{{ h.url_for('showcase.read', id=showcase.name) }}" class="block m-4 hover:border-1 hover:border-solid hover:border-transparent hover:bg-white hover:shadow-xl">
         <div class="card-img">
             {% if image_url and not image_url.startswith('http') %}
-                <img class="rounded-t" src="/uploads/showcase/{{ image_url }}" alt="{{ showcase.title }}" style="width: calc(100% + 2px); height: 205px; object-fit: cover;">
+                <img class="rounded-t" src="/uploads/showcase/{{ image_url }}" alt="{{ showcase.title }}" style="width: calc(100% + 2px); height: 205px; object-fit: cover;" loading="lazy">
             {% else %}
-                <img class="rounded-t" src="{{ image_url }}" alt="{{ showcase.title }}" loading="lazy" style="width: calc(100% + 2px); height: 205px; object-fit: cover;">
+                <img class="rounded-t" src="{{ image_url }}" alt="{{ showcase.title }}" loading="lazy" style="width: calc(100% + 2px); height: 205px; object-fit: cover;" loading="lazy">
             {% endif %}
         </div>
         <div class="card-body border-1 border-gray-300 p-6" style="height: 220px;">
