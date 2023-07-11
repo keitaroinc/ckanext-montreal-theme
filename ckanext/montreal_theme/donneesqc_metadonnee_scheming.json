@@ -1,0 +1,891 @@
+{
+    "scheming_version": 1,
+    "dataset_type": "dataset",
+    "about": "A reimplementation of the default CKAN dataset schema for Donnees Quebec",
+    "about_url": "http://github.com/open-data/ckanext-scheming",
+    "dataset_fields": [
+        {
+            "field_name": "title",
+            "required": true,
+            "label": {
+                "en": "Title",
+                "fr": "Titre"
+            },
+            "preset": "title",
+            "form_placeholder": "eg. A descriptive title"
+        },
+        {
+            "field_name": "name",
+            "label": {
+                "en": "Dataset URL",
+                "fr": "URL de l'ensemble de données"
+            },
+            "preset": "dataset_slug",
+            "form_placeholder": "eg. nom ou identifiant de l'ensemble de données"
+        },
+        {
+            "field_name": "notes",
+            "form_snippet": "markdown.html",
+             "label": {
+                "en": "Description",
+                "fr": "Description"
+            },
+            "form_placeholder": "Par exemple : mettre une description et des notes utiles à l'ensemble de données."
+        },
+        {
+            "field_name": "tag_string",
+            "required": true,
+            "label": {
+                "en": "Tags",
+                "fr": "Mots clés"
+            },
+            "preset": "tag_string_autocomplete",
+            "form_placeholder": "1er mot clé, 2e mot clé, etc",
+            "help_text" : "Se référer au Thésaurus de l'activité gouvernementale (http://www.thesaurus.gouv.qc.ca/) Ex. transport.",
+            "inline" : false
+        },
+        {
+            "field_name": "license_id",
+            "required": true,
+            "label": {
+                "en": "Licence",
+                "fr": "License"
+            },
+            "choices": [
+                {
+                    "label": {
+                        "en": "CC-BY-4.0",
+                        "fr": "CC-BY-4.0"
+                    },
+                    "value": "cc-by"
+                },
+                {
+                    "label": {
+                        "en": "CC-BY-SA-4.0",
+                        "fr": "CC-BY-SA-4.0"
+                    },
+                    "value": "cc-by-sa"
+                },
+                {
+                    "label": {
+                        "en": "CC-BY-NC-4.0",
+                        "fr": "CC-BY-NC-4.0"
+                    },
+                    "value": "cc-by-nc"
+                },
+                {
+                    "label": {
+                        "en": "CMM",
+                        "fr": "CMM"
+                    },
+                    "value": "cmm"
+                },
+                {
+                    "label": {
+                        "en": "OGL-Canada-2.0",
+                        "fr": "OGL-Canada-2.0"
+                    },
+                    "value": "OGL-Canada-2.0"
+                }
+            ],
+            "form_snippet": "license.html",
+            "help_text": "Les définitions des licences internationales de Creative Commons peuvent être consultées à https://creativecommons.org/licenses/?lang=fr"
+        },
+        {
+            "field_name": "owner_org",
+            "label": {
+                "en": "Organization",
+                "fr": "Organisation"
+            },
+            "preset": "dataset_organization",
+            "required": true
+        },
+        {
+            "field_name": "author",
+            "required": true,
+            "label": {
+                "en": "Publisher",
+                "fr": "Publieur"
+            },
+            "form_placeholder": "Service, unité administrative, direction, etc.",
+            "display_property": "dc:creator"
+        },
+        {
+            "field_name": "author_email",
+            "label": {
+                "en": "Email",
+                "fr": "Courriel"
+            },
+            "required": true,
+            "preset": "select",
+            "choices": [
+                {
+                    "label": "donneesouvertes@montreal.ca",
+                    "value": "donneesouvertes@montreal.ca"
+                }
+            ]
+        },
+        {
+            "field_name": "update_frequency",
+            "label": {
+                "en": "Update frequency",
+                "fr": "Fréquence de mise à jour"
+            },
+            "required": true,
+            "preset": "select",
+            "choices": [{
+                    "label": {
+                        "en": "Select update frequency",
+                        "fr": "Choisir la fréquence de mise à jour"
+                    },
+                    "value": ""
+                },
+                {
+                    "label": {
+                        "en": "Irregular",
+                        "fr": "Irrégulier"
+                    },
+                    "value": "irregular"
+                },
+                {
+                    "label": {
+                        "en": "Continuous",
+                        "fr": "Temps réel"
+                    },
+                    "value": "continuous"
+                },
+                {
+                    "label": {
+                        "en": "Hourly",
+                        "fr": "Horaire"
+                    },
+                    "value": "hourly"
+                },
+                {
+                    "label": {
+                        "en": "Daily",
+                        "fr": "Quotidien"
+                    },
+                    "value": "daily"
+                },
+                {
+                    "label": {
+                        "en": "Weekly",
+                        "fr": "Hebdomadaire"
+                    },
+                    "value": "weekly"
+                },
+                {
+                    "label": {
+                        "en": "Monthly",
+                        "fr": "Mensuel"
+                    },
+                    "value": "monthly"
+                },
+                {
+                    "label": {
+                        "en": "Quarterly",
+                        "fr": "Trimestriel"
+                    },
+                    "value": "quarterly"
+                },
+                {
+                    "label": {
+                        "en": "Semi-annual",
+                        "fr": "Semi-annuel"
+                    },
+                    "value": "semiannual"
+                },
+                {
+                    "label": {
+                        "en": "Annual",
+                        "fr": "Annuel"
+                    },
+                    "value": "annual"
+                },
+                {
+                    "label": {
+                        "en": "Biennial",
+                        "fr": "Biennal"
+                    },
+                    "value": "biennial"
+                },
+                {
+                    "label": {
+                        "en": "Triennial",
+                        "fr": "Triennial"
+                    },
+                    "value": "triennial"
+                },
+                {
+                    "label": {
+                        "en": "Not planned",
+                        "fr": "Non planifié"
+                    },
+                    "value": "notPlanned"
+                },
+                {
+                    "label": {
+                        "en": "As Needed",
+                        "fr": "Au besoin"
+                    },
+                    "value": "asNeeded"
+                },
+                {
+                    "label": {
+                        "en": "Quinquennial",
+                        "fr": "Quinquennal"
+                    },
+                    "value": "quinquennial"
+                }
+            ]
+        },
+        {
+            "field_name": "language",
+            "required": true,
+            "label": {
+                "en": "Language",
+                "fr": "Langue"
+            },
+            "preset": "select",
+            "choices": [
+                {
+                    "label": {
+                        "en": "French",
+                        "fr": "Français"
+                    },
+                    "value": "FR"
+                },
+                {
+                    "label": {
+                        "en": "Spanish",
+                        "fr": "Espagnol"
+                    },
+                    "value": "SP"
+                },
+
+                {
+                    "label": {
+                        "en": "French and English",
+                        "fr": "Français et anglais"
+                    },
+                    "value": "FR_EN"
+                }
+            ]
+        },
+        {
+            "field_name": "ext_spatial",
+            "label": {
+                "en": "Geographical coverage",
+                "fr": "Couverture géographique"
+            },
+            "required": true,
+            "preset": "select",
+            "choices": [
+                {
+                    "label": "Territoire de la ville de Montréal",
+                    "value": "ville-montreal"
+                }
+            ]
+        },
+        {
+            "field_name": "temporal",
+            "form_placeholder": "AAAA-MM-JJ/AAAA-MM-JJ",
+            "label": {
+                "en": "Temporal",
+                "fr": "Couverture temporelle"
+            },
+            "help_text" : "Date de début et date de fin (séparées par une barre oblique)"
+        },
+        {
+            "field_name": "territoire",
+            "required": true,
+            "label": {
+                "en": "Territory",
+                "fr": "Territoire"
+            },
+            "preset": "multiple_select",
+            "choices": [
+                {
+                    "label": {
+                        "en": "Ahuntsic-Cartierville",
+                        "fr": "Ahuntsic-Cartierville"
+                    },
+                    "value": "AHU"
+                },
+                {
+                    "label": {
+                        "en": "Agglomération",
+                        "fr": "Agglomération"
+                    },
+                    "value": "agglomeration"
+                },
+                {
+                    "label": {
+                        "en": "Anjou",
+                        "fr": "Anjou"
+                    },
+                    "value": "ANJ"
+                },
+                {
+                    "label": {
+                        "en": "Côte-des-Neiges–Notre-Dame-de-Grâce",
+                        "fr": "Côte-des-Neiges–Notre-Dame-de-Grâce"
+                    },
+                    "value": "CDN"
+                },
+                {
+                    "label": {
+                        "en": "Lachine",
+                        "fr": "Lachine"
+                    },
+                    "value": "LAC"
+                },                
+                {
+                    "label": {
+                        "en": "LaSalle",
+                        "fr": "LaSalle"
+                    },
+                    "value": "LAS"
+                },                
+                {
+                    "label": {
+                        "en": "Le Plateau-Mont-Royal",
+                        "fr": "Le Plateau-Mont-Royal"
+                    },
+                    "value": "PLA"
+                },                
+                {
+                    "label": {
+                        "en": "Le Sud-Ouest",
+                        "fr": "Le Sud-Ouest"
+                    },
+                    "value": "LSO"
+                },                
+                {
+                    "label": {
+                        "en": "L’Île-Bizard–Sainte-Geneviève",
+                        "fr": "L’Île-Bizard–Sainte-Geneviève"
+                    },
+                    "value": "IBI"
+                },
+                {
+                    "label": {
+                        "en": "Mercier–Hochelaga-Maisonneuve",
+                        "fr": "Mercier–Hochelaga-Maisonneuve"
+                    },
+                    "value": "MHM"
+                },                
+                {
+                    "label": {
+                        "en": "Montréal",
+                        "fr": "Montréal"
+                    },
+                    "value": "montreal"
+                },                
+                {
+                    "label": {
+                        "en": "Montréal-Nord",
+                        "fr": "Montréal-Nord"
+                    },
+                    "value": "MTN"
+                },                
+                {
+                    "label": {
+                        "en": "Outremont",
+                        "fr": "Outremont"
+                    },
+                    "value": "OUT"
+                },                
+                {
+                    "label": {
+                        "en": "Pierrefonds-Roxboro",
+                        "fr": "Pierrefonds-Roxboro"
+                    },
+                    "value": "PRF"
+                },                
+                {
+                    "label": {
+                        "en": "Rivière-des-Prairies–Pointe-aux-Trembles",
+                        "fr": "Rivière-des-Prairies–Pointe-aux-Trembles"
+                    },
+                    "value": "RDP"
+                },                
+                {
+                    "label": {
+                        "en": "Rosemont–La Petite-Patrie",
+                        "fr": "Rosemont–La Petite-Patrie"
+                    },
+                    "value": "RPP"
+                },                
+                {
+                    "label": {
+                        "en": "Saint-Laurent",
+                        "fr": "Saint-Laurent"
+                    },
+                    "value": "VSL"
+                },                
+                {
+                    "label": {
+                        "en": "Saint-Léonard",
+                        "fr": "Saint-Léonard"
+                    },
+                    "value": "STL"
+                },                
+                {
+                    "label": {
+                        "en": "Verdun",
+                        "fr": "Verdun"
+                    },
+                    "value": "VER"
+                },                
+                {
+                    "label": {
+                        "en": "Ville-Marie",
+                        "fr": "Ville-Marie"
+                    },
+                    "value": "VIM"
+                },                
+                {
+                    "label": {
+                        "en": "Villeray–Saint-Michel–Parc-Extension",
+                        "fr": "Villeray–Saint-Michel–Parc-Extension"
+                    },
+                    "value": "VSE"
+                }
+            ],
+            "help_text" : "Pour faire une sélection multiple, utilisez les touches Shift ou Ctrl."
+        },
+        {
+            "field_name": "created",
+            "preset": "datetime_created",
+            "label": {
+                "en": "Created",
+                "fr": "Date d'ajout de l'ensemble de données"
+            }
+        },
+        {
+            "field_name": "methodologie",
+            "form_snippet": "markdown.html",
+             "label": {
+                "en": "Methodology",
+                "fr": "Méthodologie"
+            },
+            "form_placeholder": "Caractéristiques importantes reliées au jeu de données, telles que les limites, la méthodologie, la fiabilité, etc."
+        },
+        {
+            "field_name": "url",
+            "label": {
+                "en": "URL source",
+                "fr": "Source (URL)"
+            },
+            "form_placeholder": "http://www.siteweb.org",
+            "display_property": "foaf:homepage"
+        },
+        {
+            "field_name": "extras_flag_donnees_normalise",
+            "label": {
+                "en": "Données Québec Standard",
+                "fr": "Norme Données Québec"
+            },
+            "form_placeholder": "",
+            "help_text": "Pour en savoir plus sur les normes, visiter la section [normes établies par les partenaires|https://www.donneesquebec.ca/normes-etablies/] de Données Québec."
+        }
+    ],
+    "resource_fields": [
+        {
+            "field_name": "url",
+            "label": "URL",
+            "preset": "resource_url_upload"
+        },
+        {
+            "field_name": "name",
+            "label": {
+                "en": "Title",
+                "fr": "Titre"
+            },
+            "required": true,
+            "form_placeholder": "eg. Casernes de pompiers en format CSV"
+        },
+        {
+            "field_name": "description",
+            "form_snippet": "markdown.html",
+            "label": {
+                "en": "Description",
+                "fr": "Description"
+            },
+            "form_placeholder": "Une description et des notes utiles pour la compréhension du fichier."
+        },
+        {
+            "field_name": "format",
+            "label": "Format",
+            "preset": "resource_format_autocomplete"
+        },
+        {
+            "field_name": "resource_type",
+            "label": {
+                "en": "Resource Type",
+                "fr": "Type de ressource"
+            },
+            "preset": "select",
+            "choices": [
+                {
+                    "label": {
+                        "en": "Data",
+                        "fr": "Données"
+                    },
+                    "value": "donnees"
+                },
+                {
+                    "label": {
+                        "en": "Guide and support document",
+                        "fr": "Guide et document support"
+                    },
+                    "value": "support"
+                },
+                {
+                    "label": {
+                        "en": "Web service",
+                        "fr": "Service Web"
+                    },
+                    "value": "web"
+                },
+                {
+                    "label": {
+                        "en": "Interactive Map",
+                        "fr": "Carte interactive"
+                    },
+                    "value": "cartes"
+                },
+                {
+                    "label": {
+                        "en": "file (do not select)",
+                        "fr": "file (ne pas sélectionner)"
+                    },
+                    "value": "file"
+                },
+                {
+                    "label": {
+                        "en": "file.upload (do not select)",
+                        "fr": "file.upload (ne pas sélectionner)"
+                    },
+                    "value": "file.upload"
+                }
+            ],
+            "help_text" : "Nature de la ressource ajoutée"
+        },
+        {
+            "field_name": "relidi_ressource_complementaire",
+            "label": {
+                "en": "Complementary Ressource",
+                "fr": "Ressource complémentaire"
+            },
+            "preset": "multiple_checkbox",
+            "form_placeholder": "cocher si la ressource est complémentaire",
+            "choices": [
+                {
+                    "label": " ",
+                    "value": "relidi.rescom"
+                }
+            ],
+            "help_text" : "Cette ressource est-elle complémentaire au jeu de donné associé ? Cocher si tel est le cas."
+        },
+        {
+            "field_name": "relidi_description_champs",
+            "label": {
+                "en": "Fields Description",
+                "fr": "Description des champs"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Fournie en ressource",
+                        "fr": "Fournie en ressource"
+                    },
+                    "value": "relidi.descha.foudoc"
+                },
+                {
+                    "label": {
+                        "en": "Fournie en métadonnées",
+                        "fr": "Fournie en métadonnées"
+                    },
+                    "value": "relidi.descha.foumet"
+                },
+                {
+                    "label": {
+                        "en": "Absente",
+                        "fr": "Absente"
+                    },
+                    "value": "relidi.descha.absent"
+                }
+            ],
+            "help_text" : "Choisir l'option correspondante"
+        },
+        {
+            "field_name": "relidi_confic_separateur_virgule",
+            "label": {
+                "en": "Coma Separator",
+                "fr": "Séparateur virgule"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        },
+        {
+            "field_name": "relidi_confic_utf8",
+            "label": {
+                "en": "UTF-8 / UTF-8 Tag",
+                "fr": "UTF-8 / Balise UTF-8"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        },
+        {
+            "field_name": "relidi_confic_epsg",
+            "label": {
+                "en": "EPSG : 4326 / EPSG : 32198",
+                "fr": "EPSG : 4326 / EPSG : 32198"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        },
+        {
+            "field_name": "relidi_confic_pascom",
+            "label": {
+                "en": "Pas de compression (sauf SHP, GTFS, GBFS)",
+                "fr": "Pas de compression (sauf SHP, GTFS, GBFS)"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        },
+        {
+            "field_name": "relidi_condon_valinc",
+            "label": {
+                "en": "Valeurs inconnues/non disponibles = vide",
+                "fr": "Valeurs inconnues/non disponibles = vide"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        },
+        {
+            "field_name": "relidi_condon_datheu",
+            "label": {
+                "en": "Date et heure (AAAA-MM-JJ/HH:MM:SS/AAAA-MM-JJTHH:MM:SS)",
+                "fr": "Date et heure (AAAA-MM-JJ/HH:MM:SS/AAAA-MM-JJTHH:MM:SS)"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        },
+        {
+            "field_name": "relidi_condon_nombre",
+            "label": {
+                "en": "Nombre (décimal « . », unité SI, $)",
+                "fr": "Nombre (décimal « . », unité SI, $)"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        },
+        {
+            "field_name": "relidi_condon_boolee",
+            "label": {
+                "en": "Booléen (valeur simple)",
+                "fr": "Booléen (valeur simple)"
+            },
+            "preset": "select",
+            "form_snippet": "select.html",
+            "choices": [
+               {
+                    "label": {
+                        "en": "Yes",
+                        "fr": "Oui"
+                    },
+                    "value": "oui"
+                },
+                {
+                    "label": {
+                        "en": "Non",
+                        "fr": "Non"
+                    },
+                    "value": "non"
+                },
+                {
+                    "label": {
+                        "en": "N/A",
+                        "fr": "n/a"
+                    },
+                    "value": "n/a"
+                }
+            ],
+            "help_text" : "Sélectionner l'option appropriée"
+        }
+    ]
+}
