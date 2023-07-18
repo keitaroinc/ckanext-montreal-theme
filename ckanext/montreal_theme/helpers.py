@@ -70,6 +70,17 @@ def get_latest_datasets():
     return datasets.get('results', [])
 
 
+def get_groups():
+    # Helper used on the homepage for showing groups
+
+    data_dict = {
+        'all_fields': True
+    }
+    groups = tk.get_action('group_list')({}, data_dict)
+
+    return groups
+
+
 def get_all_groups(include_dataset_count=True):
     '''Return a list of organizations that the current user has the specified
     permission for.

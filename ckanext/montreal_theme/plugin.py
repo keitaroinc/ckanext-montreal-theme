@@ -40,6 +40,7 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
             'is_editor':h.is_user_editor,
             'organization_info': h.get_organization_info_for_user,
             'all_organizations': h.get_all_organizations,
+            'montreal_get_groups': h.get_groups,
             'all_groups': h.get_all_groups,
             'latest_datasets': h.get_latest_datasets,
             'get_showcases': h.get_showcases,

@@ -154,9 +154,13 @@ def collections():
 def contact_form():
     return tk.render('contact/form.html')
 
+def newsletter():
+    return tk.render('newsletter.html')
+
 montreal_theme.add_url_rule(u'/ckan-admin/config', view_func=ConfigViewFrontend.as_view(str(u'config')))
 montreal_theme.add_url_rule(u'/collections', view_func=collections)
 montreal_theme.add_url_rule(u'/ckan-admin/search-config', view_func=SearchConfigView.as_view(str(u'search_config')))
+montreal_theme.add_url_rule('/abonnement', view_func=newsletter)
 montreal_theme.add_url_rule('/nous-joindre',
                       view_func=contact_form,
                       methods=[u'GET', u'POST'])
