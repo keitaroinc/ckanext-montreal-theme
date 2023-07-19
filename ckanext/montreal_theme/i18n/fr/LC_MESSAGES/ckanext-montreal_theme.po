@@ -1010,3 +1010,29 @@ msgid ""
 msgstr ""
 "Vous consultez présentement une ancienne version de cet ensemble de données. Pour voir la version "
 "actuelle, cliquez <a href=\"%(url)s\">ici</a>."
+
+#: ckanext/montreal_theme/templates/scheming/package/resource_read.html:40
+#: ckanext/montreal_theme/templates/scheming/package/snippets/additional_info.html:34
+#: ckanext/montreal_theme/templates/scheming/package/snippets/additional_info.html:41
+msgid "Created"
+msgstr "Date d'ajout de l'ensemble de données"
+
+#: ckanext/montreal_theme/templates/ckanext_pages/page.html:50
+msgid "Groups"
+msgstr "Catégories"
+
+#: ckan/templates/snippets/search_result_text.html:15
+msgid "{number} dataset found for \"{query}\""
+msgid_plural "{number} datasets found for \"{query}\""
+msgstr[0] "{number}  Résltat \"{query}\""
+msgstr[1] "{number}  Résultats \"{query}\""
+
+#: ckan/templates/snippets/search_result_text.html:17
+msgid "{number} dataset found"
+msgid_plural "{number} datasets found"
+msgstr[0] "{number} Résultat"
+msgstr[1] "{number} Résultats"
+
+#: ckan/templates/snippets/facet_list.html:85
+msgid "Show More {facet_type}"
+msgstr "Afficher plus de {facet_type}"
