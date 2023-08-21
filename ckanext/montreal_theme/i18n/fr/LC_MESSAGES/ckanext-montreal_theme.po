@@ -1036,3 +1036,22 @@ msgstr[1] "{number} Résultats"
 #: ckan/templates/snippets/facet_list.html:85
 msgid "Show More {facet_type}"
 msgstr "Afficher plus de {facet_type}"
+
+#: ckanext/password_policy/views.py:108
+#, python-format
+msgid ""
+"Your password must be 12 characters or "
+"longer and contain uppercase, lowercase, "
+"digit and special character"
+msgstr ""
+"Votre mot de passe doit comporter 12 caractères ou "
+"plus long et contenir des majuscules, des minuscules, "
+"chiffre et caractère spécial"
+
+#: ckanext/montreal_theme/templates/user/locked.html:11
+msgid "User locked. Please try again in 15 minutes."
+msgstr "Utilisateur verrouillé. Veuillez réessayer dans 15 minutes."
+
+#: ckanext/montreal_theme/templates/user/locked.html:11
+msgid "User locked"
+msgstr "Utilisateur verrouillé"
