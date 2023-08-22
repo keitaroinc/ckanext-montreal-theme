@@ -1048,3 +1048,7 @@ msgstr "Utilisateur verrouillé. Veuillez réessayer dans 15 minutes."
 #: ckanext/montreal_theme/templates/user/locked.html:11
 msgid "User locked"
 msgstr "Utilisateur verrouillé"
+
+#: ckan/controllers/user.py:416 ckan/views/user.py:482
+msgid "Login failed. Bad username or password."
+msgstr "Authentification échouée. Mauvais login ou mot de passe."
