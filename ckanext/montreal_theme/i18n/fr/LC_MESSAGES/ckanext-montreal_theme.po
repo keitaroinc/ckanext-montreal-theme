@@ -1039,7 +1039,7 @@ msgstr "Afficher plus de {facet_type}"
 
 #: ckanext/password_policy/views.py:108
 msgid "Your password must be 12 characters or longer and contain uppercase, lowercase, digit and special character"
-msgstr "Votre mot de passe doit comporter 12 caractères ou plus et contenir des majuscules, des minuscules, des chiffres et des caractères spéciaux"
+msgstr "Votre mot de passe doit comporter 12 caractères ou plus et de contenir des majuscules, des minuscules, des chiffres et des caractères spéciaux"
 
 #: ckanext/montreal_theme/templates/user/locked.html:11
 msgid "User locked. Please try again in 15 minutes."
