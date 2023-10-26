@@ -136,3 +136,8 @@ def format_size(size):
 def teritories_string(data):
     if data:
         return str(data)
+
+
+def get_google_tag():
+    gtag = tk.config.get('ckanext.montreal_theme.gtag')
+    return gtag
