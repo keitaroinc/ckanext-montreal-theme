@@ -48,6 +48,7 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
             'homepage_search_configs': h.homepage_search_configs,
             'format_size': h.format_size,
             'teritories_string': h.teritories_string,
+            'get_google_tag': h.get_google_tag,
         }
 
     # IFacets

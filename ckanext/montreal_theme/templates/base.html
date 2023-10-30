@@ -1,5 +1,5 @@
 {% ckan_extends %}
-
+{% include 'snippets/gtm.html' %}
 {% block styles %}
   {{ super() }}
   {% if g.homepage_style == '4' %}
@@ -7,3 +7,4 @@
     {% asset 'montreal_theme/montreal_theme-js' %}
   {% endif %}
 {% endblock %}
+{% include 'snippets/gtm_noscript.html' %}
