@@ -99,12 +99,12 @@
 
                                     {% else %}
                                         {% set hour = time_str[11:13] %}
-                                        {% set hourToInt = hour|int - 4 %}
+                                        {% set hourToInt = hour|int - 5 %}
 
                                         {% if hourToInt < 10 %}
-                                        {% set montrealHour = '0' + hourToInt|string %}
+                                            {% set montrealHour = '0' + hourToInt|string %}
                                         {% else %}
-                                        {% set montrealHour = hourToInt|string %}
+                                            {% set montrealHour = hourToInt|string %}
                                         {%endif%}
 
                                         {% set minutes = time_str[14:16] %} 
