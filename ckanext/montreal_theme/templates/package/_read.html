@@ -1,5 +1,12 @@
 {% extends "page.html" %}
 
+{% macro render_item_size(item) %}
+    {% set item_size = item.get('size') or item.get('Size') or item.get('Taille') or item.get(_('Size')) %}
+    {% if item_size %}
+        <div>{{ h.format_size(item_size) or '' }}</div>
+    {% endif %}
+{% endmacro %}
+
 {% import "components.html" as components %}
 
 {% set current_lang = request.environ.CKAN_LANG %}
@@ -134,11 +141,7 @@
                                                                     <div class="list-group-item-content">
                                                                         <div class="list-group-item-infos">
                                                                             <span class="font-semibold">{{ _('Last Changed') }}:</span> {{ h.time_ago_from_timestamp(item.get('last_modified') or item.get('metadata_modified')) }}
-                                                                            {% if item.get('size') %}
-                                                                                <div>
-                                                                                    {{ h.format_size(item.get('size')) or '' }}
-                                                                                </div>
-                                                                            {% endif %}
+                                                                            {{ render_item_size(item) }}
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -183,11 +186,7 @@
                                                                         <div class="list-group-item-content">
                                                                             <div class="list-group-item-infos">
                                                                                 <span class="font-semibold">{{ _('Last Changed') }}:</span> {{ h.time_ago_from_timestamp(item.get('last_modified') or item.get('metadata_modified')) }}
-                                                                                {% if item.get('size') %}
-                                                                                    <div>
-                                                                                        {{ h.format_size(item.get('size')) or '' }}
-                                                                                    </div>
-                                                                                {% endif %}
+                                                                                {{ render_item_size(item) }}
                                                                             </div>
                                                                         </div>
                                                                     </div>
