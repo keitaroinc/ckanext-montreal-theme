@@ -43,10 +43,14 @@ def get_organization_info_for_user(include_dataset_count=True):
     '''Return a list of organizations with additional data such as user role ('capacity')
        for the ones that the user has permission.
     '''
+    if not getattr(g, 'user', None) or not getattr(g, 'userobj', None):
+        return {}
+
     context = {'user': g.user}
     data_dict = {
         'id': g.userobj.id,
-        }
+    }
+
     return tk.get_action('organization_list_for_user')(context, data_dict)
 
 
