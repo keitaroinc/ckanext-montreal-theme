@@ -29,6 +29,7 @@
         {% block section %}
           {% block flash %}
             <div class="flash-messages">
+              {#
               {% block flash_inner %}
                 {% for message in h.flash.pop_messages() | list %}
                   <div class="alert fade in {{ message.category }}">
@@ -36,6 +37,7 @@
                   </div>
                 {% endfor %}
               {% endblock %}
+              #}
             </div>
           {% endblock %}
 
