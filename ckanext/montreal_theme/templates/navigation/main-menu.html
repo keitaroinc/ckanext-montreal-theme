@@ -8,12 +8,12 @@
         <li class="dropdown app-mega-menu">
           <a
             href="#"
-            class="dropdown-toggle p-2 block"
-            data-toggle="dropdown"
+            class="dropdown-toggle d-flex align-items-center gap-1 p-2"
+            data-bs-toggle="dropdown"
             role="button"
             aria-expanded="false"
           >
-            {{_('Data')}} <span class="caret"></span>
+            {{_('Data')}} <span class="dropdown-arrow"></span>
           </a>
           <div class="dropdown-menu mt-0 z-10" style="z-index: 991;">
             <div class="inner py-lg-4 wide-container">
@@ -118,15 +118,15 @@
           <a href="{{h.url_for('showcase.search')}}" class="p-2">{{_("Applications")}}</a>
         </li>
         <li class="dropdown app-mega-menu">
-          <a
-            href="#"
-            class="dropdown-toggle p-2 block"
-            data-toggle="dropdown"
-            role="button"
-            aria-expanded="false"
-          >
-            {{_('About')}} <span class="caret"></span>
-          </a>
+        <a
+          href="#"
+          class="dropdown-toggle d-flex align-items-center gap-1 p-2"
+          data-bs-toggle="dropdown"
+          role="button"
+          aria-expanded="false"
+        >
+          {{_('About')}} <span class="dropdown-arrow"></span>
+        </a>
           <div class="dropdown-menu mt-0 z-10" style="z-index: 991;">
             <div class="inner py-lg-4 wide-container">
               <div class="row ">
