@@ -26,8 +26,8 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('assets', 'montreal_theme')
-        toolkit.add_ckan_admin_tab(config_, 'montreal_theme.search_config',
-                                  toolkit._('Search Config'))
+        # toolkit.add_ckan_admin_tab(config_, 'montreal_theme.search_config',
+        #                           toolkit._('Search Config'))
 
     def get_blueprint(self):
         # Register the new blueprint
