@@ -31,10 +31,10 @@
     </div>
 
     <!-- Remaining News Items -->
-    <div class="other-news grid gap-10 h-full m-auto">
+    <div class="other-news grid gap-10 h-full w-full">
       {% for blog in news[1:4] %}
 
-        <a class="single-news border-1 border-gray-300 rounded p-4 hover:shadow-lg" href="{{ h.url_for('pages.blog_show', page=blog.name) }}">
+        <a class="single-news w-full border-1 border-gray-300 rounded p-4 hover:shadow-lg" href="{{ h.url_for('pages.blog_show', page=blog.name) }}">
           <p class="text-sm text-gray-500 mb-1">{{ h.render_datetime(blog.publish_date) }}</p>
           <p class="text-base font-bold text-black font-open-sans mb-2 news-title">
             {{ blog.title }}
