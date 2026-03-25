@@ -286,6 +286,12 @@
   border-right: 4px solid transparent;
   border-top: 5px solid currentColor;
 }
+
 .dropdown-toggle::after {
   display: none;
+}
+
+.context-info .image img.user-image {
+  width: auto !important;
+  height: auto !important;
 }
