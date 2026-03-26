@@ -295,3 +295,7 @@
   width: auto !important;
   height: auto !important;
 }
+
+.blog .primary .date {
+	margin-top: 0px !important;
+}
