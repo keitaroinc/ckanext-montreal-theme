@@ -26,7 +26,7 @@
         {
             "field_name": "notes",
             "form_snippet": "markdown.html",
-             "label": {
+            "label": {
                 "en": "Description",
                 "fr": "Description"
             },
@@ -41,8 +41,8 @@
             },
             "preset": "tag_string_autocomplete",
             "form_placeholder": "1er mot clé, 2e mot clé, etc",
-            "help_text" : "Se référer au Thésaurus de l'activité gouvernementale (http://www.thesaurus.gouv.qc.ca/) Ex. transport.",
-            "inline" : false
+            "help_text": "Se référer au Thésaurus de l'activité gouvernementale (http://www.thesaurus.gouv.qc.ca/) Ex. transport.",
+            "inline": false
         },
         {
             "field_name": "license_id",
@@ -53,38 +53,23 @@
             },
             "choices": [
                 {
-                    "label": {
-                        "en": "CC-BY-4.0",
-                        "fr": "CC-BY-4.0"
-                    },
+                    "label": { "en": "CC-BY-4.0", "fr": "CC-BY-4.0" },
                     "value": "cc-by"
                 },
                 {
-                    "label": {
-                        "en": "CC-BY-SA-4.0",
-                        "fr": "CC-BY-SA-4.0"
-                    },
+                    "label": { "en": "CC-BY-SA-4.0", "fr": "CC-BY-SA-4.0" },
                     "value": "cc-by-sa"
                 },
                 {
-                    "label": {
-                        "en": "CC-BY-NC-4.0",
-                        "fr": "CC-BY-NC-4.0"
-                    },
+                    "label": { "en": "CC-BY-NC-4.0", "fr": "CC-BY-NC-4.0" },
                     "value": "cc-by-nc"
                 },
                 {
-                    "label": {
-                        "en": "CMM",
-                        "fr": "CMM"
-                    },
+                    "label": { "en": "CMM", "fr": "CMM" },
                     "value": "cmm"
                 },
                 {
-                    "label": {
-                        "en": "OGL-Canada-2.0",
-                        "fr": "OGL-Canada-2.0"
-                    },
+                    "label": { "en": "OGL-Canada-2.0", "fr": "OGL-Canada-2.0" },
                     "value": "OGL-Canada-2.0"
                 }
             ],
@@ -118,6 +103,7 @@
             },
             "required": true,
             "preset": "select",
+            "output_validators": "convert_from_extras",
             "choices": [
                 {
                     "label": "donneesouvertes@montreal.ca",
@@ -133,109 +119,66 @@
             },
             "required": true,
             "preset": "select",
-            "choices": [{
-                    "label": {
-                        "en": "Select update frequency",
-                        "fr": "Choisir la fréquence de mise à jour"
-                    },
+            "output_validators": "convert_from_extras",
+            "choices": [
+                {
+                    "label": { "en": "Select update frequency", "fr": "Choisir la fréquence de mise à jour" },
                     "value": ""
                 },
                 {
-                    "label": {
-                        "en": "Irregular",
-                        "fr": "Irrégulier"
-                    },
+                    "label": { "en": "Irregular", "fr": "Irrégulier" },
                     "value": "irregular"
                 },
                 {
-                    "label": {
-                        "en": "Continuous",
-                        "fr": "Temps réel"
-                    },
+                    "label": { "en": "Continuous", "fr": "Temps réel" },
                     "value": "continuous"
                 },
                 {
-                    "label": {
-                        "en": "Hourly",
-                        "fr": "Horaire"
-                    },
+                    "label": { "en": "Hourly", "fr": "Horaire" },
                     "value": "hourly"
                 },
                 {
-                    "label": {
-                        "en": "Daily",
-                        "fr": "Quotidien"
-                    },
+                    "label": { "en": "Daily", "fr": "Quotidien" },
                     "value": "daily"
                 },
                 {
-                    "label": {
-                        "en": "Weekly",
-                        "fr": "Hebdomadaire"
-                    },
+                    "label": { "en": "Weekly", "fr": "Hebdomadaire" },
                     "value": "weekly"
                 },
                 {
-                    "label": {
-                        "en": "Monthly",
-                        "fr": "Mensuel"
-                    },
+                    "label": { "en": "Monthly", "fr": "Mensuel" },
                     "value": "monthly"
                 },
                 {
-                    "label": {
-                        "en": "Quarterly",
-                        "fr": "Trimestriel"
-                    },
+                    "label": { "en": "Quarterly", "fr": "Trimestriel" },
                     "value": "quarterly"
                 },
                 {
-                    "label": {
-                        "en": "Semi-annual",
-                        "fr": "Semi-annuel"
-                    },
+                    "label": { "en": "Semi-annual", "fr": "Semi-annuel" },
                     "value": "semiannual"
                 },
                 {
-                    "label": {
-                        "en": "Annual",
-                        "fr": "Annuel"
-                    },
+                    "label": { "en": "Annual", "fr": "Annuel" },
                     "value": "annual"
                 },
                 {
-                    "label": {
-                        "en": "Biennial",
-                        "fr": "Biennal"
-                    },
+                    "label": { "en": "Biennial", "fr": "Biennal" },
                     "value": "biennial"
                 },
                 {
-                    "label": {
-                        "en": "Triennial",
-                        "fr": "Triennial"
-                    },
+                    "label": { "en": "Triennial", "fr": "Triennial" },
                     "value": "triennial"
                 },
                 {
-                    "label": {
-                        "en": "Not planned",
-                        "fr": "Non planifié"
-                    },
+                    "label": { "en": "Not planned", "fr": "Non planifié" },
                     "value": "notPlanned"
                 },
                 {
-                    "label": {
-                        "en": "As Needed",
-                        "fr": "Au besoin"
-                    },
+                    "label": { "en": "As Needed", "fr": "Au besoin" },
                     "value": "asNeeded"
                 },
                 {
-                    "label": {
-                        "en": "Quinquennial",
-                        "fr": "Quinquennal"
-                    },
+                    "label": { "en": "Quinquennial", "fr": "Quinquennal" },
                     "value": "quinquennial"
                 }
             ]
@@ -248,27 +191,18 @@
                 "fr": "Langue"
             },
             "preset": "select",
+            "output_validators": "convert_from_extras",
             "choices": [
                 {
-                    "label": {
-                        "en": "French",
-                        "fr": "Français"
-                    },
+                    "label": { "en": "French", "fr": "Français" },
                     "value": "FR"
                 },
                 {
-                    "label": {
-                        "en": "Spanish",
-                        "fr": "Espagnol"
-                    },
+                    "label": { "en": "Spanish", "fr": "Espagnol" },
                     "value": "SP"
                 },
-
                 {
-                    "label": {
-                        "en": "French and English",
-                        "fr": "Français et anglais"
-                    },
+                    "label": { "en": "French and English", "fr": "Français et anglais" },
                     "value": "FR_EN"
                 }
             ]
@@ -281,6 +215,7 @@
             },
             "required": true,
             "preset": "select",
+            "output_validators": "convert_from_extras",
             "choices": [
                 {
                     "label": "Territoire de la ville de Montréal",
@@ -295,7 +230,8 @@
                 "en": "Temporal",
                 "fr": "Couverture temporelle"
             },
-            "help_text" : "Date de début et date de fin (séparées par une barre oblique)"
+            "output_validators": "convert_from_extras",
+            "help_text": "Date de début et date de fin (séparées par une barre oblique)"
         },
         {
             "field_name": "territoire",
@@ -305,156 +241,94 @@
                 "fr": "Territoire"
             },
             "preset": "multiple_select",
+            "output_validators": "convert_from_extras scheming_load_json",
             "choices": [
                 {
-                    "label": {
-                        "en": "Ahuntsic-Cartierville",
-                        "fr": "Ahuntsic-Cartierville"
-                    },
+                    "label": { "en": "Ahuntsic-Cartierville", "fr": "Ahuntsic-Cartierville" },
                     "value": "AHU"
                 },
                 {
-                    "label": {
-                        "en": "Agglomération",
-                        "fr": "Agglomération"
-                    },
+                    "label": { "en": "Agglomération", "fr": "Agglomération" },
                     "value": "agglomeration"
                 },
                 {
-                    "label": {
-                        "en": "Anjou",
-                        "fr": "Anjou"
-                    },
+                    "label": { "en": "Anjou", "fr": "Anjou" },
                     "value": "ANJ"
                 },
                 {
-                    "label": {
-                        "en": "Côte-des-Neiges–Notre-Dame-de-Grâce",
-                        "fr": "Côte-des-Neiges–Notre-Dame-de-Grâce"
-                    },
+                    "label": { "en": "Côte-des-Neiges–Notre-Dame-de-Grâce", "fr": "Côte-des-Neiges–Notre-Dame-de-Grâce" },
                     "value": "CDN"
                 },
                 {
-                    "label": {
-                        "en": "Lachine",
-                        "fr": "Lachine"
-                    },
+                    "label": { "en": "Lachine", "fr": "Lachine" },
                     "value": "LAC"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "LaSalle",
-                        "fr": "LaSalle"
-                    },
+                    "label": { "en": "LaSalle", "fr": "LaSalle" },
                     "value": "LAS"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Le Plateau-Mont-Royal",
-                        "fr": "Le Plateau-Mont-Royal"
-                    },
+                    "label": { "en": "Le Plateau-Mont-Royal", "fr": "Le Plateau-Mont-Royal" },
                     "value": "PLA"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Le Sud-Ouest",
-                        "fr": "Le Sud-Ouest"
-                    },
+                    "label": { "en": "Le Sud-Ouest", "fr": "Le Sud-Ouest" },
                     "value": "LSO"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "L’Île-Bizard–Sainte-Geneviève",
-                        "fr": "L’Île-Bizard–Sainte-Geneviève"
-                    },
+                    "label": { "en": "L'Île-Bizard–Sainte-Geneviève", "fr": "L'Île-Bizard–Sainte-Geneviève" },
                     "value": "IBI"
                 },
                 {
-                    "label": {
-                        "en": "Mercier–Hochelaga-Maisonneuve",
-                        "fr": "Mercier–Hochelaga-Maisonneuve"
-                    },
+                    "label": { "en": "Mercier–Hochelaga-Maisonneuve", "fr": "Mercier–Hochelaga-Maisonneuve" },
                     "value": "MHM"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Montréal",
-                        "fr": "Montréal"
-                    },
+                    "label": { "en": "Montréal", "fr": "Montréal" },
                     "value": "montreal"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Montréal-Nord",
-                        "fr": "Montréal-Nord"
-                    },
+                    "label": { "en": "Montréal-Nord", "fr": "Montréal-Nord" },
                     "value": "MTN"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Outremont",
-                        "fr": "Outremont"
-                    },
+                    "label": { "en": "Outremont", "fr": "Outremont" },
                     "value": "OUT"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Pierrefonds-Roxboro",
-                        "fr": "Pierrefonds-Roxboro"
-                    },
+                    "label": { "en": "Pierrefonds-Roxboro", "fr": "Pierrefonds-Roxboro" },
                     "value": "PRF"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Rivière-des-Prairies–Pointe-aux-Trembles",
-                        "fr": "Rivière-des-Prairies–Pointe-aux-Trembles"
-                    },
+                    "label": { "en": "Rivière-des-Prairies–Pointe-aux-Trembles", "fr": "Rivière-des-Prairies–Pointe-aux-Trembles" },
                     "value": "RDP"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Rosemont–La Petite-Patrie",
-                        "fr": "Rosemont–La Petite-Patrie"
-                    },
+                    "label": { "en": "Rosemont–La Petite-Patrie", "fr": "Rosemont–La Petite-Patrie" },
                     "value": "RPP"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Saint-Laurent",
-                        "fr": "Saint-Laurent"
-                    },
+                    "label": { "en": "Saint-Laurent", "fr": "Saint-Laurent" },
                     "value": "VSL"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Saint-Léonard",
-                        "fr": "Saint-Léonard"
-                    },
+                    "label": { "en": "Saint-Léonard", "fr": "Saint-Léonard" },
                     "value": "STL"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Verdun",
-                        "fr": "Verdun"
-                    },
+                    "label": { "en": "Verdun", "fr": "Verdun" },
                     "value": "VER"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Ville-Marie",
-                        "fr": "Ville-Marie"
-                    },
+                    "label": { "en": "Ville-Marie", "fr": "Ville-Marie" },
                     "value": "VIM"
-                },                
+                },
                 {
-                    "label": {
-                        "en": "Villeray–Saint-Michel–Parc-Extension",
-                        "fr": "Villeray–Saint-Michel–Parc-Extension"
-                    },
+                    "label": { "en": "Villeray–Saint-Michel–Parc-Extension", "fr": "Villeray–Saint-Michel–Parc-Extension" },
                     "value": "VSE"
                 }
             ],
-            "help_text" : "Pour faire une sélection multiple, utilisez les touches Shift ou Ctrl."
+            "help_text": "Pour faire une sélection multiple, utilisez les touches Shift ou Ctrl."
         },
         {
             "field_name": "created",
@@ -467,10 +341,11 @@
         {
             "field_name": "methodologie",
             "form_snippet": "markdown.html",
-             "label": {
+            "label": {
                 "en": "Methodology",
                 "fr": "Méthodologie"
             },
+            "output_validators": "convert_from_extras",
             "form_placeholder": "Caractéristiques importantes reliées au jeu de données, telles que les limites, la méthodologie, la fiabilité, etc."
         },
         {
@@ -488,6 +363,7 @@
                 "en": "Données Québec Standard",
                 "fr": "Norme Données Québec"
             },
+            "output_validators": "convert_from_extras",
             "form_placeholder": "",
             "help_text": "Pour en savoir plus sur les normes, visiter la section [normes établies par les partenaires|https://www.donneesquebec.ca/normes-etablies/] de Données Québec."
         }
@@ -530,49 +406,31 @@
             "preset": "select",
             "choices": [
                 {
-                    "label": {
-                        "en": "Data",
-                        "fr": "Données"
-                    },
+                    "label": { "en": "Data", "fr": "Données" },
                     "value": "donnees"
                 },
                 {
-                    "label": {
-                        "en": "Guide and support document",
-                        "fr": "Guide et document support"
-                    },
+                    "label": { "en": "Guide and support document", "fr": "Guide et document support" },
                     "value": "support"
                 },
                 {
-                    "label": {
-                        "en": "Web service",
-                        "fr": "Service Web"
-                    },
+                    "label": { "en": "Web service", "fr": "Service Web" },
                     "value": "web"
                 },
                 {
-                    "label": {
-                        "en": "Interactive Map",
-                        "fr": "Carte interactive"
-                    },
+                    "label": { "en": "Interactive Map", "fr": "Carte interactive" },
                     "value": "cartes"
                 },
                 {
-                    "label": {
-                        "en": "file (do not select)",
-                        "fr": "file (ne pas sélectionner)"
-                    },
+                    "label": { "en": "file (do not select)", "fr": "file (ne pas sélectionner)" },
                     "value": "file"
                 },
                 {
-                    "label": {
-                        "en": "file.upload (do not select)",
-                        "fr": "file.upload (ne pas sélectionner)"
-                    },
+                    "label": { "en": "file.upload (do not select)", "fr": "file.upload (ne pas sélectionner)" },
                     "value": "file.upload"
                 }
             ],
-            "help_text" : "Nature de la ressource ajoutée"
+            "help_text": "Nature de la ressource ajoutée"
         },
         {
             "field_name": "relidi_ressource_complementaire",
@@ -589,7 +447,7 @@
                     "value": "relidi.rescom"
                 }
             ],
-            "help_text" : "Cette ressource est-elle complémentaire au jeu de donné associé ? Cocher si tel est le cas."
+            "help_text": "Cette ressource est-elle complémentaire au jeu de donné associé ? Cocher si tel est le cas."
         },
         {
             "field_name": "relidi_description_champs",
@@ -600,29 +458,20 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Fournie en ressource",
-                        "fr": "Fournie en ressource"
-                    },
+                {
+                    "label": { "en": "Fournie en ressource", "fr": "Fournie en ressource" },
                     "value": "relidi.descha.foudoc"
                 },
                 {
-                    "label": {
-                        "en": "Fournie en métadonnées",
-                        "fr": "Fournie en métadonnées"
-                    },
+                    "label": { "en": "Fournie en métadonnées", "fr": "Fournie en métadonnées" },
                     "value": "relidi.descha.foumet"
                 },
                 {
-                    "label": {
-                        "en": "Absente",
-                        "fr": "Absente"
-                    },
+                    "label": { "en": "Absente", "fr": "Absente" },
                     "value": "relidi.descha.absent"
                 }
             ],
-            "help_text" : "Choisir l'option correspondante"
+            "help_text": "Choisir l'option correspondante"
         },
         {
             "field_name": "relidi_confic_separateur_virgule",
@@ -633,29 +482,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         },
         {
             "field_name": "relidi_confic_utf8",
@@ -666,29 +497,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         },
         {
             "field_name": "relidi_confic_epsg",
@@ -699,29 +512,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         },
         {
             "field_name": "relidi_confic_pascom",
@@ -732,29 +527,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         },
         {
             "field_name": "relidi_condon_valinc",
@@ -765,29 +542,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         },
         {
             "field_name": "relidi_condon_datheu",
@@ -798,29 +557,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         },
         {
             "field_name": "relidi_condon_nombre",
@@ -831,29 +572,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         },
         {
             "field_name": "relidi_condon_boolee",
@@ -864,29 +587,11 @@
             "preset": "select",
             "form_snippet": "select.html",
             "choices": [
-               {
-                    "label": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                    },
-                    "value": "oui"
-                },
-                {
-                    "label": {
-                        "en": "Non",
-                        "fr": "Non"
-                    },
-                    "value": "non"
-                },
-                {
-                    "label": {
-                        "en": "N/A",
-                        "fr": "n/a"
-                    },
-                    "value": "n/a"
-                }
+                { "label": { "en": "Yes", "fr": "Oui" }, "value": "oui" },
+                { "label": { "en": "Non", "fr": "Non" }, "value": "non" },
+                { "label": { "en": "N/A", "fr": "n/a" }, "value": "n/a" }
             ],
-            "help_text" : "Sélectionner l'option appropriée"
+            "help_text": "Sélectionner l'option appropriée"
         }
     ]
 }
