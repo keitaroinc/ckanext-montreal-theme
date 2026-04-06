@@ -26,7 +26,7 @@
             <br>
             <div class="content markdown-content leading-relaxed">
                 {% if g.page.content %}
-                    {% set editor = h.get_wysiwyg_editor() %}
+                    {% set editor = h.pages_get_wysiwyg_editor() %}
                     {% if editor %}
                     {{g.page.content|safe}}
                     {% else %}
