@@ -581,6 +581,7 @@
                 "fr": "Ressource complémentaire"
             },
             "preset": "multiple_checkbox",
+            "validators": "scheming_load_json scheming_multiple_choice",
             "form_placeholder": "cocher si la ressource est complémentaire",
             "choices": [
                 {
