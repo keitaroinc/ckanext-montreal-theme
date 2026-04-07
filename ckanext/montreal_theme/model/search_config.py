@@ -1,4 +1,4 @@
-from ckan.model.meta import metadata, mapper, Session
+from ckan.model.meta import metadata, Session, registry
 from ckan.model.domain_object import DomainObject
 from ckan.model.types import make_uuid
 from sqlalchemy import types, Column, Table
@@ -49,7 +49,7 @@ class SearchConfig(DomainObject):
         Session.commit()
 
 
-mapper(SearchConfig, search_config, properties={})
+registry.map_imperatively(SearchConfig, search_config)
 
 
 def setup():
