@@ -164,3 +164,10 @@ def get_package_showcases(package_id):
     except Exception as e:
         # Log or handle the exception if needed
         return []
+
+
+def get_showcase_pkgs(showcase_id):
+    return tk.get_action('ckanext_showcase_package_list')(
+        {'ignore_auth': True},
+        {'showcase_id': showcase_id}
+    )
