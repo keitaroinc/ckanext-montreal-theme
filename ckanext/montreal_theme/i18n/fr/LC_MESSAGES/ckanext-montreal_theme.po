@@ -722,15 +722,6 @@ msgstr "En savoir plus"
 msgid "Dataset(s) used in this application"
 msgstr "Ensemble(s) de données intégré(s) à l'application"
 
-#: ckanext/montreal_theme/templates/showcase/_search.html:27
-msgid ""
-"Showcases are any app, article or report that relate to the published "
-"dataset. For example, an annual report that contains aggregated "
-"information relating to the dataset or a website where there is further "
-"background information on the dataset or a link to an app that has been "
-"created utilising some or all of the dataset."
-msgstr ""
-
 #: ckanext/montreal_theme/templates/showcase/_search.html:49
 msgid "Search showcases..."
 msgstr ""
