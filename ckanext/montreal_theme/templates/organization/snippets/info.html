@@ -1,6 +1,6 @@
 {% ckan_extends %}
 {% block info %}
-{% if not g.userobj.sysadmin %}
+{% if not g.userobj %}
 
     <div class="mb-gutter md:mr-10 md:pb-2">
         <a href="{{ group.url }}">
