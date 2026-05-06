@@ -1061,7 +1061,6 @@ msgstr ""
 #: ckanext/montreal_theme/templates/components.html:43
 #: ckanext/montreal_theme/templates/components.html:105
 #: ckanext/montreal_theme/templates/navigation/main-menu.html:39
-#: ckanext/montreal_theme/templates/package/_search.html:9
 msgid "Datasets"
 msgstr "Jeux de données"
 
@@ -1092,9 +1091,6 @@ msgstr "Applications"
 #: ckanext/montreal_theme/templates/components.html:59
 msgid "Erase"
 msgstr "Effacer"
-
-
-
 
 #: ckanext/montreal_theme/templates/navigation/main-menu.html:48
 msgid "By categories"
@@ -1286,3 +1282,7 @@ msgstr "Proposer la votre"
 #: ckanext/montreal_theme/templates/package/resource_read.html:211
 msgid "Copy"
 msgstr "Copier"
+
+#: ckanext/montreal_theme/templates/package/_search.html:9
+msgid "datasets"
+msgstr "Jeux de données"
