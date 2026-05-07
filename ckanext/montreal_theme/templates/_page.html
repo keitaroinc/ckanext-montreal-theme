@@ -71,7 +71,7 @@
             {% endblock %}
 
             {% block secondary %}
-              <aside class="md:w-3/10 md:mr-10">
+              <aside class="md:w-3/10 md:mr-10 md:flex-shrink-0">
                 {#
                 The secondary_content block can be used to add content to the
                 sidebar of the page. This is the main block that is likely to be
@@ -89,7 +89,7 @@
             {% endblock %}
 
             {% block primary %}
-              <main class="md:w-2/3" role="main">
+              <main class="md:flex-1 md:min-w-0" role="main">
                 {#
                 The primary_content block can be used to add content to the page.
                 This is the main block that is likely to be used within a template.
