@@ -42,7 +42,7 @@ Example:
               {% endblock %}
               {% block heading_title %}
                 <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-gray-900 hover:text-primary">
-                    {{ h.truncate(title, truncate_title) }}
+                    {{ title | truncate(truncate_title, killwords=True, end='...') }}
                 </a>
               {% endblock %}
               {% block heading_meta %}
