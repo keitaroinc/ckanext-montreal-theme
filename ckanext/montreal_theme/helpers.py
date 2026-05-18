@@ -54,7 +54,7 @@ def get_organization_info_for_user(include_dataset_count=True):
     return tk.get_action('organization_list_for_user')(context, data_dict)
 
 
-def get_all_organizations(include_dataset_count=True):
+def get_all_organizations(include_dataset_count=False):
     '''Return a list of organizations that the current user has the specified
        permission for.
     '''
@@ -87,7 +87,7 @@ def get_groups():
     return groups
 
 
-def get_all_groups(include_dataset_count=True):
+def get_all_groups(include_dataset_count=False):
     '''Return a list of organizations that the current user has the specified
     permission for.
     '''
