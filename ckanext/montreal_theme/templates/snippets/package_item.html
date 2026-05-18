@@ -41,7 +41,7 @@ Example:
                 {% endif %}
               {% endblock %}
               {% block heading_title %}
-                <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" class="text-gray-900 hover:text-primary">
+                <a href="{{ h.url_for('%s.read' % package.type, id=package.name) }}" title="{{ title }}" class="text-gray-900 hover:text-primary">
                     {{ title | truncate(truncate_title, killwords=True, end='...') }}
                 </a>
               {% endblock %}

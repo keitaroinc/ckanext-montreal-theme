@@ -20,7 +20,7 @@
                 {% set count = count_label(item['count']) if count_label else ('%d' % item['count']) %}
 
                 <li class="search-facet flex justify-between items-center text-gray-900 group hover:bg-sarcelle-lightest cursor-pointer">
-                    <a href="{{ href }}" class="flex-1 font-bold group-hover:text-primary text-base pl-3 py-3">{{ label_truncated }}</a>
+                    <a href="{{ href }}" title="{{ label }}" class="flex-1 font-bold group-hover:text-primary text-base pl-3 py-3">{{ label_truncated }}</a>
                     <span class="flex-none font-bold text-sm text-gray-ink group-hover:text-primary px-3">
                         {{ count }}
                     </span>
