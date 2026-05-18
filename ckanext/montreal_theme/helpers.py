@@ -9,10 +9,7 @@ from ckanext.montreal_theme.model import SearchConfig
 
 g = tk.g
 
-def get_all_organizations(include_dataset_count=True):
-    '''Return a list of organizations that the current user has the specified
-    permission for.
-    '''
+def get_all_organizations(include_dataset_count=False):
     context = {'user': g.user}
     data_dict = {
         'include_dataset_count': include_dataset_count,
@@ -21,20 +18,13 @@ def get_all_organizations(include_dataset_count=True):
 
 
 def get_latest_datasets():
-    '''Return a list of the latest datasets that the current user has the specified
-    permission for.
-    '''
     context = {'user': g.user}
     data_dict = {'sort': 'metadata_modified desc', 'rows': 4, 'include_private': True}
-
     datasets = tk.get_action('package_search')(context, data_dict)
     return datasets.get('results', [])
 
 
-def get_all_groups(include_dataset_count=True):
-    '''Return a list of organizations that the current user has the specified
-    permission for.
-    '''
+def get_all_groups(include_dataset_count=False):
     context = {'user': g.user}
     data_dict = {
         'include_dataset_count': include_dataset_count,

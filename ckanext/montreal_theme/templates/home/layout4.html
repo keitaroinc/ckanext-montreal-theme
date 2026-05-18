@@ -24,13 +24,13 @@
           <div data-title="our-data">
             <h2 class="text-4xl text-zambezi font-semibold"> {{ _('Our data') }}</h2>
           </div>
+          {% set groups = h.all_groups() %}
           <div data-title="collection-grid" class="flex w-full">
               {% block featured_groups%}
-                {% snippet 'home/snippets/all_groups.html' %}
+                {% snippet 'home/snippets/all_groups.html', groups=groups %}
               {% endblock %}
           </div>
 
-          {% set groups = h.all_groups() %}
           {% if groups|length > 0 %}
           <div class="flex flex-col pt-6 pb-3 items-center">
             <a class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full" href="{{ h.url_for('group.index') }}"> {{_('View all')}}</a>
@@ -73,8 +73,9 @@
           <h2 class="text-4xl text-zambezi font-semibold w-full">{{_('Applications')}}</h2>
           <div class="slick-showcase block flex w-full flex-row">
           {% block applications %}
-            {% if h.get_showcases() %}
-              {% snippet 'home/snippets/showcase_list.html', showcases=h.get_showcases() %}
+            {% set showcases = h.get_showcases() %}
+            {% if showcases %}
+              {% snippet 'home/snippets/showcase_list.html', showcases=showcases %}
             {% endif %}
           </div>
           <a href="{{ h.url_for('showcase_blueprint.index') }}" class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white mt-4 py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full">
@@ -87,13 +88,13 @@
         {# <------------------ Organizations section ---------------> #}
         <div class="flex flex-col items-center pt-16 pb-16">
           <h2 class="text-4xl text-zambezi font-semibold w-full">{{_('Organizations')}}</h2>
+          {% set org = h.all_organizations() %}
           <div data-title="collection-grid" class="flex w-full">
             {% block featured_organization %}
-              {% snippet 'home/snippets/all_organizations.html' %}
+              {% snippet 'home/snippets/all_organizations.html', organizations=org %}
             {% endblock %}
           </div>
-  
-          {% set org = h.all_organizations() %}
+
           {% if org|length > 0 %}
             <a class="view_all text-center bg-transparent mb-4 hover:bg-primary text-primary font-semibold hover:text-white mt-2 py-2 px-4 border-1 border-gray-500 hover:border-transparent rounded-full" href="{{ h.url_for('organization.index') }}"> {{_('View all')}}</a>
           {% endif %}
