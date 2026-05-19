@@ -1,11 +1,29 @@
+import time
+import logging
+
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckan.lib.plugins import DefaultTranslation
 
-
 from ckanext.montreal_theme.views.config import montreal_theme
 from ckanext.montreal_theme import helpers as h
 import ckanext.montreal_theme.cli as cli
+
+log = logging.getLogger(__name__)
+
+
+class _RequestTimingMiddleware:
+    def __init__(self, app):
+        self.app = app
+
+    def __call__(self, environ, start_response):
+        path = environ.get('PATH_INFO', '')
+        t0 = time.perf_counter()
+        result = self.app(environ, start_response)
+        ms = (time.perf_counter() - t0) * 1000
+        log.info('[REQUEST TIMING] %s %.1f ms', path, ms)
+        return result
+
 
 class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IConfigurer)
@@ -15,7 +33,12 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IFacets)
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IGroupForm, inherit=True)
+    plugins.implements(plugins.IMiddleware, inherit=True)
 
+
+    # IMiddleware
+    def make_middleware(self, app, config):
+        return _RequestTimingMiddleware(app)
 
     # IClick
     def get_commands(self):
