@@ -13,11 +13,35 @@ from ckanext.montreal_theme.model import SearchConfig
 import json
 import logging
 import time
+import threading
 import functools
 
 log = logging.getLogger(__name__)
 
 g = tk.g
+
+_cache_lock = threading.Lock()
+_cache_store = {}
+
+
+def _ttl_cached(ttl=300):
+    """In-process TTL cache keyed by function name, args, and current user."""
+    def decorator(fn):
+        @functools.wraps(fn)
+        def wrapper(*args, **kwargs):
+            user = getattr(g, 'user', None)
+            key = (fn.__name__, args, tuple(sorted(kwargs.items())), user)
+            now = time.monotonic()
+            with _cache_lock:
+                entry = _cache_store.get(key)
+                if entry and now < entry['expires']:
+                    return entry['value']
+            result = fn(*args, **kwargs)
+            with _cache_lock:
+                _cache_store[key] = {'value': result, 'expires': now + ttl}
+            return result
+        return wrapper
+    return decorator
 
 
 def _timed(fn):
@@ -72,6 +96,7 @@ def get_organization_info_for_user(include_dataset_count=True):
 
 
 @_timed
+@_ttl_cached(ttl=300)
 def get_all_organizations(include_dataset_count=False):
     '''Return a list of organizations that the current user has the specified
        permission for.
@@ -84,6 +109,7 @@ def get_all_organizations(include_dataset_count=False):
 
 
 @_timed
+@_ttl_cached(ttl=120)
 def get_latest_datasets():
     '''Return a list of the latest datasets that the current user has the specified
     permission for.
@@ -107,6 +133,7 @@ def get_groups():
 
 
 @_timed
+@_ttl_cached(ttl=300)
 def get_all_groups(include_dataset_count=False):
     '''Return a list of organizations that the current user has the specified
     permission for.
@@ -119,6 +146,7 @@ def get_all_groups(include_dataset_count=False):
 
 
 @_timed
+@_ttl_cached(ttl=300)
 def get_showcases(num=6):
     '''Return a list of showcases'''
     showcases = tk.get_action("ckanext_showcase_list")() or []
