@@ -1,9 +1,12 @@
 {% ckan_extends %}
-
+{% include 'snippets/gtm.html' %}
 {% block styles %}
   {{ super() }}
-  {% if g.homepage_style == '4' %}
+  {# {% if g.homepage_style == '4' %} #}
     {% asset 'montreal_theme/montreal_theme-style' %}
     {% asset 'montreal_theme/montreal_theme-js' %}
-  {% endif %}
+  {# {% endif %} #} 
+  <link rel="stylesheet" type="text/css"  href="/css/design-system.css">
+  <link rel="stylesheet" type="text/css" href="/css/montreal.css">
 {% endblock %}
+{% include 'snippets/gtm_noscript.html' %}

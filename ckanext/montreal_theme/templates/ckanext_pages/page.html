@@ -1,8 +1,16 @@
-{% extends 'page-admin.html' %}
+{% extends 'page.html' %}
 
 {% block subtitle %}{{ c.page.title }}{% endblock %}
 
+
+
+
+
 {% block primary %}
+  {% if g.userobj.sysadmin %}
+
+  
+
 <div class="primary col-sm-9">
   <section class="module-content">
 
@@ -23,7 +31,7 @@
       {% block ckanext_pages_content %}
         {% if c.page.content %}
           <div class="ckanext-pages-content">
-            {% set editor = h.get_wysiwyg_editor() %}
+            {% set editor = h.pages_get_wysiwyg_editor() %}
             <!-- editor set to "{{ editor }}"-->
             {% if editor %}
               <div>
@@ -40,9 +48,14 @@
       {% endblock %}
   </section>
 </div>
+  {% else %}
+
+  {% endif %}
 {% endblock %}
 
 {% block secondary %}
+  {% if g.userobj.sysadmin %}
+
 {% set groups = h.montreal_get_groups() %}
 <aside class="secondary col-sm-3">
 
@@ -65,16 +78,71 @@
     <h2 class="module-heading">{{ _('Social') }}</h2>
     <ul class="unstyled nav nav-simple nav-facet">
       <li class="nav-item"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank"><i
-            class="fa fa-facebook"></i> Facebook</a></li>
+            class="fab fa-facebook"></i> Facebook</a></li>
       <li class="nav-item"><a href="https://plus.google.com/share?url={{ current_url }}" target="_blank"><i
-            class="fa fa-google-plus"></i> Google+</a></li>
+            class="fab fa-google-plus"></i> Google+</a></li>
       <li class="nav-item"><a
           href="http://www.linkedin.com/shareArticle?mini=true&url={ current_url }&source=Portail%20donn%C3%A9es%20ouvertes%20de%20la%20Ville%20de%20Montr%C3%A9al"
-          target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+          target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
       <li class="nav-item"><a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i
-            class="fa fa-twitter"></i> Twitter</a></li>
+            class="fab fa-twitter"></i> Twitter</a></li>
     </ul>
   </section>
 
 </aside>
+
+  {% else %} 
+
+  {% endif %}
 {% endblock %}
+
+
+{% block toolbar %}
+<div class="container mx-auto" style="padding-top: 35px">
+    {% block breadcrumb_content %}
+        <nav class="breadcrumb" aria-label="breadcrumb">
+            <ol class="text-gray-700 font-semibold">
+                {% include 'snippets/home_breadcrumb_item.html' %}
+                <li class="breadcrumb_item">
+                    <a class="breadcrumb_link" href="#">{{ _(g.page.title) }}</a>
+                </li>
+               
+            </ol>
+        </nav>
+    {% endblock %}
+</div>
+{% endblock %}
+
+{% block extra_content %}
+    <div class="container mx-auto lg:flex p-gutter">
+        <main class="mb-gutter lg:mb-0 lg:w-2/3 lg:mr-gutter">
+            <h1 class="text-4xl font-semibold text-gray-700">{{ _(g.page.title) }}</h1>
+            <time class="text-gray-500">{{  h.render_datetime(g.page.publish_date, date_format='%b %d, %Y') }}</time>
+            <br>
+            <div class="content markdown-content leading-relaxed">
+                {% if g.page.content %}
+                    {% set editor = h.pages_get_wysiwyg_editor() %}
+                    {% if editor %}
+                    {{g.page.content|safe}}
+                    {% else %}
+                    {{g.page.content|safe}}                    
+                    {% endif %}
+                {% else %}
+                    <p class="empty">{{ _('This page currently has no content') }}</p>
+                {% endif %}
+            </div>
+        </main>
+        <div class="lg:w-1/3 lg:pl-gutter">   
+          {% set current_url = h.full_current_url() %}       
+            <h2 class="contact-us-social">{{ _('Share') }}</h2>
+                <ul class="unstyled nav nav-simple nav-facet">
+                    <li class="nav-item"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li class="nav-item"><a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                </ul>           
+        </div>
+    </div>
+{% endblock %}
+
+
+
+

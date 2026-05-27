@@ -1,0 +1,15 @@
+<div class=" bg-neutral-underground-1 ">
+  <div class="wide-container d-flex align-items-center">
+    <a href="https://montreal.ca" class="flex is-external-link link-xs go-to-montreal d-flex align-items-center" >
+        montreal.ca
+    </a>
+    <div class="navbar-lang-switcher d-flex bg-transparent ml-auto position-relative">
+      {% set current_url = request.full_path %}
+      {% if current_lang == 'en' %}
+          <a class="text-dark text-sm py-1" href="/fr{{ current_url }}">{{ _('Français') }}</a>
+      {% elif current_lang == 'fr' %}
+          <a class="text-dark text-sm py-1" href="/en{{ current_url }}">{{ _('English') }}</a>
+      {% endif %}
+    </div>
+    </div>
+  </div>

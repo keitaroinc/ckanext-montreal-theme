@@ -1,67 +1,58 @@
+{% import "components.html" as components %}
+
+{% set current_lang = request.environ.CKAN_LANG %}
 
 {% block header_account %}
+  <div class="montreal-theme app-navbar">
+
+    {% if g.userobj is not none %}
+      {% set isEditor = h.is_editor_header() %}
+    {% endif %}
+
+    {% if g.userobj.sysadmin or isEditor %}
+      {% include "navigation/user-nav.html" %}
+    {% else %}
+      {% include "navigation/top-nav.html" %}
+    {% endif %}
 
     {% block header_logo %}
-        {% if g.site_logo %}
-        <header class="mx-auto w-full shadow-sm">
-            <div class="flex items-center py-4 px-5">
-                <div>
-                    <a class="logo" href="{{ h.url_for('home.index') }}">
-                    <img src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}"
-                        title="{{ g.site_title }}" width="190px" />
-                    </a>
-                </div>
-                <div class="mx-6 h-4 border-1 border-solid border-gray-400"></div>
-                <div class="text-black font-bold">{{_("Open Data")}}</div>
-                {% if g.userobj.sysadmin %}
-                <nav class="flex items-center" style="margin-left: 340px;">
-                    <div class="flex font-open-sans text-base items-center mx-auto">
-                        <div class="container">
-                            <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
-                                <span class="text-black font-bold hover:text-primary">{{ _('Admin') }}</span>
-                            </a>
-                        </div>
-                        <div class="container">
-                            <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
-                                <span class="text-black font-bold hover:text-primary">{{ c.userobj.display_name }}</span>
-                            </a>
-                        </div>
-                        {% set new_activities = h.new_activities() %}
-                        <div class="container notifications {% if new_activities > 0 %}notifications-important{% endif %}">
-                            {% set notifications_tooltip = ngettext('Dashboard (%(num)d new item)', 'Dashboard (%(num)d new items)', new_activities)%}
-                            <a href="{{ h.url_for('dashboard.index') }}" title="{{ notifications_tooltip }}">
-                                <span class="text-black font-bold hover:text-primary">{{ _('Dashboard') }}</span>
-                              </a>
-                        </div>
-                        <div class="container">
-                            <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Profile settings') }}">
-                                <span class="text-black font-bold hover:text-primary">{{ _('Settings') }}</span>
-                              </a>
-                        </div>
-                        <div class="container">
-                            <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
-                                <span class="text-black font-bold hover:text-primary">{{ _('Logout') }}</span>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-                {% endif %}
-            </div>
-        {% else %}
-            <h1>
+      <header class="mx-auto w-full" style="border-bottom: 1px solid #ced4da;">
+        <div class=" py-2 border-neutral-underground-1 " style="border-bottom: 1px solid #CED4DA">
+          <div class="wide-container nav-items-flex">
+            {% if g.site_logo %}
+              <div class="nav-logo-title">
+                <a class="logo inline-block" href="{{ h.url_for('home.index') }}" class="">
+                  <img class="block" src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" style="min-width: 40px;" />
+                </a>
+                <div class="mx-4 h-4 nav-line-changed border-gray-400"></div>
+                <div class="text-black font-bold" style="white-space: nowrap;">{{ _('Open Data') }}</div>
+              </div>
+              <div>
+                {{ components.search_bar() }}
+              </div>
+            {% else %}
+              <h1>
                 <a href="{{ h.url_for('home.index') }}">{{ g.site_title }}</a>
-            </h1>
-            {% if g.site_description %}
+              </h1>
+              {% if g.site_description %}
                 <h2>{{ g.site_description }}</h2>
+              {% endif %}
             {% endif %}
-        {% endif %}
-        </header>
+            {% if g.userobj is not none %}
+              {% set isEditor = h.is_editor_header() %}
+            {% endif %}
+          </div>
+        </div>
+        <div>
+          {% include "navigation/main-menu.html" %}
+        </div>
+      </header>
     {% endblock %}
 
-    {% block header_site_search%}  
-    {%endblock%}
+    {% block header_site_search %}
+    {% endblock %}
 
     {% block header_site_navigation %}
-    {%endblock%}
-
+    {% endblock %}
+  </div>
 {% endblock %}

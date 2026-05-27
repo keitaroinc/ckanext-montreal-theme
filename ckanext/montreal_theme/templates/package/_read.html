@@ -1,226 +1,517 @@
 {% extends "page.html" %}
 
+{% macro render_item_size(item) %}
+    {% set item_size = item.get('size') or item.get('Size') or item.get('Taille') or item.get(_('Size')) %}
+    {% if item_size %}
+        <div>{{ h.format_size(item_size) or '' }}</div>
+    {% endif %}
+{% endmacro %}
+
+{% import "components.html" as components %}
+
+{% set current_lang = request.environ.CKAN_LANG %}
 
 {% set pkg = pkg_dict %}
-{% block breadcrumb %}
 
-<div class="w-full font-sans font-semibold text-gray-ink py-3" aria-label="breadcrumb">
-    <nav class="breadcrumb-read" aria-label="breadcrumb">
-        <ol>
+{% block subtitle %}{{ _(pkg.get('title')) }}{% endblock %}
 
-        {% block breadcrumb_content %}
-
-            {% if pkg.groups %}
-                {% set title = pkg.groups[0].get('title') %}
-                {% set group_name = pkg.groups[0].get('name') %}
-            {% endif %}
-
-            {{ super() }}
-            <li class="breadcrumb_item b_package_read hover:text-primary">{% link_for _('Collections'), named_route='montreal_theme.collections' %}</li>
-            {#<li class="breadcrumb_item b_package_read hover:text-primary">{% link_for title|truncate(30), named_route='group' ~ '.read', id=group_name %}</li> #}
-            <li class="breadcrumb_item b_package_read hover:text-primary">
-                {% set href = h.url_for('group.read', id=group_name) %}
-                <a href="{{ href }}">{{ title }}</a>
-            </li>
-
-        {% endblock %}
-        </ol>
-    </nav>
-
-{% endblock %}
-
-
-{% block primary %}
-    <div class="md:w-2/3 pt-3 pb-5 text-gray-ink">
-        {% block primary_content %}
-            {% set pkg_org = pkg.get('organization') %}
-            {% set pkg_title = pkg.get('title') %}
-            {% set notes = pkg.get('notes') %}
-            <div>
-                {# -------- readme ------------- #}
-                <h1 class="py-2 text-4xl font-semibold text-gray-900">{{ pkg_title }}</h1>
-                <div class="text-sm-up py-1">
-                    <div class="flex flex-row">
-                        <p class="pr-2">Published by</p>
-                        {% set href = h.url_for('organization.read', id=pkg_org.get('name')) if pkg_org else '' %}
-                        <a href="{{ href }}" class="font-semibold text-sarcelle-dark hover:underline">{{ pkg_org.get('title') if pkg_org else '' }}</a>
-                    </div>
-                    <div class="container mt-12 mb-8 pt-16 border-t border-gray-400" style="border-top-width: 1px;">
-                        <div class="markdown-content leading-relaxed">
-                            <p>{{ notes }}</p>
-                        </div>
-                    </div>
-                </div>
-                {# -------- end readme ---------- #}
-                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">Data</h2>
-                {# -------- resource table ---------- #}
-                <table class="info block pb-24">
-                    <thead class="font-semibold text-left text-gray-900">
-                        <tr>
-                            <th scope="col" class="px-4 py-3">{{ _('Name') }}</th>
-                            <th scope="col" class="px-4 py-3">{{ _('Format') }}</th>
-                            <th scope="col" class="px-4 py-3">{{ _('Size') }}</th>
-                            <th scope="col" class="px-4 py-3">{{ _('Last Changed') }}</th>
-                            <th scope="col" class="px-4 py-3 overflow-hidden">{{ _('Download') }}</th>
-                            <th scope="col" class="px-4 py-3 overflow-hidden">{{ _('Preview') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for res in pkg.get('resources') %}
-                        {% set url = h.url_for('resource.read', id=pkg.id if is_activity_archive else pkg.name, resource_id=res.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
-                        <tr class="border-t border-gray-400">
-                            <td class="px-1 py-3" style="border-top-width: 1px;">{{ _(res.get('name')) }}</td>
-                            <td class="px-1 py-3 font-semibold text-base text-gray-900 uppercase" style="border-top-width: 1px;">{{ res.get('format') }}</td>
-                            <td class="px-1 py-3" style="border-top-width: 1px;">{{h.format_size(res.get('Size')) }}</td>
-                            <td class="px-1 py-3" style="border-top-width: 1px;">
-                                <div class="has-tooltip">
-                                {{ h.time_ago_from_timestamp(res.get('last_modified')) }}
-                                <span class="tooltip rounded shadow-md p-1 bg-gray-100 text-base ml-10 -mt-8">{{ res.get('last_modified') }}</span>
-                                </div>
-                            </td>
-                            <td class="px-10 py-3 text-base text-primary" style="border-top-width: 1px;">
-                                <a href="{{ res.get('url') }}" target="_blank">
-                                    <svg class="fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
-                                        <path fill-rule="evenodd" d="M12.376 15.927a1 1 0 01-1.083-.22l-5-5a1 1 0 011.414-1.414L11 12.586V3a1 1 0 012 0v12a1 1 0 01-.61.921zM20 15a1 1 0 012 0v4a3 3 0 01-3 3H5a3 3 0 01-3-3v-4a1 1 0 012 0v4a1 1 0 001 1h14a1 1 0 001-1v-4zm-3.707-5.707a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414-1.414l2-2z"></path>
-                                    </svg>
-                                </a>
-                            </td>
-                            <td class="px-10 py-3" style="border-top-width: 1px;">
-                              {% if res.get('has_views')%}
-                                <a href="{{ url }}">
-                                    <svg class="fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
-                                        <path fill-rule="evenodd" d="M10,6.978c-1.666,0-3.022,1.356-3.022,3.022S8.334,13.022,10,13.022s3.022-1.356,3.022-3.022S11.666,6.978,10,6.978M10,12.267c-1.25,0-2.267-1.017-2.267-2.267c0-1.25,1.016-2.267,2.267-2.267c1.251,0,2.267,1.016,2.267,2.267C12.267,11.25,11.251,12.267,10,12.267 M18.391,9.733l-1.624-1.639C14.966,6.279,12.563,5.278,10,5.278S5.034,6.279,3.234,8.094L1.609,9.733c-0.146,0.147-0.146,0.386,0,0.533l1.625,1.639c1.8,1.815,4.203,2.816,6.766,2.816s4.966-1.001,6.767-2.816l1.624-1.639C18.536,10.119,18.536,9.881,18.391,9.733 M16.229,11.373c-1.656,1.672-3.868,2.594-6.229,2.594s-4.573-0.922-6.23-2.594L2.41,10l1.36-1.374C5.427,6.955,7.639,6.033,10,6.033s4.573,0.922,6.229,2.593L17.59,10L16.229,11.373z"></path>
-                                    </svg>
-                                </a>
-                                {% endif %}
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                {# -------- end resource table ---------- #}
-                {# -------- data ---------- #}
-                <div class="py-2" id="data">
-
-                    <ul>
-                        <div class="custom_accordion mb-4 rounded border-1 border-solid border-gray-300 hover:text-primary text-base font-bold" id="toponymes">
-                            Toponymes
-                        </div>
-                    
-                        <div class="custom_panel hidden">
-                            <li class="mb-6">
-                                <nav class="pt-4 pb-1">
-                                    <a></a>
+{% block toolbar %}
+    {% if g.user and g.userobj.sysadmin %}
+        {{ super() }}
+    {% else %}
+        {% set pkg_org = pkg.get('organization') %}
+        {% set pkg_title = pkg.get('title') %}
+        <div class="container mx-auto" style="padding-top: 35px">
+            <div class="montreal-theme">
+                <div class="page-header bg-transparent mt-0 pt-0 border-0">
+                    <div class="row">
+                        <div class="col container-title">
+                            <div class="flex flex-col">
+                                <nav class="pr-0 breadcrumb-container" role="navigation" >
+                                    <ol class="breadcrumb  d-flex">
+                                        <li class="breadcrumb-item">
+                                            <a href="{{ h.url_for('home.index') }}">{{_("Home")}}</a>
+                                        </li>
+                                        {% if pkg.groups %}
+                                            {% set title = pkg.groups[0].get('title') %}
+                                            {% set group_name = pkg.groups[0].get('name') %}
+                                        {% endif %}
+                                      
+                                        <li class="breadcrumb-item">
+                                            {% link_for _('Collections'), named_route='group.index' %}
+                                        </li>
+                                        <li class="breadcrumb-item">
+                                            {% set href = h.url_for('group.read', id=group_name) %}
+                                            <a href="{{ href }}">{{ title }}</a>
+                                        </li>
+                                    </ol>
                                 </nav>
-                            </li>
-                        </div>
-                    </ul>
-                </div>
-                {# -------- end data ---------- #}
-                {# -------- methodology ---------- #}
-                <div id="methodology" class="py-2">
-                    <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Methodology') }}</h2>
-                    <div class="markdown-content leading-relaxed">
-                        {{ h.render_content(pkg.methodologie) }}
-                    </div>
-                </div>
-                {# -------- end methodology ---------- #}
-                {# -------- territories ---------- #}
-                <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Territories') }}</h2>
-                <div id="hidden-territories" class="hidden">
-                    <p id="hidden-p">{{ _('Montreal') }}</p>
-                </div>
-                <div id="mapid">
-               
-                     {% snippet 'package/snippets/teritorries.html', territoire=pkg.get('territoire', None) %}
-                </div>
-                {# -------- end territories ---------- #}
-                {# -------- keywords ---------- #}
-                <div id="keywords" class="py-2">
-                    <h2 class="text-3xl font-semibold pt-gutter pb-2 text-gray-900">{{ _('Keywords') }}</h2>
-                    <div class="flex flex-wrap">
-                        {% for tag in pkg.get('tags') %}
-                        {% set href = '/dataset?q=tags:' + tag.get('display_name') %}
-                        <a href="{{ h.url_for(href) }}" class="font-bold text-sm text-primary lowercase border-1 border-gray-400 rounded py-1 px-2 mr-3 my-2 hover:border-primary">
-                            {{ tag.get('display_name') }}
-                        </a>
-                        {% endfor %}
-                    </div>
-                </div>
-                {# -------- end keywords ---------- #}
-                {# -------- additional info ---------- #}
-                <div id="additional-info" class="py-2">
-                    <h2 class="text-3xl font-semibold pt-gutter pb-4 text-gray-900">{{ _('Additional Information') }}</h2>
-                    <div class="py-2">
-                        <h3 class="font-semibold text-gray-900">{{ _('Publisher') }}</h3>
-                        <p>{{ pkg.get('author') or '--' }}</p>
-                    </div>
-                    <div class="py-2">
-                        <h3 class="font-semibold text-gray-900">{{ _('Temporal coverage') }}</h3>
-                        <p>{{pkg.get('temporal') or '--' }}</p>
-                    </div>
-                    <div class="py-2">
-                        <h3 class="font-semibold text-gray-900">{{ _('Source (URL)') }}</h3>
-                        <p>{{pkg.get('URL') or '--' }}</p>
-                    </div>
-                    <div class="py-2">
-                        <h3 class="font-semibold text-gray-900">{{ _('Update frequency') }}</h3>
-                        <p>{{pkg.get('update_frequency') or '--' }}</p>
-                    </div>
-                    <div class="py-2">
-                        <h3 class="font-semibold text-gray-900">{{ _('Descriptive Information Last Updated') }}</h3>
-                        <p>{{h.time_ago_from_timestamp(pkg.get('metadata_modified')) or '--' }}</p>
-                    </div>
-                    <div class="py-2">
-                        <h3 class="font-semibold text-gray-900">{{ _('Date the dataset was first added') }}</h3>
-                        <p>{{ h.render_datetime(pkg.get('created')) or '--' }}</p>
-                    </div>
-                    {# -------- end additional info ---------- #}
-                    {# -------- Organization block ---------- #}
-                    <div class="container flex mt-12 mb-8 pt-4 items-center border-t border-gray-400" style="border-top-width: 1px;">
-                        <div class="w-1/4 pr-4">
-                            {% set org = pkg.get('organization') %}
-                            {% set image_url = h.url_for_static('uploads/group/{}'.format(org.get('image_url'))) if org else '' %}
-                            <img class="inline-block w-full" src="{{ image_url }}">
-                        </div>
-                        <div class="flex flex-col w-3/4">
-                            <h2 class="text-black text-xl font-semibold hover:underline">
-                                <a href="{{ h.url_for('organization.read', id=org.name) }}">{{ org.title }}</a>
-                            </h2>
-                            <p class="py-2 text-sm text-justify"></p>
-                            <p>{{ org.description }}</p>
-                            <p></p>
+                                <div class="">
+                                    <h1 class="h2">
+                                        {{pkg.get('title')}}
+                                    </h1>
+                     
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    {# -------- end Organization block ---------- #}
                 </div>
-
             </div>
-            {{h.disqus_recent(num_comments=10)}}
-            {{h.disqus_comments()}}
-        {% endblock %}
-    </div>
-
+        </div>
+    {% endif %}
 {% endblock %}
 
 
 {% block secondary %}
+   
+{% endblock %}
 
-<aside class="md:block md:w-1/4 md:mr-6 text-gray-900">
-    {% block secondary_content %}
 
-        <nav class="md:sticky md:top-0 py-gutter">
-            <h3 class="text-2xl font-semibold pb-4">{{ _('Get Started') }}</h3>
-            <ul class="text-gray-900 font-semibold text-base">
-                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#data">Data</a></li>
-                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#methodology">Methodology</a></li>
-                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#territories">Territories</a></li>
-                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#keywords">Keywords</a></li>
-                <li class="py-3 hover:text-primary"><a class="hover:text-primary" href="#additional-info">Additional Info</a></li>
-            </ul>
-        </nav>
+{% block primary %}
+
+<div class="w-full ">
+    <div class="w-full pt-3 pb-5 text-gray-ink ">
+        {% block secondary_content %}
+            {% set pkg_org = pkg.get('organization') %}
+            {% set pkg_title = pkg.get('title') %}
+            {% set notes = h.render_markdown(pkg.get('notes')) %}
+
+            {% set apps = h.get_package_applications(pkg.id) %}
+
+            <div class="montreal-theme">
+                <nav class="nav-tabs dataset-tab">
+                    <ul class="nav" role="tablist">
+                      <li class="nav-item " role="presentation">
+                        <a href="#tab-data" class="nav-link m-0 active show" role="tab" data-toggle="tab">{{ _('Dataset') }}</a>
+                      </li>
+                      {% if pkg.groups|length > 0 %}
+                        <li class="nav-item " role="presentation">
+                            <a href="#tab-groups" class="nav-link m-0 " role="tab" data-toggle="tab">{{ _('Groups') }}</a>
+                        </li>
+                      {% endif %}
+                   
+                        <li class="nav-item " role="presentation">
+                            <a href="#tab-apps" class="nav-link m-0 " role="tab" data-toggle="tab">{{ _('Applications') }}</a>
+                        </li>
+                  
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="tab-content mt-5" style="display:block!important">
+                <div class="tab-pane fade show active montreal-theme" id="tab-data" role="tabpanel" >
+                    <div class="flex gap-x-20">
+                        <div class="w-full">
+                            <div>{{ notes }}</div>
+                        
+                            <div id="resources" class="mt-5">
+                                <h3>{{_("Resources")}}</h3>
+                                {% set resource_types = {
+                                    "donnees": _("Data"),
+                                    "support": _("Documentation"),
+                                    "web": _("Web service"),
+                                    "cartes": _("Map"),
+                                } %}
+                                {% set grouped_data = {} %}
+                                {% set resources = pkg.get('resources') %}
+                                {% set max_per_view = 5 %}
+                                {% for item in resources %}
+                                    {% set resource_type = item.get('resource_type') or "donnees" %}
+                                    {% if resource_type not in grouped_data %}
+                                        {% set _ = grouped_data.update({resource_type: []}) %}
+                                    {% endif %}
+                                    {% set _ = grouped_data[resource_type].append(item) %}
+                                {% endfor %}
+                        
+                                {% for resource_type, items in grouped_data.items() %}
+                                    <h4 class="mt-5">{{ resource_types[resource_type] or resource_type}}</h4>
+                                    <div class="">
+                                        <div class="list-group list-group-teaser list-group-complex border-0 pl-0" role="list">
+                                            {% for item in items[0:max_per_view] %}
+                                            {% set url = h.url_for('resource.read', id=pkg.id if is_activity_archive else pkg.name, resource_id=item.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
+                                                <div class="list-group-item list-group-item-action border-0 pl-0 group" style="cursor:auto" role="listitem">
+                                                    <div class="row  no-gutters align-items-lg-center gap-2">
+                                                        <div class="col-12 md:col-auto list-group-icon align-self-start" style="width: 100px;">
+                                                            <span class="badge badge-pill badge-light border-0 ring-0 rounded-sm">{{ item.get("format") }}</span>
+                                                        </div>
+                                                        <div class="col">
+                                                            <div class="row no-gutters align-items-lg-center">
+                                                                <div class="col">
+                                                                    <div class="list-group-item-title group-hover:text-gray-900" style="color:#212529!important">{{ item.get('name') }}</div>
+                                                                    <div class="list-group-item-content">
+                                                                        <div class="list-group-item-infos">
+                                                                            <span class="font-semibold">{{ _('Last Changed') }}:</span> {{ h.time_ago_from_timestamp(item.get('last_modified') or item.get('metadata_modified')) }}
+                                                                            {{ render_item_size(item) }}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                     
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-auto ml-2">
+                                                            <div class="flex items-center gap-1 justify-end">
+                                                                <a class="p-1" title="{{_('Download')}}" href="{{ item.get('url') }}"  download>
+                                                                    <svg class="mr-0 fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
+                                                                        <path fill-rule="evenodd" d="M12.376 15.927a1 1 0 01-1.083-.22l-5-5a1 1 0 011.414-1.414L11 12.586V3a1 1 0 012 0v12a1 1 0 01-.61.921zM20 15a1 1 0 012 0v4a3 3 0 01-3 3H5a3 3 0 01-3-3v-4a1 1 0 012 0v4a1 1 0 001 1h14a1 1 0 001-1v-4zm-3.707-5.707a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414-1.414l2-2z"></path>
+                                                                    </svg>
+                                                                </a>
+                                                                {% if item.get('has_views')%}
+                                                                    <a  class="p-1" href="{{ url }}" target="_blank"  title="{{_('Preview')}}">
+                                                                        <svg class="mr-0 hover:rounded hover:bg-sarcelle-light"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
+                                                                            <path fill-rule="evenodd" d="M2.574 12.707c.575.89 1.254 1.781 2.03 2.61C6.777 17.631 9.255 19 12 19c2.745 0 5.224-1.368 7.395-3.684A18.513 18.513 0 0021.86 12a18.513 18.513 0 00-2.464-3.316C17.224 6.368 14.745 5 12 5 9.255 5 6.776 6.368 4.605 8.684A18.513 18.513 0 002.14 12c.126.218.27.455.433.707zM.106 11.553c.14-.281.404-.75.788-1.346a20.492 20.492 0 012.251-2.89C5.661 4.631 8.62 3 12 3c3.38 0 6.339 1.632 8.855 4.316a20.492 20.492 0 012.25 2.891c.385.596.649 1.065.79 1.346a1 1 0 010 .894c-.141.281-.405.75-.79 1.346a20.492 20.492 0 01-2.25 2.89C18.339 19.369 15.38 21 12 21c-3.38 0-6.339-1.632-8.855-4.316a20.492 20.492 0 01-2.25-2.891 15.188 15.188 0 01-.79-1.346 1 1 0 010-.894zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"></path>
+                                                                        </svg>
+                                                                    </a>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+
+                                        {% if items|length  > max_per_view %}
+                                            <div class="collapse" id="{{resource_type}}-{{loop.index}}">
+                                                <div class="list-group list-group-teaser list-group-complex border-0 pl-0" role="list">
+                                                    {% for item in items[max_per_view:] %}
+                                                    {% set url = h.url_for('resource.read', id=pkg.id if is_activity_archive else pkg.name, resource_id=item.id, **({'activity_id': request.args['activity_id']} if 'activity_id' in request.args else {})) %}
+                                                    <div class="list-group-item list-group-item-action border-0 pl-0 group" style="cursor:auto" role="listitem">
+                                                        <div class="row  no-gutters align-items-lg-center gap-2">
+                                                            <div class="col-12 md:col-auto list-group-icon align-self-start" style="width: 100px;">
+                                                                <span class="badge badge-pill badge-light border-0 ring-0 rounded-sm">{{ item.get("format") }}</span>
+                                                            </div>
+                                                            <div class="col">
+                                                                <div class="row no-gutters align-items-lg-center">
+                                                                    <div class="col">
+                                                                        <div class="list-group-item-title group-hover:text-gray-900" style="color:#212529!important">{{ item.get('name') }}</div>
+                                                                        <div class="list-group-item-content">
+                                                                            <div class="list-group-item-infos">
+                                                                                <span class="font-semibold">{{ _('Last Changed') }}:</span> {{ h.time_ago_from_timestamp(item.get('last_modified') or item.get('metadata_modified')) }}
+                                                                                {{ render_item_size(item) }}
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                         
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-auto ml-2">
+                                                                <div class="flex items-center gap-1 justify-end">
+                                                                    <a class="p-1" title="{{_('Download')}}" href="{{ item.get('url') }}"  download>
+                                                                        <svg class="mr-0 fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
+                                                                            <path fill-rule="evenodd" d="M12.376 15.927a1 1 0 01-1.083-.22l-5-5a1 1 0 011.414-1.414L11 12.586V3a1 1 0 012 0v12a1 1 0 01-.61.921zM20 15a1 1 0 012 0v4a3 3 0 01-3 3H5a3 3 0 01-3-3v-4a1 1 0 012 0v4a1 1 0 001 1h14a1 1 0 001-1v-4zm-3.707-5.707a1 1 0 011.414 1.414l-2 2a1 1 0 01-1.414-1.414l2-2z"></path>
+                                                                        </svg>
+                                                                    </a>
+                                                                    {% if item.get('has_views')%}
+                                                                        <a  class="p-1" href="{{ url }}" target="_blank"  title="{{_('Preview')}}">
+                                                                            <svg class="mr-0 hover:rounded hover:bg-sarcelle-light"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
+                                                                                <path fill-rule="evenodd" d="M2.574 12.707c.575.89 1.254 1.781 2.03 2.61C6.777 17.631 9.255 19 12 19c2.745 0 5.224-1.368 7.395-3.684A18.513 18.513 0 0021.86 12a18.513 18.513 0 00-2.464-3.316C17.224 6.368 14.745 5 12 5 9.255 5 6.776 6.368 4.605 8.684A18.513 18.513 0 002.14 12c.126.218.27.455.433.707zM.106 11.553c.14-.281.404-.75.788-1.346a20.492 20.492 0 012.251-2.89C5.661 4.631 8.62 3 12 3c3.38 0 6.339 1.632 8.855 4.316a20.492 20.492 0 012.25 2.891c.385.596.649 1.065.79 1.346a1 1 0 010 .894c-.141.281-.405.75-.79 1.346a20.492 20.492 0 01-2.25 2.89C18.339 19.369 15.38 21 12 21c-3.38 0-6.339-1.632-8.855-4.316a20.492 20.492 0 01-2.25-2.891 15.188 15.188 0 01-.79-1.346 1 1 0 010-.894zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"></path>
+                                                                            </svg>
+                                                                        </a>
+                                                                    {% endif %}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            
+                                            <a type="button" class="btn btn-link btn-squared btn-icon-left mt-1"  data-toggle="collapse" href="#{{resource_type}}-{{loop.index}}">
+                                                <span class="icon icon-plus-circle w-auto text-sm" aria-hidden="true"></span>
+                                                <span class="btn-label">{{_("Show more resources")}}</span>
+                                            </a>
+                                        {% endif %}
+                        
+                                    </div>
+                                {% endfor %}
+                            </div>
+
+                            <div id="methodology" class="">
+                                <h3 class="mt-5">{{ _('Methodology') }}</h3>
+                                <div class="markdown-content text-gray-ink">
+                                {% if pkg.get('methodologie') %}
+                                    {{ h.render_content(pkg.get('methodologie')) }}
+                                {% elif pkg.get('extras') %}
+                                    {% for item in pkg.get('extras')%}
+                                        {% if item.key== 'methodologie'%}
+                                        {{ h.render_content(item.value) }}
+                                        {% endif %}
+                                    {% endfor%}
+                                {% else %}
+                                    <p>--</p>
+                                {% endif %}
+                                </div>
+                            </div>
+
+                            <div id="territories" class="mt-5">
+                                <h3  class="">{{ _('Territories') }}</h3>
+                                <div id="hidden-territories" class="hidden">
+                                    <p id="hidden-p">{{ _('Montreal') }}</p>
+                                </div>
+                                <div id="mapid"> 
+                                {% set ter_pass = [] %}              
+                                {% if pkg.get('territoire') %}
+                                    {% set ter_pass = pkg.get('territoire') %}
+                                {% else %}
+                                    {% for item in pkg.get('extras') %}
+                                        {% if item.key == "territoire" %}
+                                        <div hidden="hidden">{{ ter_pass.append(item.value) }}</div>
+                                        {% endif %}
+                                    {% endfor%}
+                                {% endif %}
+                                {% snippet 'package/snippets/teritorries.html', territoire_pass = ter_pass %}
+                                </div>
+                            </div>
+
+                            <div id="keywords" class="mt-5">
+                                <h3>{{ _('Keywords') }}</h3>
+                                <div class="flex flex-wrap gap-3">
+                                    {% for tag in pkg.get('tags') %}
+                                    {% set href = '/dataset?q=tags:' + tag.get('display_name') %}
+                                    <a href="{{ h.url_for(href) }}" class="">
+                                        {{ tag.get('display_name') }}
+                                    </a>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div id="additional-info" class="mt-5">
+
+
+                               {% set author = pkg.get('author') %}
+                               {% set temporal_coverage = 
+                                    pkg.get('temporal') 
+                                    or pkg.get('extras') | selectattr('key', 'equalto', 'temporal') | map(attribute='value') | first
+                                %}
+                                {% set url = 
+                                    pkg.get('url') 
+                                    or pkg.get('extras') | selectattr('key', 'equalto', 'url') | map(attribute='value') | first
+                                %}
+                                {% set update_frequency = 
+                                    pkg.get('update_frequency') 
+                                    or pkg.get('extras') | selectattr('key', 'equalto', 'update_frequency') | map(attribute='value') | first
+                                %}
+                                {% set modified = pkg.get('metadata_modified') %}
+                                {% set created = pkg.get('metadata_created') %}
+
+                                <h3 class="">{{ _('Additional Information') }}</h3>
+
+                                {% if author %}
+                                    <div class="">
+                                        <span class="font-semibold text-element-primary h5">{{ _('Publisher') }}</span>
+                                        <p class="text-secondary text-sm">{{ author }}</p>
+                                    </div>
+                                {% endif %}
+
+                                {% if temporal_coverage %}
+                                    <div class="">
+                                        <span class="font-semibold text-element-primary h5">{{ _('Temporal coverage') }}</span>
+                                        <div class="text-secondary text-sm">{{ h.render_content(temporal_coverage) }}</div>
+                                    </div>
+                                {% endif %}
+
+                                {% if url %}
+                                    <div class="">
+                                        <span class="font-semibold text-element-primary h5">{{  _('Source (URL)') }}</span>
+                                        <div class="text-secondary  text-sm ">{{ h.render_content(url) }}</div>
+                                    </div>
+                                {% endif %}
+
+                                {% if update_frequency %}
+                                    <div class="">
+                                        <span class="font-semibold text-element-primary h5">{{  _('Update frequency') }}</span>
+                                        <div class="text-secondary text-sm">
+                                            {% for field in schema.dataset_fields %}
+                                                {% if field.field_name == "update_frequency" %}
+                                                   <p> {%- snippet 'scheming/snippets/display_field.html', field=field, data=pkg_dict, schema=schema -%}</p>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if modified %}
+                                    {% set minutes = modified[11:13] %}
+                                    {% set seconds = modified[14:16] %}
+                                    <div>
+                                        <span class="font-semibold text-element-primary h5">{{ _('Descriptive Information Last Updated') }}</span>
+                                        <div class="text-secondary mb-2  text-sm " title="{{h.render_datetime(modified,  date_format='%Y-%m-%d') }}, {{minutes}}:{{seconds}}">
+                                            {{h.time_ago_from_timestamp(modified)}}
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if created %}
+                                    {% set minutes = created[11:13] %}
+                                    {% set seconds = created[14:16] %}
+                                    <div>
+                                        <span class="font-semibold text-element-primary h5">{{ _('Date the dataset was first added') }}</span>
+                                        <div class="text-secondary  text-sm " title="{{h.render_datetime(created,  date_format='%Y-%m-%d') }}, {{minutes}}:{{seconds}}">
+                                            {{h.time_ago_from_timestamp(created)}}
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+                                <div class=" flex flex-col md:flex-row mt-12 mb-8 py-3 px-2 md:px-5 items-center border rounded-lg border-gray-400 gap-20" style="border-top-width: 1px;">
+                                    <div class="">
+                                        {% set org = pkg.get('organization') %}
+                                        {% set image_url = org.get('image_url') if org else '' %}
+
+                                        {% if image_url and (image_url.startswith('http://') or image_url.startswith('https://')) %}
+                                            {% set image_url = image_url %}
+                                        {% else %}
+                                            {% set image_url = h.url_for_static('uploads/group/{}'.format(image_url)) %}
+                                        {% endif %}
+                                        <img class="inline-block w-full" src="{{ image_url }}" style="width: 360px; object-fit: fill;">
+                                    </div>
+                                    <div class="flex flex-col md:w-3/4">
+                                        <h4 class="">
+                                            <a href="{{ h.url_for('organization.read', id=org.name) }}" class="text-dark decoration-none">{{ org.title }}</a>
+                                        </h4>
+                                        <p class="text-sm">{{ org.description }}</p>
+                                
+                                    </div>
+                                </div>
+                  
+                            </div>
+                       
+
+
+                        </div>
+                        <div style="min-width: 300px;top:16px" class="md:sticky h-fit  app-aside" >
+                            <nav class=" ">
+                                <h5 class="flex items-center gap-2">
+                                    <span class="text-primary">
+                                        <span class="icon icon-list "></span>
+                                    </span>
+                                    {{ _('On this page') }}
+                                </h5>
+                                <ul class="text-gray-900 font-semibold text-base p-0 m-0">
+                                    <li class="">
+                                        <a class="text-gray-700 no-underline p-1 inline-block" href="#resources">{{ _('Resources') }}</a>
+                                    </li>
+                                    <li class="">
+                                        <a class="text-gray-700 no-underline p-1 inline-block" href="#methodology">{{ _('Methodology') }}</a>
+                                    </li>
+                                    <li class="">
+                                        <a class="text-gray-700 no-underline p-1 inline-block" href="#territories">{{ _('Territories') }}</a>
+                                    </li>
+                                    <li class="">
+                                        <a class="text-gray-700 no-underline p-1 inline-block" href="#keywords">{{ _('Keywords') }}</a>
+                                    </li>
+                                    <li class="">
+                                        <a class="text-gray-700 no-underline p-1 inline-block" href="#additional-info">{{ _('Additional Info') }}</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                {% if(pkg.groups|length > 0) %}
+                    <div class="tab-pane fade" id="tab-groups" role="tabpanel" >
+                        <div>
+                            <ul class="flex-grow sm:flex flex-wrap sm:-mx-2 mt-gutter">
+                                {% set all_groups = pkg.groups %}
+                                {% for group in all_groups %}
+                                <li class="sm:w-1/3 lg:w-1/3 p-2">
+                                    <a href="{{ h.url_for('group.read', id=group.id) }}" class="p-4 block bg-white rounded hover:border-1 hover:border-solid hover:border-transparent hover:bg-white hover:shadow-xl hover:text-primary" style="border:1px solid #CED4DA">
+                                        <img class="img-svg h-20" src="{{ group.image_display_url }}" style="height:40px; width:40px; "/>
+                                        <h2 class="text-xl h-16 font-bold flex items-center text-black">{{ group.title }}</h2>
+                                    </a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endif %}
+                
+                <div class="tab-pane fade" id="tab-apps" role="tabpanel" >
+                    <div class=" block flex w-full flex-row flex-wrap">
+                       
+                        {% if(apps|length == 0) %}
+                            {{_("No applications are linked to this dataset.")}} <a class="ml-1 text-primary underline" href="{{ h.url_for('montreal_theme.contact_form') }}">{{_("Submit yours")}}</a>
+                        {% endif %}
+
+                        {% for showcase in apps %}
+                        {% set image_url  = showcase.image_url%}
+                        <div class="block md:w-1/3 justify-center p-2 ">
+                            <a href="{{ h.url_for('showcase.read', id=showcase.name) }}" class="border-1 border-gray-300 block hover:border-1 hover:border-solid hover:border-transparent hover:bg-white hover:shadow-xl">
+                                <div class="card-img px-3">
+                                    {% if image_url and not image_url.startswith('http') %}
+                                        <img class="rounded-t" src="/uploads/showcase/{{ image_url }}" alt="{{ showcase.title }}" style="width: calc(100% + 2px); height: 205px; object-fit: cover;" loading="lazy">
+                                    {% else %}
+                                        <img class="rounded-t" src="{{ image_url }}" alt="{{ showcase.title }}" loading="lazy" style="width: calc(100% + 2px); height: 205px; object-fit: cover;" loading="lazy">
+                                    {% endif %}
+                                </div>
+                                <div class="card-body border-t-1 border-gray-300 p-6" style="height: 220px;">
+                                    <p class="text-xl font-bold text-black  font-open-sans font-medium mb-4" style="display: block;display: -webkit-box;max-width: 100%;-webkit-line-clamp: 3;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;">
+                                        {{ showcase.title }}
+                                    </p>
+                                    <p class="text-gray-600 font-open-sans font-normal">{{ _('by') }} {{ showcase.author }}</p>
+                                </div>
+                            </a>
+                        </div>   
+                        {% endfor %}
+                    </div>
+                </div>
+           
+            </div>
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const tabLinks = document.querySelectorAll('.dataset-tab a');
+                    // Add event listeners to each tab
+                    tabLinks.forEach((tab) => {
+                      tab.addEventListener('click', function (event) {
+                        event.preventDefault(); // Prevent default anchor behavior
+                        const target = tab.getAttribute('href'); // Get the href value of the tab
+                        // Remove active classes from all tabs and content
+                        tabLinks.forEach((link) => link.classList.remove('active'));
+                        document.querySelectorAll('.tab-pane').forEach((pane) => {
+                          pane.classList.remove('show', 'active');
+                        });
+                        // Add active class to clicked tab and corresponding content
+                        tab.classList.add('active');
+                        const content = document.querySelector(target);
+                        if (content) {
+                          content.classList.add('show', 'active');
+                        }
+                      });
+                    });
+                    // activate a specific tab dynamically
+                    const defaultTab = document.querySelector('a[href="#tab-data"]');
+                    if (defaultTab) defaultTab.click();
+                  });
+
+                  document.addEventListener("DOMContentLoaded", function () {
+                    const collapseButtons = document.querySelectorAll('[data-toggle="collapse"]');
+            
+                    collapseButtons.forEach(button => {
+                        button.addEventListener("click", function (e) {
+                            e.preventDefault(); 
+                            const targetId = button.getAttribute("href").substring(1); 
+                            const targetCollapse = document.getElementById(targetId);
+                            targetCollapse.classList.toggle("show");
+
+                            if (targetCollapse.classList.contains("show")) {
+                                button.querySelector(".btn-label").textContent = '{{_("Show less resources")}}';
+                            } else {
+                                button.querySelector(".btn-label").textContent = '{{_("Show more resources")}}';
+                            }
+             
+                        });
+                    });
+                });
+            </script>
+
+        {% endblock %}
+    </div>
+
+    {% block primary_content %}
+    
+        
 
     {% endblock %}
-</aside>
+</div>
 
 {% endblock %}

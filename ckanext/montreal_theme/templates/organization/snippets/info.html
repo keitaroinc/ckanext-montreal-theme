@@ -1,5 +1,6 @@
+{% ckan_extends %}
 {% block info %}
-{% if not g.userobj.sysadmin %}
+{% if not g.userobj %}
 
     <div class="mb-gutter md:mr-10 md:pb-2">
         <a href="{{ group.url }}">
@@ -17,7 +18,11 @@
     {% endif %}
     </div>
 {% else %}
-    {{ super() }}
-
+    {% block image %}
+        <a href="{{ url }}" class="d-block w-100">
+        <img class="w-100 mb-4" src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" width="200" alt="{{ organization.name }}" />
+        </a>
+    {% endblock %}
+     
 {% endif %}
 {% endblock %}

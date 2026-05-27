@@ -1,0 +1,19 @@
+{% if views %}
+<div class="montreal-theme">
+  <nav class="nav-tabs ">
+    <ul class="nav {{ extra_class }} " {{ extra_attributes }} role="tablist">
+    {% set current_filters = request.args.get('filters') %}
+    {% for view in views %}
+      {% set is_selected = true if view_id == view.id else false %}
+      {% snippet "package/snippets/resource_views_list_item.html",
+        view=view,
+        pkg=pkg,
+        is_edit=is_edit,
+        is_selected=is_selected,
+        current_filters=current_filters
+      %}
+    {% endfor %}
+    </ul>
+  </nav>
+</div>
+{% endif %}

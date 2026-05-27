@@ -1,48 +1,40 @@
 {% extends "page.html" %}
 
 {% block breadcrumb_content %}
-    {{ super() }}
-  <li><a href="{{ h.url_for('montreal.contact_form') }}">Contact</a></li>
-
+  {{ super() }}
+  <a href="#">{{ _('Contact Us') }}</a>
 {% endblock %}
 
-{% block primary_content %}
+{% block secondary %}
+<div class="md:w-2/3" id="contact-us-container">
   <article class="module">
     <div class="module-content">
-      <h1 class="page-heading">Contact us</h1>
-
-        {% block contact_form_content %}
-            {% include "contact/snippets/form.html" %}
-        {% endblock %}
-
+      <h3 class="text-4xl text-zambezi font-semibold w-full">{{  _('Contact Us') }}</h3>
+      </br>
+      <p>{{ _('Please contact us regarding any comment, question, request or problem regarding our open data. The message will be sent to our open data team and they will get back to you shortly.') }} </p>
+      </br>
+      <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+      <style type="text/css" media="screen, projection">
+	      @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css); 
+      </style> 
+      {% if current_lang=='fr' %}
+        <iframe title="Feedback Form" class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://bvinmtl.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&submitTitle=Envoyer&submitThanks=Merci+pour+votre+message.+Nous+vous+r%C3%A9pondrons+sous+peu.&searchArea=no" scrolling="no" height="500px" width="100%" frameborder="0" ></iframe>
+      {% else %}
+        <iframe title="Feedback Form" class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://bvinmtl.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=&submitTitle=Submit&submitThanks=Thank+you+for+contacting+us.+We+will+get+back+to+you+shortly.&searchArea=no" scrolling="no" height="500px" width="100%" frameborder="0" ></iframe>
+      {% endif %}
     </div>
   </article>
+</div>
 {% endblock %}
 
-{% block secondary_content %}
 
-{% set groups = h.montreal_get_groups() %}
-<section class="module module-narrow module-shallow groups">
-<h2 class="module-heading">{{ _('Groups') }}</h2>
-<nav>
-  <ul class="unstyled nav nav-simple nav-facet">
-    {% for group in groups %}
-    <li class="nav-item">
-      <a href="{{ h.url_for('group.read', id=group.name) }}"><span>{{group.display_name|truncate(40)}} ({{ group.package_count }})</span></a>
-    </li>
-    {% endfor %}
-  </ul>
-</nav>
-</section>
-
+{% block primary %}
+<div class="md:w-3/10 md:mr-10" id="contact-us-sidebar">
 {% set current_url = h.full_current_url() %}
-<section class="module module-narrow module-shallow groups">
-<h2 class="module-heading">{{ _('Social') }}</h2>
+<h2 class="contact-us-social">{{ _('Share') }}</h2>
   <ul class="unstyled nav nav-simple nav-facet">
-    <li class="nav-item"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank"><i class="fa fa-facebook"></i> Facebook</a></li>
-    <li class="nav-item"><a href="https://plus.google.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-google-plus"></i> Google+</a></li>
-    <li class="nav-item"><a href="http://www.linkedin.com/shareArticle?mini=true&url={ current_url }&source=Portail%20donn%C3%A9es%20ouvertes%20de%20la%20Ville%20de%20Montr%C3%A9al" target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+    <li class="nav-item"><a href="https://www.facebook.com/sharer.php?u={{ current_url }}" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
     <li class="nav-item"><a href="https://twitter.com/share?url={{ current_url }}" target="_blank"><i class="fa fa-twitter"></i> Twitter</a></li>
   </ul>
-</section>
+</div>
 {% endblock %}

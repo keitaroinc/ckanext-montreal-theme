@@ -1,10 +1,13 @@
+{% if g.userobj is not none %}
+  {% set isEditor = h.is_editor_header() %}
+{% endif %}
+
+
 {% if g.user and g.userobj.sysadmin %}
   {% ckan_extends %}
 
-  {% block styles %}
-    {{ super() }}
-
-  {% endblock %}
+{% elif g.user and isEditor %}
+  {% ckan_extends%}
 
 {% else %}
   {% extends "_page.html" %}

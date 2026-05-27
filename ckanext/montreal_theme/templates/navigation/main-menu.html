@@ -1,0 +1,193 @@
+<div class="montreal-theme app-navbar position-relative">
+  <nav class="wide-container position-static overflow-auto" >
+    <div class="font-open-sans text-base">
+      <ul class="d-flex align-items-center flex gap-3 mb-0 pl-0">
+        <li>
+          <a href="{{ h.url_for('home.index') }}" class="pl-0 pt-2 pr-2 pb-2 block"> {{_('Home')}} </a>
+        </li>
+        <li class="dropdown app-mega-menu">
+          <a
+            href="#"
+            class="dropdown-toggle d-flex align-items-center gap-1 p-2"
+            data-bs-toggle="dropdown"
+            role="button"
+            aria-expanded="false"
+          >
+            {{_('Data')}} <span class="dropdown-arrow"></span>
+          </a>
+          <div class="dropdown-menu mt-0 z-10" style="z-index: 991;">
+            <div class="inner py-lg-4 wide-container">
+              <div class="row ">
+                <div class="col-12 col-md-8">
+                  <h3
+                    class="d-flex flex-row items-center gap-3 menu-description"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M1.80001 3C2.13138 3 2.40001 3.26863 2.40001 3.6V19.8H3.60001V10.8C3.60001 10.4686 3.86864 10.2 4.20001 10.2H7.80001C8.13138 10.2 8.40001 10.4686 8.40001 10.8V19.8H9.60001V6C9.60001 5.66863 9.86864 5.4 10.2 5.4H12C12.3314 5.4 12.6 5.66863 12.6 6C12.6 6.33137 12.3314 6.6 12 6.6H10.8V19.8H13.2V7.8C13.2 7.46863 13.4686 7.2 13.8 7.2C14.1314 7.2 14.4 7.46863 14.4 7.8V19.8H15.6V13.2C15.6 12.8686 15.8686 12.6 16.2 12.6H19.8C20.1314 12.6 20.4 12.8686 20.4 13.2V19.8H22.2C22.5314 19.8 22.8 20.0686 22.8 20.4C22.8 20.7314 22.5314 21 22.2 21H19.8H16.2H13.8H10.2H7.80001H4.20001H1.80001C1.46864 21 1.20001 20.7314 1.20001 20.4V3.6C1.20001 3.26863 1.46864 3 1.80001 3ZM19.2 19.8H16.8V13.8H19.2V19.8ZM7.20001 19.8H4.80001V11.4H7.20001V19.8ZM13.8 6.6C14.1314 6.6 14.4 6.33137 14.4 6C14.4 5.66863 14.1314 5.4 13.8 5.4C13.4686 5.4 13.2 5.66863 13.2 6C13.2 6.33137 13.4686 6.6 13.8 6.6Z"
+                        fill="#ADB2BD"
+                      />
+                    </svg>
+                    <span>{{_("Datasets")}}</span>
+                  </h3>
+                  <div class="row ">
+                    <div class="col-12 col-md-6">
+                      <ul>
+                        <li>
+      
+                          <a href="{{ h.url_for('group.index') }}">
+                            <span class="submenu-title block"
+                              >{{_("By categories")}}</span
+                            >
+                            <span class="submenu-description block"
+                              >{{_("Find a dataset within a specific category (Health, Transportation)")}}</span
+                            >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ h.url_for('organization.index') }}">
+                            <span class="submenu-title block"
+                              >{{_("By organizations")}}</span
+                            >
+                            <span class="submenu-description block"
+                              >{{_("Discover data according to the organization who produce it")}}</span
+                            >
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="col-12 col-md-6 my-4 my-md-0">
+                      <ul>
+                        <li>
+                          <a href="{{h.url_for('showcase.search')}}">
+                            <span class="submenu-title block"
+                              >{{_("By Applications")}}</span
+                            >
+                            <span class="submenu-description block"
+                              >{{_("See which datasets are used in third-party applications")}}</span
+                            >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ h.url_for('pages.show', page='donnees-ouvertes-publieurs') }}">
+                            <span class="submenu-title block"
+                              >{{_("By Publisher")}}</span
+                            >
+                            <span class="submenu-description block"
+                              >{{_("Browse datasets by publishers")}}</span
+                            >
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-4">
+                  <div class="encart encart-light">
+                    <h4 class="encart-title">{{_("Search")}}</h4>
+                    <div class="encart-body">
+                      <p>
+                        {{_("Search through donnee.montrel.ca hundreds of datasets.")}}
+                      </p>
+                      <div class="btn-wrapper">
+                        <a
+                          class="btn btn-secondary btn-squared bg-transparent"
+                          href="{{h.url_for('dataset.search')}}"
+                          >{{_("Browse all")}}</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a href="{{h.url_for('pages.blog_index')}}" class="p-2 block">{{_("News")}}</a>
+        </li>
+        <li>
+          <a href="{{h.url_for('showcase.search')}}" class="p-2">{{_("Applications")}}</a>
+        </li>
+        <li class="dropdown app-mega-menu">
+        <a
+          href="#"
+          class="dropdown-toggle d-flex align-items-center gap-1 p-2"
+          data-bs-toggle="dropdown"
+          role="button"
+          aria-expanded="false"
+        >
+          {{_('About')}} <span class="dropdown-arrow"></span>
+        </a>
+          <div class="dropdown-menu mt-0 z-10" style="z-index: 991;">
+            <div class="inner py-lg-4 wide-container">
+              <div class="row ">
+                <div class="col-12 col-md-8">
+                  <div class="row">
+                    <div class="col">
+                      <h3
+                        class="d-flex flex-row items-center gap-3 menu-description"
+                      >
+                        <i class="icon-info"></i>
+                        <span>{{_('About')}}</span>
+                      </h3>
+                      <ul>
+                        <li>
+                          <a href="{{ h.url_for('pages.show', page='notre-demarche') }}">
+                            <span class="submenu-title block"
+                              >{{_("Our Approach")}}</span
+                            >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ h.url_for('pages.show', page='licence-d-utilisation') }}">
+                            <span class="submenu-title block"
+                              >{{_("User License")}}</span
+                            >
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ h.url_for('pages.show', page='plan-du-site') }}">
+                            <span class="submenu-title block"
+                              >{{_("Sitemap")}}</span
+                            >
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+           
+                  </div>
+                </div>
+                <div class="col-12 col-md-4 mt-4 md:mt-0">
+                  <div class="encart encart-light">
+                    <h4 class="encart-title">{{_("Contact Us")}}</h4>
+                    <div class="encart-body">
+                      <p>
+                       {{_("Please contact us regarding any comment, question, request or problem regarding our open data.")}}
+                      </p>
+                      <div class="btn-wrapper">
+                        <a
+                          class="btn btn-secondary btn-squared bg-transparent"
+                          href="{{h.url_for('montreal_theme.contact_form')}}"
+                          >{{_("Contact Form")}}</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

@@ -1,0 +1,150 @@
+{% macro page_hero(args) %}
+
+{% set selectedSearchOption = searchOption if searchOption else url_for('dataset.search') %}
+
+{% set current_lang = request.environ.CKAN_LANG %}
+
+<section class="montreal-theme montreal-hero {{args.class}}">
+  <div
+    class="document-heading document-heading-left-notch document-heading-fullwidth bg-gray-100"
+  >
+    <div class="container position-relative">
+      <div class="row document-heading-header pb-8">
+        <div class="col-12 col-lg-7">
+          <div class="pb-2">
+            <h1 class="h1">{{args.title}}</h1>
+            <div class="document-heading-subtitle">
+             {{args.description}}
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <form {% if form_id %}id="{{ form_id }}" {% endif %}  method="get"  action="{{args.selectedSearchOption}}" class="bg-white p-2 mb-0">
+            <div class="d-flex w-100 gap-4 align-items-end flex flex-col md:flex-row">
+              <div class="flex gap-4 w-full flex-col md:flex-row">
+                <div class="form-group mb-0 w-full" style="max-width: 100%;">
+                  <label for="form-control-default-one">{{_("Search")}}</label>
+                  <div class="input-group-icon input-group-icon-left">
+                    <input
+                      name="q" 
+                      value="{{ args.query }}"
+                      type="text"
+                      class="form-control"
+                      id="form-control-searchbar"
+                      placeholder=""
+                    />
+                    <button type="submit" class="icon icon-search" style="pointer-events: all; cursor:pointer; z-index:5">
+                    </button>
+                  </div>
+
+                </div>
+                <div class="form-group mb-0 w-full" style="max-width: 100%;">
+                  <label for="form-control-default-one">{{_("Type")}}</label>
+                  <select class="custom-select" id="" required>
+                    <option value="/{{current_lang}}/dataset" 
+                      {% if args.selectedSearchOption == "/"+current_lang+"/dataset" %} selected {% endif %}>
+                      {{ _("Datasets") }}
+                    </option>
+                    <option value="/{{current_lang}}/blog" 
+                      {% if args.selectedSearchOption == "/"+current_lang+"/blog" %} selected {% endif %}>
+                      {{ _("News") }}
+                    </option>
+                    <option value="/{{current_lang}}/showcase" 
+                      {% if args.selectedSearchOption == "/"+current_lang+"/showcase" %} selected {% endif %}>
+                      {{ _("Applications") }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ml-auto w-fit d-flex gap-1 h-fit" >
+                <button type="reset" class="btn btn-link btn-squared">
+                  {{_("Erase")}}
+                </button>
+                <button type="submit" class="btn btn-primary btn-squared">
+                  {{_("Search")}}
+                </button>
+              </div>
+
+
+
+            </form>
+          </div>
+          
+        </div>
+        <div class="row"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const heroComponent = document.querySelector(".montreal-hero.{{args.class}}");
+      const form = heroComponent.querySelector("form");
+      const typeSelector = form.querySelector("select");
+
+      typeSelector.addEventListener('change', function () {
+        const selectedValue = this.value;
+        form.action =selectedValue  
+      });
+    })();
+  </script>
+{% endmacro %}
+
+{% macro search_bar() %}
+{% set current_lang = request.environ.CKAN_LANG %}
+  <div class="montreal-searchbar mt-2 md:mt-0">
+    <form class="m-0" action="/{{current_lang}}/dataset">
+      <button type="button" class="btn btn-squared btn-icon-left py-0 pr-0" >
+        <span class="icon icon-search" aria-hidden="true"></span>
+        <span class="btn-label">{{_("Search")}}</span>
+      </button>
+      <div class="form-group montreal-input-container flex gap-0 m-0 hidden items-center gap-3">
+        <div class="flex items-center mb-0 position-relative">
+          <button type="submit" class="m-0 cursor-pointer position-absolute" style="cursor: pointer!important; z-index: 10; left:8px;">
+            <span class="icon icon-search" aria-hidden="true" style="width: 24px;"></span>
+          </button>
+          <div class="position-relative">
+            <input type="text" class="form-control rounded-0 pr-4 pl-5" name="q" placeholder="" style="width: 100%; ">
+            <span class="p-1 text-dark cursor-pointer top-0 montreal-searchbar-close position-absolute" style="z-index: 10; right:0">
+              <i class="icon icon-x text-dark"></i>
+            </span> 
+          </div>
+          <select class="form-control rounded-0 m-0" style="width:160px;max-width:160px;">
+            <option value="/{{current_lang}}/dataset">{{_("Datasets")}}</option>
+            <option value="/{{current_lang}}/blog">{{_("News")}}</option>
+            <option value="/{{current_lang}}/showcase">{{_("Applications")}}</option>
+          </select>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+  <script>
+    (function(){
+      const searchBar = document.querySelector(".montreal-searchbar");
+      const form = searchBar.querySelector("form");
+      const button = searchBar.querySelector("button");
+      const inputContainer = searchBar.querySelector(".montreal-input-container");
+      const typeSelector = form.querySelector("select");
+      const closeSearch = form.querySelector(".montreal-searchbar-close");
+      
+      button.addEventListener("click", ()=>{
+        button.classList.add("d-none");
+        inputContainer.classList.remove("hidden")
+        inputContainer.querySelector("input").focus();
+      });
+
+      closeSearch.addEventListener("click", ()=>{
+        button.classList.remove("d-none");
+        inputContainer.classList.add("hidden")
+      });
+
+      typeSelector.addEventListener('change', function () {
+        const selectedValue = this.value;
+        form.action =selectedValue  
+      });
+
+    })();
+  </script>
+{% endmacro %}

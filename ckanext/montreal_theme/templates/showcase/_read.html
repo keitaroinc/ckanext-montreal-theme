@@ -2,10 +2,10 @@
 
 {% set pkg = pkg_dict or c.pkg_dict %}
 {% set name = pkg.title or pkg.name %}
-{% set editor = h.get_wysiwyg_editor() %}
+{% set editor = h.showcase_get_wysiwyg_editor() %}
 
 {% block breadcrumb_content %}
-    <nav class="breadcrumb" aria-label="breadcrumb">
+    <nav class="breadcrumb w-full font-sans font-bold text-gray-ink text-lg" aria-label="breadcrumb">
     {% set showcase = pkg.title or pkg.name %}
         <ol class="text-gray-700 font-semibold">
             {% include 'snippets/home_breadcrumb_item.html' %}
@@ -39,8 +39,12 @@
 
 {% block primary_content %}
     <h2 class="pb-8 text-3xl font-bold text-gray-700">{{ pkg.get('title') }}</h2>
-    <span class="markdown-contnt leading-relaxed border-t border-gray-200 p-4 text-lg">
-        <p>{{ pkg.get('notes') }}</p>
+    <span class="markdown-content leading-relaxed border-t border-gray-200 p-4 text-lg">
+    {% if editor == "ckeditor" %}
+        {{ pkg.get('notes')|safe }}
+    {% else %}
+	    {{ h.render_markdown(pkg.get('notes')) }}
+    {% endif %}
     </span>
 
     <div class="container w-full md:p-8">
@@ -51,40 +55,72 @@
         <h2 class="text-2xl py-3 border-gray-200 text-gray-700 font-bold">
             {{ _("Dataset(s) used in this application") }}
         </h2>
-        {% set showcase_pkgs = g.showcase_pkgs %}
-        {% if showcase_pkgs %}
-        {% for showcase_pkg in showcase_pkgs %}
-        {% for group in showcase_pkg.get('groups') %}
-        <ul>
-            <a href="{{ h.url_for('group.read', id=group.get('name')) }}" class="application_dataset flex border-t border-gray-200 p-4">
-                <img src="{{ group.get('image_display_url')  }}" class="block" width="50px" height="50px">
-                <span class="text-base filter-button font-bold">
-                    {{ group.get('title') }}
-                </span>
-            </a>
-        </ul>
-        {% endfor %}
-        {% endfor%}
-        {% endif %}
+        {% set showcase_pkgs = h.get_showcase_pkgs(pkg.id) %}
 
-    </section>
-    <section class="mt-2 mb-16 md:pr-10">
-        <h2 class="text-2xl py-3 text-gray-700 border-gray-200 font-bold">{{ _('Keywords') }}</h2>
         {% if showcase_pkgs %}
         {% for showcase_pkg in showcase_pkgs %}
-        {% set tags = showcase_pkg.get('tags') %}
-        <div class="flex flex-wrap">
-            <div id="keywords" class="py-2">
-                {% for tag in tags %}
-                <span class="border-1 text-xs inline-block rounded-sm px-2 py-1 font-bold text-primary mr-3">
-                    {% set href = "/showcase?q=tags:" + tag.get('name') %}
-                    <a class="hover:text-primary" href="{{ href }}">{{ tag.get('display_name') }}</a>
+            
+            {% set resources = showcase_pkg.get('resources', []) %}
+            {% set groups = showcase_pkg.get('groups', []) %}
+
+            {% if resources %}
+            {% set package_id = resources[0].get('package_id') %}
+            {% endif %}
+
+            <ul class="list-unstyled mb-0">
+            <li class="border-top py-3">
+                <a href="{{ h.url_for('dataset.read', id=package_id) }}"
+                class="d-flex align-items-center text-decoration-none">
+
+                {% if groups %}
+                    <img src="{{ groups[0].get('image_display_url') }}"
+                        class="me-3 flex-shrink-0 rounded"
+                        style="width:50px; height:50px; object-fit:cover;">
+                {% endif %}
+
+                <span class="fw-bold text-dark">
+                    {{ showcase_pkg.get('title') }}
                 </span>
-                {% endfor %}
-            </div>
-        </div>
+
+                </a>
+            </li>
+            </ul>
+
         {% endfor %}
+        {% else %}
+        <p>No datasets found.</p>
         {% endif %}
+    </section>
+
+    <section class="mt-2 mb-16 md:pr-10">
+    <h2 class="text-2xl py-3 text-gray-700 border-gray-200 font-bold">
+        {{ _('Keywords') }}
+    </h2>
+
+    {% if showcase_pkgs %}
+        {% set seen_tags = [] %}
+
+        <div class="d-flex flex-wrap gap-2">
+        {% for showcase_pkg in showcase_pkgs %}
+            {% for tag in showcase_pkg.get('tags', []) %}
+
+            {% if tag.get('name') not in seen_tags %}
+                {% do seen_tags.append(tag.get('name')) %}
+
+                <a href="{{ h.url_for('dataset.search', tags=tag.get('name')) }}"
+                class="badge bg-light text-primary border fw-normal text-decoration-none px-2 py-1">
+
+                {{ tag.get('display_name') or tag.get('name') }}
+
+                </a>
+
+            {% endif %}
+
+            {% endfor %}
+        {% endfor %}
+        </div>
+
+    {% endif %}
     </section>
 
 {% endblock %}

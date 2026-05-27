@@ -1,72 +1,315 @@
-{# {% if g.user and g.userobj.sysadmin %}
 {% ckan_extends %}
-{% else %}
-{% extends "package/_resource_read.html" %}
-{% endif %}
-#} 
 
-{% ckan_extends %}
+{% set current_lang = request.environ.CKAN_LANG %}
 
 {% block head_extras -%}
 {% endblock %}
 
 {% block pre_primary %}
+    {% if g.user and g.userobj.sysadmin %}
+        {{ super() }}
+    {% endif %}
 {% endblock %}
 
 {% block toolbar %}
-<div class="container mx-auto" style="padding-top: 35px">
-    {% block breadcrumb_content %}
-        <nav class="breadcrumb" aria-label="breadcrumb">
-            <ol class="text-gray-700 font-semibold">
-                {% include 'snippets/home_breadcrumb_item.html' %}
-                <li class="breadcrumb_item">
-                    <a class="breadcrumb_link" href="{{ h.url_for('dataset.read', id=package.name) }}">{{ _("Dataset") }}</a>
-                </li>
-                <li class="breadcrumb_item">
-                    <a class="breadcrumb_link" href="{{ h.url_for('resource.read', id=package.name, resource_id=resource.id) }}">{{ resource.name }}</a>
-                </li>
-            </ol>
-        </nav>
-    {% endblock %}
-</div>
+    {% if g.user and g.userobj.sysadmin %}
+        {{ super() }}
+    {% else %}
+        <div class="container mx-auto" style="padding-top: 35px">
+            <div class="montreal-theme">
+                <div class="page-header bg-transparent mt-0 pt-0 border-0">
+                    <div class="row">
+                        <div class="col container-title">
+                            <div class="row">
+                                <nav class="col-12 col-lg-12 pr-0 breadcrumb-container" role="navigation" >
+                                    <ol class="breadcrumb  d-flex">
+                                        <li class="breadcrumb-item">
+                                            <a href="{{ h.url_for('dataset.read', id=package.name) }}" class="flex items-center gap-2">
+                                                <i class="icon icon-chevron-left"></i>
+                                                {{ _(package.title) }}
+                                            </a>
+                                        </li>
+                                    </ol>
+                                </nav>
+                                <div class="col">
+                                    <h1 class="h2">
+                                        {{resource.name}}
+                                    </h1>
+                                    <div class="content-header-extras">
+                                        <div class="list-inline-interpunct">
+                                            <div class="list-inline-item text-lg">{{resource.description}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto pl-0">
+                            <div class="container-btn btn-sem-order d-none d-md-flex">
+                                <a href="{{ h.url_for('resource.download', id=package.name, resource_id=resource.id) }}" class="btn btn-primary btn-squared flex items-center gap-1">
+                                    <i class="icon icon-download"></i>
+                                    {{ _("Download") + " (" + resource.format + ")" }}
+                                </a>
+                                <a data-module="api-info" data-module-template="{{ '/api/1/util/snippet/_api_info.html?resource_id=' + resource.id }}" class="btn btn-secondary btn-squared d-none d-lg-inline-flex">
+                                    <img class="icon " src="/images/icons/database.svg"/>
+                                    {{ _("API") }}
+                                </a>
+                            </div>
+                            <div class="container-btn btn-sem-order d-md-none">
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-tertiary btn-squared btn-icon" aria-label="Libellé pour accessibilité" data-toggle="dropdown" aria-expanded="false" aria-haspopup="true">
+                                        <span class="icon icon-more-vertical" aria-hidden="true"></span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownBaseMenuID" style="top:0">
+                                        <a href="{{ h.url_for('resource.download', id=package.name, resource_id=resource.id) }}" type="button" class="dropdown-item">
+                                            {{ _("Download") + " (" + resource.format + ")" }}
+                                        </a>
+                                        <a data-module="api-info" data-module-template="{{ '/api/1/util/snippet/_api_info.html?resource_id=' + resource.id }}" class="dropdown-item">
+                                            {{ _("API") }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
 
-
 {% block extra_content %}
-<div class="container mx-auto lg:flex p-gutter">
-    <div class="mb-gutter lg:mb-0 lg:w-2/3 lg:mr-gutter">
-        <h2 class="text-3xl font-semibold text-gray-900">{{ _("Data") }}</h2>
-        <div id="data" class="py-2">
+{% if g.user and g.userobj.sysadmin %}
+{{ super() }}
+{% else %}
+<div class="container px-0 pt-0 mx-auto  p-gutter">
+    <div class="mb-gutter lg:mb-0 w-full lg:mr-gutter px-4">
+        <div id="data" >
+            <h3 class="text-xl text-black h3 font-bold m-0">{{_("Explore data")}}</h3>
             <ul>
-                <div class="custom_panel">
-                    <li class="mb-6">
-                        <nav class="pt-4 pb-1">
-                            <a href="{{ h.url_for('resource.download', id=package.name, resource_id=resource.id) }}" class="inline-block mr-3 mb-6 py-2 px-4 rounded text-white bg-primary hover:bg-sarcelle-dark cursor-pointer" target="_blank">
-                                <dl class="data-file-type_inner">
-                                    <dt class="data-file-type_term">{{ _("Download " + "(" + resource.format + ")") }}</dt>
-                                </dl>
-                            </a>
-                            <a data-module="api-info" data-module-template="{{ '/api/1/util/snippet/api_info.html?resource_id=' + resource.id }}" class="inline-block mr-3 mb-6 py-2 px-4 rounded text-white bg-primary hover:bg-sarcelle-dark cursor-pointer">
-                                <dl class="data-file-type_inner">
-                                    <dt class="data-file-type_term">{{ _("API") }}</dt>
-                                </dl>
-                            </a>
-                        </nav>
+                <div class="">
+                    <li class="mb-0">
+                        
                         <div class="data-explorer">
-                            <div class="data-explorer">  
+                            <div class="data-explorer">
+                            </div>
+                            {% block resource_view %}
+                            <div class="data-explorer-content">
+                                {{ super() }}
+                            </div>
+                            {% endblock %}
                         </div>
-                        {% block resource_view %}
-                        <div class="data-explorer-content">
-                           {{super() }}
-                        </div>
-                        {% endblock %}
                     </li>
                 </div>
             </ul>
         </div>
+        {# if res.datastore_active %}
+            <section class="module mb-8 lg:mx-2">
+                <div class="montreal-theme lg:-ml-2">
+                    <h3 class="h3 " >
+                        {{ _('Data Dictionary') }}
+                    </h3>
+                    <div class="flex flex-col gap-8 overflow-auto lg:w-2/3 " style="max-height: 500px;">
+                        {% set dict=h.datastore_dictionary(res.id) %}
+                        {% for field in dict %}
+                            {% set column = field.id %}   
+                            {% set label = h.get_translated(field.get('info', {}), 'label') %}   
+                            {% set type = field.type %}   
+                            {% set notes = h.render_markdown(h.get_translated(field.get('info', {}), 'notes')) %}   
+                            
+                            {% if notes or column or type or notes %}
+                                <div class="flex  flex-col lg:flex-row" >
+                                    {% if  column or type or notes  %}
+                                    <div class="w-full flex flex-col gap-1">
+                                        {% if column %}
+                                        <div class="list">
+                                            <div class="list-item py-0">
+                                                <div class="list-item-label">{{_("Column")}}</div>
+                                            </div>
+                                            <div class="list-item py-0">
+                                                <div class="list-item-content font-normal ">
+                                                    {{column }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% if type %}
+                                        <div class="list">
+                                            <div class="list-item py-0 block" >
+                                                <span class="list-item-label inline-block text-sm">{{_("Type")}}</span>
+                                                <span class="list-item-content inline-block font-normal" >
+                                                    {{type}}
+                                                </span>
+                                            </div>
+                            
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                    {% if notes %}
+                                        <div class="w-full">
+                                            <div class="list">
+                                                <div class="list-item py-0">
+                                                    <div class="list-item-label">{{_("Description")}}</div>
+                                                </div>
+                                                <div class="list-item py-0">
+                                                    <div class="list-item-content font-normal">
+                                                        {{ notes }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        {% endif #}
     </div>
+    <div class="montreal-theme lg:w-2/3">
+        <h3 class="h3 ">
+            {{_("How to cite these data")}}
+        </h3>
+        <div class=" item mb-2 relative pr-8">
+            <div class="content-wrapper">
+                <b class="text-dark block">{{_("APA (7th Edition)")}}</b>
+                <p class="mb-1 content">
+                    Ville de Montréal. (<span class="current-year"></span>). <i>{{ _(package.title) }}</i> [{{_("Dataset")}}]. {{_("Open Data City of Montreal")}}.<br>
+                    <a href="{{ h.url_for('dataset.read', id=package.name, _external=True) }}">{{ h.url_for('dataset.read', id=package.name, _external=True) }}</a>
+                </p>
+                
+            </div>
+            <a href="#" class="copy-btn">{{_('Copy')}}</a>
+        </div>
+        <div class=" item mb-2 relative pr-8">
+            <div class="content-wrapper">
+                <b class="text-dark block">{{_("IEEE")}}</b>
+                <p class="mb-1 content">
+                    [#] Ville de Montréal, {{ _(package.title) }}, Montréal: {{_("Open Data City of Montreal")}}, <span class="current-year"></span>. [{{_("Dataset")}}]. {{_("Available")}}: <a href="{{ h.url_for('dataset.read', id=package.name, _external=True) }}">{{ h.url_for('dataset.read', id=package.name, _external=True) }}</a>. [{{_("consulted on")}} <span class="current-date"></span>].
+                </p>
+            </div>
+            <a href="#" class="copy-btn">{{_('Copy')}}</a>
+        </div>
+        <div class=" item mb-2 relative pr-8">
+            <div class="content-wrapper">
+                <b class="text-dark block">{{_("Newspaper Article")}}</b>
+                <p class="mb-1 content">
+                    {{_("Data in this news are from the dataset")}} <a href="{{ h.url_for('dataset.read', id=package.name, _external=True) }}">{{ package.title }}</a> {{_("from City of Montreal’s Open Data Website")}} <span class="current-date"></span>.
+                </p>
+            </div>
+            <a href="#" class="copy-btn">{{_('Copy')}}</a>
+        </div>
+        <div class=" item mb-2 relative pr-8">
+            <div class="content-wrapper">
+                <b class="text-dark block">{{_("Other uses")}}</b>
+                <p class="mb-1 content">
+                    {{_("With data from")}} <a href="{{ h.url_for('dataset.read', id=package.name, _external=True) }}">{{ package.title }}</a> {{_("taken from City of Montreal’s Open Data Website")}}, <span class="current-date"></span>.
+                </p>
+            </div>
+            <a href="#" class="copy-btn">{{_('Copy')}}</a>
+        </div>
+    </div>
+    <script>
+        const currentDate = new Date();
+        const formattedCurrentDate = currentDate.toLocaleDateString('{{current_lang}}-{{current_lang|capitalize}}', {
+            day: '2-digit',
+            month: 'long',
+            year: 'numeric',
+        });
+        const currentYear = currentDate.getFullYear();
+        const currentYearElements = document.querySelectorAll(".current-year");
+        const currentDateElementes = document.querySelectorAll(".current-date");
+        currentYearElements.forEach( (el)=>el.textContent = currentYear );
+        currentDateElementes.forEach( (el)=>el.textContent = formattedCurrentDate );
+    </script>
+    <script>
+        // Function to copy content
+        function copyContent(event) {
+            event.preventDefault();
+            const contentDiv = event.target.closest('.item').querySelector('.content');
+            const range = document.createRange();
+            range.selectNode(contentDiv);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            
+            return false;
+        }
+
+        // Add event listeners to all copy buttons
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', copyContent);
+        });
+    </script>
 </div>
+{% endif %}
 {% endblock %}
 
-{% block secondary_content %}
+{% block primary_content %}
+{% if g.user and g.userobj.sysadmin %}
+    {{ super() }}
+{% else %}
+    {% if res %}
+        <section class="module">
+            <div class="montreal-theme lg:-ml-2">
+                <h3 class="h3 " >
+                    {{ _('Additional Information') }}
+                </h3>
+                <div class="flex flex-col gap-2">
+                    {% if package.organization.title %}
+                    <div class="list">
+                        <div class="list-item py-0">
+                            <div class="list-item-label">{{_("Publisher")}}</div>
+                        </div>
+                        <div class="list-item py-0">
+                            <div class="list-item-content font-normal text-primary font-bold"><a href="{{url_for('organization.read', id=package.organization.name)}}">{{package.organization.title}}</a></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% if resource.format %}
+                    <div class="list">
+                        <div class="list-item py-0">
+                            <div class="list-item-label">{{_("Format")}}</div>
+                        </div>
+                        <div class="list-item py-0">
+                            <div class="list-item-content font-normal ">{{resource.format}}</div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="list">
+                        <div class="list-item py-0">
+                            <div class="list-item-label">{{ _('Metadata last updated') }}</div>
+                        </div>
+                        <div class="list-item py-0">
+                            <div class="list-item-content font-normal ">{{ h.render_datetime(res.metadata_modified) or h.render_datetime(res.created) or _('unknown') }}</div>
+                        </div>
+                    </div>
+                 
+                    
+                    <div class="list">
+                        <div class="list-item py-0">
+                            <div class="list-item-label">{{ _('License') }}</div>
+                        </div>
+                        <div class="list-item py-0">
+                            <div class="list-item-content font-normal ">{% snippet "snippets/license.html", pkg_dict=pkg, text_only=True %}</div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    {% endif %}
+
+{% endif %}
+{% endblock %}
+
+{% block secondary %}
+    <aside class="md:w-3/10 md:mr-10" style="display: none;"></aside>
+    {% block secondary_content %}
+        {% if g.user and g.userobj.sysadmin %}
+            {{ super() }}
+        {% endif %}
+    {% endblock %}
 {% endblock %}

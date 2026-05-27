@@ -1,4 +1,19 @@
+
 {% extends "page.html" %}
+
+{% import "components.html" as components %}
+
+{% block page_hero%}
+
+{{components.page_hero({
+    "title": _("Datasets"),
+    "description": "",
+    "selectedSearchOption": url_for('dataset.search'),
+    "query": c.q,
+    "class" : "datasets-hero"
+})}}
+
+{% endblock %}
 
 {% block breadcrumb%}
 <div class="w-full font-sans font-semibold text-gray-ink text-sm uppercase py-3" aria-label="{{ _('breadcrumb') }}">
@@ -7,7 +22,7 @@
         {% block breadcrumb_content %}
             {{super() }}
             <li class="breadcrumb_item hover:text-primary">
-                <a href="{{ h.url_for('dataset.search') }}" class="breadcrumb_link">{{ dataset_type + 's' }}</a>
+                <a href="{{ h.url_for('dataset.search') }}" class="breadcrumb_link">{{ _(dataset_type + 's') }}</a>
             </li>
         {% endblock %}
         </ol>
@@ -16,7 +31,7 @@
 {% endblock %}
 
 {% block primary_content %}
-
+    
     {% block form %}
         {% set facets = {
             'fields': fields_grouped,
@@ -35,6 +50,8 @@
 
         {% snippet 'snippets/search_form.html', form_id='dataset-search-form', type=dataset_type, query=q, sorting=sorting, sorting_selected=sort_by_selected, count=page.item_count, placeholder=_('Search ' + dataset_type + 's') + '...', facets=facets, show_empty=request.params, error=query_error, fields=fields %}
     {% endblock %}
+
+   
 
     {% block package_search_results_list %}
         {{ h.snippet('snippets/package_list.html', packages=page.items) }}

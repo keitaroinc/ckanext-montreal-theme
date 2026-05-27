@@ -26,8 +26,8 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('assets', 'montreal_theme')
-        toolkit.add_ckan_admin_tab(config_, 'montreal_theme.search_config',
-                                  toolkit._('Search Config'))
+        # toolkit.add_ckan_admin_tab(config_, 'montreal_theme.search_config',
+        #                           toolkit._('Search Config'))
 
     def get_blueprint(self):
         # Register the new blueprint
@@ -36,13 +36,22 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
     # ITemplateHelpers
     def get_helpers(self):
         return {
+            'is_editor_header': h.is_user_editor_no_arg,
+            'is_editor': h.is_user_editor,
+            'organization_info': h.get_organization_info_for_user,
             'all_organizations': h.get_all_organizations,
+            'montreal_get_groups': h.get_groups,
             'all_groups': h.get_all_groups,
             'latest_datasets': h.get_latest_datasets,
             'get_showcases': h.get_showcases,
             'get_value_from_showcase_extras': h.get_value_from_showcase_extras,
             'homepage_search_configs': h.homepage_search_configs,
             'format_size': h.format_size,
+            'teritories_string': h.teritories_string,
+            'get_google_tag': h.get_google_tag,
+            'datetime': h.datetime,
+            'get_package_applications': h.get_package_showcases,
+            'get_showcase_pkgs': h.get_showcase_pkgs
         }
 
     # IFacets

@@ -4,6 +4,7 @@ montreal_theme-style:
   contents:
     - css/style.css
     - css/leaflet.css
+    - css/custom.css
 montreal_theme-js:
   output: montreal_theme/%(version)s_custom.js
   contents:

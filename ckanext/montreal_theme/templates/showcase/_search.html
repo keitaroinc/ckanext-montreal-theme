@@ -1,11 +1,21 @@
 {% extends "package/search.html" %}
 {% import 'macros/form.html' as form %}
+{% import "components.html" as components %}
 {% set ckan_29_or_higher = h.ckan_version().split('.')[1] | int >= 9 %}
 {% set showcase_index_route = 'showcase_blueprint.index' if ckan_29_or_higher else 'showcase_index' %}
 {% set showcase_new_route = 'showcase_blueprint.new' if ckan_29_or_higher else 'showcase_new' %}
 
 
-{% block subtitle %}{{ _("Applications") }}{% endblock %}
+{% block page_hero %}
+{% set current_lang = request.environ.CKAN_LANG %}
+    {{components.page_hero({
+        "title": _("Applications"),
+        "description": _("Showcases are any app, article or report that relate to the published dataset. For example, an annual report that contains aggregated information relating to the dataset or a website where there is further background information on the dataset or a link to an app that has been created utilising some or all of the dataset."),
+        "selectedSearchOption": "/"+current_lang+"/showcase",
+        "query": c.q,
+        "class" : "showcase-hero"
+    })}}
+{% endblock %}
 
 {% block breadcrumb_content %}
 
@@ -19,16 +29,6 @@
 {% block page_primary_action %}
 {% endblock %}
 
-{% block extra_content %}
-<div class="container mx-auto md:flex p-gutter">
-    <div class="w-2/3">
-        <h1 class="font-semibold text-3xl mb-1 text-gray-700">{{ _('Applications') }}</h1>
-        <p class="leading-relaxed lg:w-full text-gray-700 font-light text-lg">
-            {{ _('Showcases are any app, article or report that relate to the published dataset. For example, an annual report that contains aggregated information relating to the dataset or a website where there is further background information on the dataset or a link to an app that has been created utilising some or all of the dataset.') }}
-        </p>
-    </div>
-</div>
-{% endblock %}
 
 {% block primary_content %}
     {% block form %}
@@ -62,7 +62,7 @@
 <div class="filters">
   <div>
     {% for facet in c.facet_titles %}
-      {{ h.snippet('snippets/facet_list.html', title=c.facet_titles[facet], name=facet) }}
+      {{ h.snippet('snippets/facet_list_showcase.html', title=c.facet_titles[facet], name=facet) }}
     {% endfor %}
   </div>
   <a class="close no-text hide-filters"><i class="fa fa-times-circle icon-remove-sign"></i><span class="text">close</span></a>

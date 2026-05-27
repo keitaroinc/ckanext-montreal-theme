@@ -1,0 +1,89 @@
+<nav class="nav-admin font-open-sans bg-dark  ">
+  <div class="wide-container d-flex align-items-center ">
+    {% if "dev" in config.get('ckan.site_url') %}
+      {% set loc_fr = "développement" %}
+      {% set loc_en = "developement" %}
+    {% else %}
+      {% set loc_fr = "production" %}
+      {% set loc_en = "production" %}
+    {% endif %}
+
+    <span class="fs-12 instance">
+      {% if current_lang == 'fr' %}
+        Instance de <strong style="font-weight: bold;">{{ loc_fr }}</strong>
+      {% else %}
+        Instance of <strong style="font-weight: bold;">{{ loc_en }}</strong>
+      {% endif %}
+    </span>
+
+    <div class="ml-auto">
+      <div class="position-relative">
+        <button class=" btn btn-lang text-white pr-0" type="button" data-bs-toggle="dropdown" id="user-dropdown" aria-haspopup="true" aria-expanded="false">
+          {{ c.userobj.display_name }}
+          <span class="dropdown-arrow"></span>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-dropdown" style="max-width:150px">
+          <a href="/dataset" title="{{ _('Sysadmin settings') }}" class="dropdown-item">
+            <span class="text-dark  hover:text-dark">{{ _('Data') }}</span>
+          </a>
+          <a href="/pages" title="{{ _('Sysadmin settings') }}" class="dropdown-item">
+            <span class="text-dark  hover:text-dark">{{ _('Pages') }}</span>
+          </a>
+          <a href="{{ h.url_for('pages.blog_index') }}" title="{{ _('Sysadmin settings') }}" class="dropdown-item">
+            <span class="text-dark  hover:text-dark">{{ _('News') }}</span>
+          </a>
+          <a href="{{ h.url_for('organization.index') }}" title="{{ _('Sysadmin settings') }}" class="dropdown-item">
+            <span class="text-dark  hover:text-dark">{{ _('Organizations') }}</span>
+          </a>
+          <a href="{{ h.url_for('group.index') }}" title="{{ _('Sysadmin settings') }}" class="dropdown-item">
+            <span class="text-dark  hover:text-dark">{{ _('Groups') }}</span>
+          </a>
+          <a href="{{ h.url_for('showcase_blueprint.index') }}" title="{{ _('Sysadmin settings') }}" class="dropdown-item">
+            <span class="text-dark  hover:text-dark">{{ _('Applications') }}</span>
+          </a>
+          {% if g.userobj.sysadmin %}
+            <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}" class="dropdown-item">
+              <span class="text-dark  hover:text-dark">{{ _('Admin') }}</span>
+            </a>
+          {% endif %}
+          <a class="nav-logout dropdown-item" href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}" style="border-top:1px solid #ededed ">
+            <svg class="fill-current w-6 h-6 hover:rounded hover:bg-sarcelle-light" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="icon">
+              <path fill-rule="evenodd" d="M21.927 11.624a1 1 0 01-.22 1.083l-5 5a1 1 0 01-1.414-1.414L18.586 13H8a1 1 0 010-2h13a1 1 0 01.921.61l.006.014zm-6.634-3.917a1 1 0 111.414-1.414l2.035 2.035a1 1 0 11-1.414 1.414l-2.035-2.035zM11 21a1 1 0 010 2H5a3 3 0 01-3-3V4a3 3 0 013-3h6a1 1 0 010 2H5a1 1 0 00-1 1v16a1 1 0 001 1h6z"></path>
+            </svg>
+            <span class="text-dark hover:text-dark">{{ _('Logout') }}</span>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  
+</nav>
+
+<!-- 
+
+
+
+{% if current_lang == 'fr' %}
+    <span class="nav-admin-welcome">Bienvenue,
+
+      Instance de <strong style="font-weight: bold;">{{ loc_fr }}.</strong>
+    </span>
+  {% else %}
+    <span class="nav-admin-welcome">Welcome,
+      <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+        <span class="border-dotted border-b border-gray-600 font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}.</span>
+      </a>
+      Instance of <strong style="font-weight: bold;">{{ loc_en }}.</strong>
+    </span>
+  {% endif %}
+
+
+      <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
+        <span class="border-dotted border-b border-gray-600 font-open-sans name-uppercase text-white font-bold text-nav-name">{{ c.userobj.display_name }}.</span>
+      </a>
+
+-->

@@ -4,14 +4,59 @@ import ckan.lib.formatters as formatters
 
 from ckan.plugins import toolkit as tk
 
+from ckan.plugins.toolkit import get_action
+
+from datetime import datetime
+
 from ckanext.montreal_theme.model import SearchConfig
 
+import json
 
 g = tk.g
 
+def is_user_editor_no_arg():
+       
+    info = get_organization_info_for_user()  #Gets the whole information for every organization the user has permissions for 
+
+    for organization in info: 
+            #checking if the user has the role of editor or admin in the organizations for which it has permissions
+        if organization.get('capacity') == 'editor':
+            return True
+        elif organization.get('capacity') == 'admin':
+            return True
+        
+    return False
+
+def is_user_editor(org_id):
+       
+    info = get_organization_info_for_user()  #Gets the whole information for every organization the user has permissions for 
+
+    for organization in info: 
+            #checking if the user has the role of editor in the organizations for which it has permissions
+        if (organization.get('id') == org_id and organization.get('capacity') == 'editor') or (organization.get('id') == org_id and organization.get('capacity') == 'admin'):
+            return True
+        
+    return False
+    
+
+def get_organization_info_for_user(include_dataset_count=True):
+    '''Return a list of organizations with additional data such as user role ('capacity')
+       for the ones that the user has permission.
+    '''
+    if not getattr(g, 'user', None) or not getattr(g, 'userobj', None):
+        return {}
+
+    context = {'user': g.user}
+    data_dict = {
+        'id': g.userobj.id,
+    }
+
+    return tk.get_action('organization_list_for_user')(context, data_dict)
+
+
 def get_all_organizations(include_dataset_count=True):
     '''Return a list of organizations that the current user has the specified
-    permission for.
+       permission for.
     '''
     context = {'user': g.user}
     data_dict = {
@@ -31,6 +76,17 @@ def get_latest_datasets():
     return datasets.get('results', [])
 
 
+def get_groups():
+    # Helper used on the homepage for showing groups
+
+    data_dict = {
+        'all_fields': True
+    }
+    groups = tk.get_action('group_list')({}, data_dict)
+
+    return groups
+
+
 def get_all_groups(include_dataset_count=True):
     '''Return a list of organizations that the current user has the specified
     permission for.
@@ -44,7 +100,8 @@ def get_all_groups(include_dataset_count=True):
 
 def get_showcases(num=6):
     '''Return a list of showcases'''
-    return tk.get_action("ckanext_showcase_list")() or []
+    showcases = tk.get_action("ckanext_showcase_list")() or []
+    return showcases[:9]
 
 
 def get_value_from_showcase_extras(extras, key):
@@ -60,8 +117,57 @@ def homepage_search_configs():
 
 
 def format_size(size):
+
+    if size == None:
+        value = "--"
+        return value
     try:
+
         value = formatters.localised_filesize(int(size))
+        
+        if "KiB" in value:
+            value = value.replace("KiB","KB")
+        if "MiB" in value:
+            value = value.replace("MiB","MB")
+        if "GiB" in value:
+            value = value.replace("GiB","GB")
+        if "TiB" in value:
+            value = value.replace("TiB","TB")
+            
     except Exception as e:
         value = size
     return value
+
+
+def teritories_string(data):
+    if data:
+        return str(data)
+
+
+def get_google_tag():
+    gtag = tk.config.get('ckanext.montreal_theme.gtag')
+    return gtag
+
+
+def datetime():
+    return datetime
+
+
+
+def get_package_showcases(package_id):
+    try:
+        # Use CKAN's internal action API
+        context = {}
+        data_dict = {"package_id": package_id}
+        showcases = get_action("ckanext_package_showcase_list")(context, data_dict)
+        return showcases
+    except Exception as e:
+        # Log or handle the exception if needed
+        return []
+
+
+def get_showcase_pkgs(showcase_id):
+    return tk.get_action('ckanext_showcase_package_list')(
+        {'ignore_auth': True},
+        {'showcase_id': showcase_id}
+    )
