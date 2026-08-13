@@ -5,6 +5,7 @@ from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.montreal_theme.views.config import montreal_theme
 from ckanext.montreal_theme import helpers as h
+from ckanext.montreal_theme.middleware import DropInvalidSearchParams
 import ckanext.montreal_theme.cli as cli
 
 class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
@@ -15,7 +16,12 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IFacets)
     plugins.implements(plugins.IClick)
     plugins.implements(plugins.IGroupForm, inherit=True)
+    plugins.implements(plugins.IMiddleware, inherit=True)
 
+
+    # IMiddleware
+    def make_middleware(self, app, config):
+        return DropInvalidSearchParams(app)
 
     # IClick
     def get_commands(self):
