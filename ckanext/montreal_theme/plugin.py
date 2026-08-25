@@ -21,7 +21,12 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     # IMiddleware
     def make_middleware(self, app, config):
-        return DropInvalidSearchParams(app)
+        # Wrap app.wsgi_app in place rather than returning the wrapper: an
+        # IMiddleware plugin loaded after this one receives whatever we
+        # return, and anything that reaches for a Flask API on it (core
+        # `tracking` calls app.after_request) would break at startup.
+        app.wsgi_app = DropInvalidSearchParams(app.wsgi_app)
+        return app
 
     # IClick
     def get_commands(self):
