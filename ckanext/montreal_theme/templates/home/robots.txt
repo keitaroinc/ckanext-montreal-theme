@@ -1,0 +1,29 @@
+{% ckan_extends %}
+
+{% block all_user_agents %}
+{{ super() }}
+
+# Faceted search views are not useful search results and the set of
+# filter combinations is effectively unbounded: every extra facet
+# multiplies the number of distinct URLs, none of which are cacheable.
+# Crawlers that walk them generate a full Solr query per request while
+# adding nothing indexable, so disallow the filtered views and leave the
+# canonical dataset, group and organization pages crawlable.
+Disallow: /*?*tags=
+Disallow: /*?*groups=
+Disallow: /*?*res_format=
+Disallow: /*?*organization=
+Disallow: /*?*license_id=
+Disallow: /*?*_tags_limit=
+Disallow: /*?*_groups_limit=
+Disallow: /*?*_res_format_limit=
+
+# CKAN escapes the separator in multi-facet links as "&amp;", which is
+# correct HTML. A crawler that also treats ";" as a parameter separator
+# reads the "amp" as its own parameter and re-requests the URL with a
+# bare "amp=" appended. The reply contains the same escaped links, so
+# each pass appends another one and the crawl space compounds; requests
+# carrying fifteen stacked "amp=" parameters have been observed in
+# production. The parameter is meaningless to CKAN, so refuse the URLs.
+Disallow: /*?*amp=
+{% endblock %}
