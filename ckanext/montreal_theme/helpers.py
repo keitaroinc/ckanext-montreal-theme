@@ -11,8 +11,48 @@ from datetime import datetime
 from ckanext.montreal_theme.model import SearchConfig
 
 import json
+import logging
+import time
+import threading
+import functools
+
+log = logging.getLogger(__name__)
 
 g = tk.g
+
+_cache_lock = threading.Lock()
+_cache_store = {}
+
+
+def _ttl_cached(ttl=300):
+    """In-process TTL cache keyed by function name, args, and current user."""
+    def decorator(fn):
+        @functools.wraps(fn)
+        def wrapper(*args, **kwargs):
+            user = getattr(g, 'user', None)
+            key = (fn.__name__, args, tuple(sorted(kwargs.items())), user)
+            now = time.monotonic()
+            with _cache_lock:
+                entry = _cache_store.get(key)
+                if entry and now < entry['expires']:
+                    return entry['value']
+            result = fn(*args, **kwargs)
+            with _cache_lock:
+                _cache_store[key] = {'value': result, 'expires': now + ttl}
+            return result
+        return wrapper
+    return decorator
+
+
+def _timed(fn):
+    @functools.wraps(fn)
+    def wrapper(*args, **kwargs):
+        t0 = time.perf_counter()
+        result = fn(*args, **kwargs)
+        ms = (time.perf_counter() - t0) * 1000
+        log.info('[HOMEPAGE TIMING] %s took %.1f ms', fn.__name__, ms)
+        return result
+    return wrapper
 
 def is_user_editor_no_arg():
        
@@ -39,6 +79,7 @@ def is_user_editor(org_id):
     return False
     
 
+@_timed
 def get_organization_info_for_user(include_dataset_count=True):
     '''Return a list of organizations with additional data such as user role ('capacity')
        for the ones that the user has permission.
@@ -54,7 +95,9 @@ def get_organization_info_for_user(include_dataset_count=True):
     return tk.get_action('organization_list_for_user')(context, data_dict)
 
 
-def get_all_organizations(include_dataset_count=True):
+@_timed
+@_ttl_cached(ttl=300)
+def get_all_organizations(include_dataset_count=False):
     '''Return a list of organizations that the current user has the specified
        permission for.
     '''
@@ -65,6 +108,8 @@ def get_all_organizations(include_dataset_count=True):
     return tk.get_action('organization_list')(context, data_dict)
 
 
+@_timed
+@_ttl_cached(ttl=120)
 def get_latest_datasets():
     '''Return a list of the latest datasets that the current user has the specified
     permission for.
@@ -87,7 +132,9 @@ def get_groups():
     return groups
 
 
-def get_all_groups(include_dataset_count=True):
+@_timed
+@_ttl_cached(ttl=300)
+def get_all_groups(include_dataset_count=False):
     '''Return a list of organizations that the current user has the specified
     permission for.
     '''
@@ -98,6 +145,8 @@ def get_all_groups(include_dataset_count=True):
     return tk.get_action('group_list')(context, data_dict)
 
 
+@_timed
+@_ttl_cached(ttl=300)
 def get_showcases(num=6):
     '''Return a list of showcases'''
     showcases = tk.get_action("ckanext_showcase_list")() or []
