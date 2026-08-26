@@ -7,6 +7,7 @@ from ckan.lib.plugins import DefaultTranslation
 
 from ckanext.montreal_theme.views.config import montreal_theme
 from ckanext.montreal_theme import helpers as h
+from ckanext.montreal_theme.middleware import DropInvalidSearchParams
 import ckanext.montreal_theme.cli as cli
 
 log = logging.getLogger(__name__)
@@ -39,6 +40,15 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
     # IMiddleware
     def make_middleware(self, app, config):
         return _RequestTimingMiddleware(app)
+
+    # IMiddleware
+    def make_middleware(self, app, config):
+        # Wrap app.wsgi_app in place rather than returning the wrapper: an
+        # IMiddleware plugin loaded after this one receives whatever we
+        # return, and anything that reaches for a Flask API on it (core
+        # `tracking` calls app.after_request) would break at startup.
+        app.wsgi_app = DropInvalidSearchParams(app.wsgi_app)
+        return app
 
     # IClick
     def get_commands(self):
