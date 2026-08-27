@@ -7,6 +7,9 @@ jobs:
       # Kept in step with the CKAN version running in production. The Solr and
       # Postgres service images below must match this tag.
       image: ckan/ckan-dev:2.11
+      # ckan-dev images run as an unprivileged user from 2.10 onwards, which
+      # cannot write to the runner workspace mounted at /__w.
+      options: --user root
     services:
       solr:
         image: ckan/ckan-solr:2.11-solr9
