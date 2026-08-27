@@ -74,17 +74,23 @@ def test_locale_prefix_matches_what_url_for_produced(app, path, locale):
 
 
 @pytest.mark.parametrize("locale", ["en", "fr"])
-def test_current_url_has_no_locale_prefix_to_duplicate(app, locale):
-    """Switching from /fr/... must give /en/..., not /en/fr/...
+def test_prefixing_current_url_does_not_duplicate_the_locale(app, locale):
+    """Switching from /fr/... must give /en/..., not /en/fr/....
 
-    ``h.current_url()`` returns the path with the locale already stripped,
-    which is what makes a bare prefix safe.
+    CKAN's i18n middleware strips the locale into ``CKAN_LANG`` and leaves
+    ``CKAN_CURRENT_URL`` without it, which is what makes a bare prefix safe.
+    A plain test request context has no CKAN middleware, so the environ key
+    is supplied here the way CKAN would set it for a request to
+    ``/fr/dataset?q=test``.
     """
-    with app.flask_app.test_request_context("/dataset?q=test"):
+    stripped = "/dataset?q=test"
+
+    with app.flask_app.test_request_context(
+        "/fr" + stripped, environ_overrides={"CKAN_CURRENT_URL": stripped}
+    ):
         current = toolkit.h.current_url()
 
-    assert not current.startswith("/en/")
-    assert not current.startswith("/fr/")
+    assert current == stripped
     assert "/" + locale + current == "/" + locale + "/dataset?q=test"
 
 
@@ -105,7 +111,10 @@ def test_prefixing_a_dotted_path_is_safe(app):
     """The replacement handles the same input without recursing."""
     dotted = "/?" + DOTTED_QUERY
 
-    with app.flask_app.test_request_context(dotted):
+    with app.flask_app.test_request_context(
+        dotted, environ_overrides={"CKAN_CURRENT_URL": dotted}
+    ):
         built = "/en" + toolkit.h.current_url()
 
-    assert built.startswith("/en/")
+    assert built.startswith("/en/?")
+    assert "etc/passwd" in built
