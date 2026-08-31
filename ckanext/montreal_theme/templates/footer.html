@@ -107,7 +107,7 @@
                                 </li>
                                 <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
                                 <li class="list-inline-item">
-                                     <a href="{% url_for h.current_url(), locale='en' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('English')}}</a>         
+                                     <a href="/en{{ h.current_url() }}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('English')}}</a>         
                                 </li>
                             </ul>
                         </div>
@@ -135,7 +135,7 @@
                                 </li>
                                 <li class="mx-2 h-1 w-1 bg-white rounded-full bg-gray-500"></li>
                                 <li class="list-inline-item">
-                                    <a href="{% url_for h.current_url(), locale='fr' %}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('Français')}}</a>        
+                                    <a href="/fr{{ h.current_url() }}" class="cursor-pointer bg-gray-900 text-white font-bold hover:text-primary z-20 relative inline-flex items-center">{{_('Français')}}</a>        
                                 </li>
                             </ul>
                         </div>
