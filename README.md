@@ -1,39 +1,34 @@
-[![Tests](https://github.com/keitaroinc/ckanext-montreal-theme/workflows/Tests/badge.svg?branch=main)](https://github.com/keitaroinc/ckanext-montreal-theme/actions)
+[![Tests](https://github.com/keitaroinc/ckanext-montreal-theme/actions/workflows/test.yml/badge.svg)](https://github.com/keitaroinc/ckanext-montreal-theme/actions)
 
 # ckanext-montreal-theme
 
-**TODO:** Put a description of your extension here:  What does it do? What features does it have? Consider including some screenshots or embedding a video!
+The custom CKAN theme and portal extension behind the City of Montreal open data
+portal (Donnees Quebec / Donnees Montreal). It replaces the default CKAN look and
+feel and adds the portal-specific behaviour the site depends on:
+
+- **Theme & templates** — full override of the CKAN base, header, footer, home,
+  dataset, organization, group, user, showcase and `ckanext-pages` templates,
+  plus the compiled SCSS/JS assets under `ckanext/montreal_theme/assets/`.
+- **Custom dataset schema** — a `ckanext-scheming` dataset schema
+  (`donneesqc_metadonnee_scheming.json`) with its own field presets
+  (`presets.json`) and a curated licence list (`ckan-licenses.json`).
+- **Configurable homepage search** — a `search_config` table and admin views for
+  managing the homepage search shortcuts (`ckan montreal init_db` creates the
+  table).
+- **Bilingual UI** — French translations shipped via `ITranslation`.
 
 
 ## Requirements
-
-**TODO:** For example, you might want to mention here which versions of CKAN this
-extension works with.
-
-If your extension works across different versions you can add the following table:
 
 Compatibility with core CKAN versions:
 
 | CKAN version    | Compatible?   |
 | --------------- | ------------- |
-| 2.6 and earlier | not tested    |
-| 2.7             | not tested    |
-| 2.8             | not tested    |
-| 2.9             | not tested    |
-
-Suggested values:
-
-* "yes"
-* "not tested" - I can't think of a reason why it wouldn't work
-* "not yet" - there is an intention to get it working
-* "no"
+| 2.11            | Yes           |
+| 2.12            | not tested    |
 
 
 ## Installation
-
-**TODO:** Add any additional install steps to the list below.
-   For example installing any non-Python dependencies or adding any required
-   config settings.
 
 To install ckanext-montreal-theme:
 
@@ -59,13 +54,16 @@ To install ckanext-montreal-theme:
 
 ## Config settings
 
-None at present
+It expects these core / `ckanext-scheming` settings to point at the files it
+ships:
 
-**TODO:** Document any optional config settings here. For example:
+	# Custom dataset schema and field presets
+	scheming.dataset_schemas = ckanext.montreal_theme:donneesqc_metadonnee_scheming.json
+	scheming.presets = ckanext.scheming:presets.json ckanext.montreal_theme:presets.json
 
-	# The minimum number of hours to wait before re-checking a resource
-	# (optional, default: 24).
-	ckanext.montreal_theme.some_setting = some_default_value
+	# Curated licence list
+	licenses_group_url = file:///path/to/ckanext-montreal-theme/ckanext/montreal_theme/ckan-licenses.json
+
 
 
 ## Developer installation
