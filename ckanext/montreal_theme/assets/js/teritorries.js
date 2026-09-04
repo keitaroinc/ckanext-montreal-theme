@@ -27,7 +27,7 @@ $(document).ready(function () {
     // Zoom stops at 19, one level below CARTO; setView starts at 10 and
     // fitBounds can zoom in from there, so the ceiling has to be lowered to
     // match or the deepest zoom renders blank.
-    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
+    L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}.{ext}', {
         minZoom: 0,
         maxZoom: 20,
         attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
