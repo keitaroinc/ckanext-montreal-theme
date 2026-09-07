@@ -39,15 +39,17 @@ class MontrealThemePlugin(plugins.SingletonPlugin, DefaultTranslation):
 
     # IMiddleware
     def make_middleware(self, app, config):
-        return _RequestTimingMiddleware(app)
-
-    # IMiddleware
-    def make_middleware(self, app, config):
+        # Both wrappers have to be applied here. A class cannot carry two
+        # methods of the same name: the second definition wins and the first
+        # is never called, which is how _RequestTimingMiddleware came to be
+        # silently dropped when the search-param sanitiser was added.
+        #
         # Wrap app.wsgi_app in place rather than returning the wrapper: an
         # IMiddleware plugin loaded after this one receives whatever we
         # return, and anything that reaches for a Flask API on it (core
         # `tracking` calls app.after_request) would break at startup.
         app.wsgi_app = DropInvalidSearchParams(app.wsgi_app)
+        app.wsgi_app = _RequestTimingMiddleware(app.wsgi_app)
         return app
 
     # IClick
