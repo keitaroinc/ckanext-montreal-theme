@@ -8,7 +8,7 @@
   {{components.page_hero({
     "title": _("Welcome to Montreal’s open data website"),
     "description":"",
-    "selectedSearchOption": '/'+current_lang+'/dataset',
+    "selectedSearchOption": h.url_for('dataset.search'),
     "query": "",
     "class" : "home-hero"
   })}}
