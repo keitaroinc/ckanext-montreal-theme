@@ -1286,3 +1286,8 @@ msgstr "Copier"
 #: ckanext/montreal_theme/templates/package/_search.html:9
 msgid "datasets"
 msgstr "Jeux de données"
+#: ckanext/montreal_theme/templates/snippets/search_result_text.html:17
+msgid "{number} Result"
+msgid_plural "{number} Results"
+msgstr[0] "{number} Résultat"
+msgstr[1] "{number} Résultats"
