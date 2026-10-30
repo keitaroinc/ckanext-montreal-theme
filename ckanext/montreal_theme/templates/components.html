@@ -1,6 +1,6 @@
 {% macro page_hero(args) %}
 
-{% set selectedSearchOption = searchOption if searchOption else url_for('dataset.search') %}
+{% set selectedSearchOption = searchOption if searchOption else h.url_for('dataset.search') %}
 
 {% set current_lang = request.environ.CKAN_LANG %}
 
