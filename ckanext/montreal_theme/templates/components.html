@@ -1,8 +1,8 @@
 {% macro page_hero(args) %}
 
-{% set selectedSearchOption = searchOption if searchOption else url_for('dataset.search') %}
-
-{% set current_lang = request.environ.CKAN_LANG %}
+{% set dataset_search_url = h.url_for('dataset.search') %}
+{% set blog_search_url = h.url_for('pages.blog_index') %}
+{% set showcase_search_url = h.url_for('showcase_blueprint.index') %}
 
 <section class="montreal-theme montreal-hero {{args.class}}">
   <div
@@ -41,16 +41,16 @@
                 <div class="form-group mb-0 w-full" style="max-width: 100%;">
                   <label for="form-control-default-one">{{_("Type")}}</label>
                   <select class="custom-select" id="" required>
-                    <option value="/{{current_lang}}/dataset" 
-                      {% if args.selectedSearchOption == "/"+current_lang+"/dataset" %} selected {% endif %}>
+                    <option value="{{ dataset_search_url }}" 
+                      {% if args.selectedSearchOption == dataset_search_url %} selected {% endif %}>
                       {{ _("Datasets") }}
                     </option>
-                    <option value="/{{current_lang}}/blog" 
-                      {% if args.selectedSearchOption == "/"+current_lang+"/blog" %} selected {% endif %}>
+                    <option value="{{ blog_search_url }}" 
+                      {% if args.selectedSearchOption == blog_search_url %} selected {% endif %}>
                       {{ _("News") }}
                     </option>
-                    <option value="/{{current_lang}}/showcase" 
-                      {% if args.selectedSearchOption == "/"+current_lang+"/showcase" %} selected {% endif %}>
+                    <option value="{{ showcase_search_url }}" 
+                      {% if args.selectedSearchOption == showcase_search_url %} selected {% endif %}>
                       {{ _("Applications") }}
                     </option>
                   </select>
@@ -92,9 +92,11 @@
 {% endmacro %}
 
 {% macro search_bar() %}
-{% set current_lang = request.environ.CKAN_LANG %}
+{% set dataset_search_url = h.url_for('dataset.search') %}
+{% set blog_search_url = h.url_for('pages.blog_index') %}
+{% set showcase_search_url = h.url_for('showcase_blueprint.index') %}
   <div class="montreal-searchbar mt-2 md:mt-0">
-    <form class="m-0" action="/{{current_lang}}/dataset">
+    <form class="m-0" action="{{ dataset_search_url }}">
       <button type="button" class="btn btn-squared btn-icon-left py-0 pr-0" >
         <span class="icon icon-search" aria-hidden="true"></span>
         <span class="btn-label">{{_("Search")}}</span>
@@ -111,9 +113,9 @@
             </span> 
           </div>
           <select class="form-control rounded-0 m-0" style="width:160px;max-width:160px;">
-            <option value="/{{current_lang}}/dataset">{{_("Datasets")}}</option>
-            <option value="/{{current_lang}}/blog">{{_("News")}}</option>
-            <option value="/{{current_lang}}/showcase">{{_("Applications")}}</option>
+            <option value="{{ dataset_search_url }}">{{_("Datasets")}}</option>
+            <option value="{{ blog_search_url }}">{{_("News")}}</option>
+            <option value="{{ showcase_search_url }}">{{_("Applications")}}</option>
           </select>
         </div>
         

@@ -3,11 +3,10 @@
 {% extends 'page.html'%}
 
 {% block page_hero %}
-{% set current_lang = request.environ.CKAN_LANG %}
     {{components.page_hero({
         "title": _("News"),
         "description": "",
-        "selectedSearchOption": "/"+current_lang+"/blog",
+        "selectedSearchOption": h.url_for('pages.blog_index'),
         "query": c.q,
         "class" : "news-hero"
     })}}
