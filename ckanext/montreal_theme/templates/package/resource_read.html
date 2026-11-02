@@ -263,7 +263,7 @@
                             <div class="list-item-label">{{_("Publisher")}}</div>
                         </div>
                         <div class="list-item py-0">
-                            <div class="list-item-content font-normal text-primary font-bold"><a href="{{url_for('organization.read', id=package.organization.name)}}">{{package.organization.title}}</a></div>
+                            <div class="list-item-content font-normal text-primary font-bold"><a href="{{h.url_for('organization.read', id=package.organization.name)}}">{{package.organization.title}}</a></div>
                         </div>
                     </div>
                     {% endif %}

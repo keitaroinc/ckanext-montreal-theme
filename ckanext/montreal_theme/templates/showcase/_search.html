@@ -7,11 +7,10 @@
 
 
 {% block page_hero %}
-{% set current_lang = request.environ.CKAN_LANG %}
     {{components.page_hero({
         "title": _("Applications"),
         "description": _("Showcases are any app, article or report that relate to the published dataset. For example, an annual report that contains aggregated information relating to the dataset or a website where there is further background information on the dataset or a link to an app that has been created utilising some or all of the dataset."),
-        "selectedSearchOption": "/"+current_lang+"/showcase",
+        "selectedSearchOption": h.url_for('showcase_blueprint.index'),
         "query": c.q,
         "class" : "showcase-hero"
     })}}
